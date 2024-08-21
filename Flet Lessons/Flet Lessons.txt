@@ -1,0 +1,974 @@
+Прежде чем начать:
+
+В Flet термин "controls" (контролы) относится к элементам пользовательского интерфейса, которые можно добавлять на страницу. Это могут быть различные визуальные компоненты, такие как кнопки, текстовые поля, изображения, контейнеры для других элементов и так далее. Эти элементы позволяют создавать и настраивать интерфейс приложения.
+
+Примеры контролов во Flet:
+
+Text: Отображение текста.
+Button: Кнопка, которую можно нажать.
+TextField: Поле для ввода текста.
+Image: Отображение изображения.
+Column: Контейнер для вертикального расположения элементов.
+Row: Контейнер для горизонтального расположения элементов.
+
+Пример использования контролов во Flet:
+
+python
+Копировать код
+import flet as ft
+
+def main(page: ft.Page):
+    # Создание текстового контрола
+    text = ft.Text(value="Привет, Flet!", size=20)
+
+    # Создание кнопки
+    button = ft.Button(text="Нажми меня", on_click=lambda _: page.add(ft.Text(value="Кнопка нажата!")))
+
+    # Добавление контролов на страницу
+    page.add(text)
+    page.add(button)
+
+ft.app(target=main)
+
+
+В этом примере:
+
+Text: Создается текстовый контрол, который отображает строку "Привет, Flet!".
+Button: Создается кнопка с текстом "Нажми меня". При нажатии на кнопку добавляется новый текстовый контрол на страницу.
+page.add(): Метод для добавления контролов на страницу.
+
+Контейнеры
+
+Контейнеры, такие как Column и Row, позволяют группировать и упорядочивать другие контроли:
+
+python
+Копировать код
+def main(page: ft.Page):
+    text = ft.Text(value="Привет, Flet!", size=20)
+    button = ft.Button(text="Нажми меня", on_click=lambda _: page.add(ft.Text(value="Кнопка нажата!")))
+
+    # Создание колонки для вертикального размещения элементов
+    column = ft.Column(controls=[text, button])
+
+    # Добавление колонки на страницу
+    page.add(column)
+
+ft.app(target=main)
+
+
+Заключение
+
+Контролы во Flet — это строительные блоки интерфейса. Они позволяют создавать интерактивные и визуально привлекательные приложения. Ты можешь комбинировать различные контролы и контейнеры для создания сложных интерфейсов.
+
+
+Изучение Python UI (GUI Apps) / #1 – Разработка программ с графическим интерфейсом на Питон
+https://youtu.be/OcrEMgx7OjE?list=PL0lO_mIqDDFVZr9lLryYHSbAbrn3YJGbE
+
+00:00 Обзор библиотек для Python
+
+• В курсе будут изучены несколько библиотек для построения полноценных приложений на Python.
+• Python позволяет создавать как мобильные, так и компьютерные программы с графическим интерфейсом.
+
+01:10 Выбор библиотек
+
+• В Python есть несколько популярных библиотек для разработки пользовательского интерфейса:
+• Tkinter (стандартная библиотека, подходит для простых проектов);
+• Kivy (для мобильных приложений);
+• PyQt (для создания графических интерфейсов);
+• PyGame (для разработки игр);
+• Flat (для создания красивых и стильных интерфейсов);
+• PyDracula (для создания стильных приложений);
+• Pygame (для разработки игр в стиле ретро).
+
+06:52 Установка Python и создание проекта
+
+• Для работы с Python необходимо установить его на компьютер.
+• Для создания проекта в Python используется текстовый редактор, например, Visual Studio Code.
+
+
+Изучение Python UI (GUI Apps) / #2 – Библиотека Python Flet для UI дизайна приложений
+https://youtu.be/gG49Ok4LrhI?list=PL0lO_mIqDDFVZr9lLryYHSbAbrn3YJGbE
+
+00:40 Создание виртуального окружения и установка библиотеки
+
+• Создание виртуального окружения с помощью команды "python -m venv venv".
+• Установка библиотеки "flat" с помощью команды "pip install flat".
+
+02:59 Создание основного файла и настройка приложения
+
+• Создание файла "main.py" и импорт библиотеки "flat".
+• Создание функции "main" и указание настроек для приложения.
+
+05:59 Создание и настройка элементов приложения
+
+• Создание ряда с иконками и текстовыми надписями.
+• Настройка расположения элементов внутри ряда.
+
+08:24 Запуск и тестирование приложения
+
+• Запуск приложения и проверка его работы.
+• Возможность создания дополнительных рядов и элементов.
+
+10:54 Создание приложения с использованием библиотеки Flat
+
+• Создание приложения с использованием библиотеки Flat.
+• Добавление обработчиков событий к объектам.
+• Создание функции для получения данных от пользователя.
+
+17:06 Создание дополнительных объектов
+
+• Создание стандартной кнопки с использованием класса FlatButton.
+• Создание чек-бокса с использованием класса CheckBox.
+• Добавление обработчика события для чек-бокса.
+
+
+import flet as ft
+
+def main(page: ft.Page):
+    # Устанавливаем заголовок страницы
+    page.title = "DNHTech"
+    # Устанавливаем автоматически изменяемую тему в зависимости от системной темы
+    page.theme_mode = None
+    # Выравниваем элементы по вертикали по центру
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+
+    # Создаем метку для отображения информации
+    user_label = ft.Text("Info")
+    # Создаем текстовое поле для ввода пользователя
+    user_text = ft.TextField(value="0", width=150, text_align=ft.TextAlign.CENTER)
+
+    # Функция для обработки нажатия кнопки
+    def get_info(e):
+        # Обновляем значение метки информацией из текстового поля
+        user_label.value = user_text.value
+        # Обновляем страницу, чтобы отобразить изменения
+        page.update()
+
+    # Добавляем элементы на страницу
+    page.add(
+        ft.Row(
+            [
+                # Кнопка с иконкой дома, при нажатии вызывается get_info
+                ft.IconButton(ft.icons.HOME, on_click=get_info),
+                # Иконка в виде руки
+                ft.Icon(ft.icons.BACK_HAND),
+                # Кнопка с текстом "Click me!", при нажатии вызывается get_info
+                ft.ElevatedButton(text="Click me!", on_click=get_info),
+                # Кнопка с текстом "Clich meh", при нажатии вызывается get_info
+                ft.OutlinedButton(text="Clich meh", on_click=get_info),
+                # Чекбокс с вопросом "Вы согласны?", значение по умолчанию - True
+                ft.Checkbox(label="Вы согласны?", value=True, on_change=True)
+            ],
+            # Выравнивание элементов в строке по центру
+            alignment=ft.MainAxisAlignment.CENTER
+        ),
+        # Вторая строка с меткой и текстовым полем
+        ft.Row(
+            [
+                user_label,
+                user_text
+            ],
+            # Выравнивание элементов в строке по центру
+            alignment=ft.MainAxisAlignment.CENTER
+        )
+    )
+
+# Запускаем приложение с целевой функцией main
+ft.app(target=main)
+
+
+Изучение Python UI (GUI Apps) / #3 – Погодное приложение на Python Flet
+https://youtu.be/3ItKkLq-9sM?list=PL0lO_mIqDDFVZr9lLryYHSbAbrn3YJGbE
+
+00:00 Создание погодного приложения
+
+• Создание погодного приложения на базе библиотеки Flat.
+• Удаление ненужных элементов и создание переменных.
+• Создание функций для получения данных о погоде и изменения темы приложения.
+
+08:02 Реализация функции получения данных о погоде
+
+• Использование стороннего сервиса Open Weather Map для получения информации о погоде.
+• Создание переменной с ключом для получения данных.
+• Проверка длины введенного пользователем города и выход из функции при некорректном вводе.
+• Обращение к библиотеке Requests для выполнения запроса к API Open Weather Map.
+
+11:15 Получение данных о погоде
+
+• Обращение к библиотеке и функции гет для получения данных о погоде.
+• Установка юрл адреса и джейсон для работы с данными.
+
+12:42 Тестирование и вывод данных
+
+• Тестирование работы с температурой в градусах Цельсия.
+• Обращение к джейсон объекту для получения температуры.
+• Вывод температуры в текстовое поле в приложении.
+
+15:23 Заключение
+
+• Реализация проекта с использованием библиотеки флэт.
+• Вывод погоды из разных городов на разных языках.
+• Проект выглядит красиво с анимациями и использованием языка питон.
+
+
+import flet as ft
+import requests
+
+def main(page: ft.Page):
+    # Установка заголовка страницы и темы
+    page.title = "Weather App"
+    page.theme_mode = 'dark'
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+
+    # Создание текстового поля для ввода города и текстового поля для отображения погоды
+    user_data = ft.TextField(label="Введите город", width=400)
+    weather_data = ft.Text("")
+
+    # Обработчик события для получения информации о погоде
+    def get_info(e):
+        if len(user_data.value) <= 2:
+            return
+        API = '5b7e510687689b527393081e3fc3188f'
+        URL = (f'https://api.openweathermap.org/data/2.5/weather?q={user_data.value}&appid={API}&units=metric&lang=ru')
+        res = requests.get(URL).json()
+        temp = res['main']['temp']
+        weather_data.value = "Погода " + str(temp)
+        page.update()
+
+    # Обработчик события для смены темы
+    def change_theme(e):
+        page.theme_mode = "light" if page.theme_mode == 'dark' else 'dark'
+        page.update()
+
+    # Добавление элементов интерфейса на страницу
+    page.add(
+        ft.Row(
+            [
+                ft.IconButton(ft.icons.SUNNY, on_click=change_theme),
+                ft.Text("Программа погоды")
+            ],
+            alignment=ft.MainAxisAlignment.CENTER
+        ),
+        ft.Row([user_data], alignment=ft.MainAxisAlignment.CENTER),
+        ft.Row([weather_data], alignment=ft.MainAxisAlignment.CENTER),
+        ft.Row([ft.ElevatedButton(text="Получить", on_click=get_info)], alignment=ft.MainAxisAlignment.CENTER)
+    )
+
+# Запуск приложения с функцией main в качестве цели
+ft.app(target=main)
+
+
+Изучение Python UI (GUI Apps) / #4 – Система регистрация. База данных SQLite3
+https://youtu.be/JE8e7-IXJTA?list=PL0lO_mIqDDFVZr9lLryYHSbAbrn3YJGbE
+
+00:00 Создание дизайна приложения
+
+• Создание дизайна для приложения, которое будет регистрировать пользователей через базу данных.
+• Создание переменных для полей ввода (логин, пароль) и кнопки (добавить).
+• Создание функций для проверки заполнения полей и активации кнопки.
+
+09:10 Подключение базы данных и создание регистрации
+
+• Подключение библиотеки эски лайт для работы с базой данных.
+• Создание переменной для обращения к базе данных и создание курсора.
+• Создание команды для создания таблицы в базе данных и добавление пользователей.
+
+11:42 Создание таблицы
+
+• Создание таблицы "юзерс" с полями "айди", "логин" и "пароль".
+• Использование тройных кавычек для записи команд в несколько рядов.
+
+14:12 Добавление нового пользователя
+
+• Использование команды "инса интум" для добавления нового пользователя в таблицу "юзерс".
+• Указание значений для "айди", "логин" и "пароль" в одинарных кавычках.
+• Установка значения "пусто" для полей "логин" и "пароль" после добавления пользователя.
+
+16:11 Завершение урока
+
+• Проверка работы регистрации и добавление нового пользователя.
+• Указание значения "пассфольд" для поля "пароль" для отображения пароля как текста.
+• Завершение урока и призыв к подписке на канал и вступлению в соцсети.
+
+
+import flet as ft
+import sqlite3
+
+def main(page: ft.Page):
+    # Установка заголовка страницы и темы
+    page.title = "Registration"
+    page.theme_mode = 'dark'
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.window_width = 350
+    page.window_height = 400
+    page.window_resizable = False
+
+    # Функция регистрации пользователя
+    def register(e):
+        # Подключение к базе данных SQLite
+        db = sqlite3.connect('tg_app/pyguiapps/db_any.filename')
+        cur = db.cursor()
+
+        # Создание таблицы пользователей, если она не существует
+        cur.execute('''CREATE TABLE IF NOT EXISTS users (
+                    id INTEGER PRIMARY KEY,
+                    login TEXT,
+                    pass TEXT
+                    )''')
+
+        # Вставка данных нового пользователя в таблицу
+        cur.execute(f"INSERT INTO users VALUES(NULL, '{user_login.value}', '{user_pass.value}')")
+
+        # Сохранение изменений и закрытие базы данных
+        db.commit()
+        db.close()
+
+        # Очистка полей ввода и обновление страницы
+        user_login.value = ''
+        user_pass.value = ''
+        btn_reg.text = 'Добавлено'
+        page.update()
+
+    # Функция валидации полей ввода
+    def validate(e):
+        if all([user_login.value, user_pass.value]):
+            btn_reg.disabled = False
+        else:
+            btn_reg.disabled = True
+        page.update()
+
+    # Создание текстовых полей для логина и пароля, а также кнопки для регистрации
+    user_login = ft.TextField(label="Логин", width=200, on_change=validate)
+    user_pass = ft.TextField(label="Пароль", password=True, width=200, on_change=validate)
+    btn_reg = ft.OutlinedButton(text="Добавить", width=200, on_click=register, disabled=True)
+
+    # Добавление элементов интерфейса на страницу
+    page.add(
+        ft.Row(
+            [
+                ft.Column(
+                    [
+                        ft.Text("Регистрация"),
+                        user_login,
+                        user_pass,
+                        btn_reg
+                    ]
+                )
+            ],
+            alignment=ft.MainAxisAlignment.CENTER
+        )
+    )
+
+# Запуск приложения с функцией main в качестве цели
+ft.app(target=main)
+
+
+Изучение Python UI (GUI Apps) / #5 – Авторизация через БД. Создание навигации
+https://youtu.be/tDOkk4CTaeQ?list=PL0lO_mIqDDFVZr9lLryYHSbAbrn3YJGbE
+
+00:00 Создание системы авторизации
+
+• Исправление ошибки в базе данных, добавление функции комит.
+• Переименование приложения в "Айти Прогер Эп".
+• Создание переменных для регистрации и авторизации.
+• Создание кнопки "Авторизовать" и функции "Аус Юзер".
+
+03:28 Реализация процесса авторизации
+
+• Подключение к базе данных, выборка пользователей.
+• Проверка корректности введенных данных.
+• Создание всплывающего окна с сообщением о неверных данных.
+
+09:13 Добавление навигации
+
+• Создание класса "Навигационный бар" и списка навигации.
+• Описание каждой вкладки с иконкой, подписью и обработчиком события.
+• Создание функции "Навигайт" для обработки событий.
+
+11:47 Создание меню и проверка индекса
+
+• Создается меню с регистрацией и авторизацией, где каждый элемент имеет свой индекс.
+• При нажатии на кнопку, выводится индекс элемента, на который нажали.
+
+12:53 Переход между страницами
+
+• Создается переменная для хранения индекса страницы.
+• При переходе на новую страницу, проверяется индекс и выполняется переход.
+
+13:31 Реализация процесса регистрации и авторизации
+
+• При нажатии на кнопку авторизации, открывается страница авторизации.
+• При регистрации, открывается страница регистрации.
+• При вводе неверных данных, выводится ошибка.
+• При вводе верных данных, происходит авторизация.
+
+
+import flet as ft
+import sqlite3
+
+def main(page: ft.Page):
+    # Установка заголовка страницы и темы
+    page.title = "Aliadm App"
+    page.theme_mode = 'dark'
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.window_width = 350
+    page.window_height = 400
+    page.window_resizable = False
+
+    # Функция регистрации пользователя
+    def register(e):
+        # Подключение к базе данных SQLite
+        db = sqlite3.connect('tg_app/pyguiapps/db_any.filename')
+        cur = db.cursor()
+
+        # Создание таблицы пользователей, если она не существует
+        cur.execute('''CREATE TABLE IF NOT EXISTS users (
+                    id INTEGER PRIMARY KEY,
+                    login TEXT,
+                    pass TEXT
+                    )''')
+
+        # Вставка данных нового пользователя в таблицу
+        cur.execute(f"INSERT INTO users VALUES(NULL, '{user_login.value}', '{user_pass.value}')")
+
+        # Сохранение изменений и закрытие базы данных
+        db.commit()
+        db.close()
+
+        # Очистка полей ввода и обновление страницы
+        user_login.value = ''
+        user_pass.value = ''
+        btn_reg.text = 'Добавлено'
+        page.update()
+
+    # Функция валидации полей ввода
+    def validate(e):
+        if all([user_login.value, user_pass.value]):
+            btn_reg.disabled = False
+            btn_auth.disabled = False
+        else:
+            btn_reg.disabled = True
+            btn_auth.disabled = True
+        page.update()
+
+    # Функция авторизации пользователя
+    def auth_user(e):
+        db = sqlite3.connect('tg_app/pyguiapps/db_any.filename')
+        cur = db.cursor()
+        cur.execute(f"SELECT * FROM users WHERE login = '{user_login.value}' AND pass = '{user_pass.value}'")
+        if cur.fetchone() is not None:
+            user_login.value = ''
+            user_pass.value = ''
+            btn_auth.text = 'Авторизовано'
+            page.update()
+        else:
+            page.snack_bar = ft.SnackBar(ft.Text(f'Неверные учетные данные'))
+            page.snack_bar.open = True
+            page.update()
+        db.commit()
+        db.close()
+
+    # Создание текстовых полей для логина и пароля, а также кнопок для регистрации и авторизации
+    user_login = ft.TextField(label="Логин", width=200, on_change=validate)
+    user_pass = ft.TextField(label="Пароль", password=True, width=200, on_change=validate)
+    btn_reg = ft.OutlinedButton(text="Добавить", width=200, on_click=register, disabled=True)
+    btn_auth = ft.OutlinedButton(text="Авторизовать", width=200, on_click=auth_user, disabled=True)
+
+    # Создание панелей для регистрации и авторизации
+    panel_register = ft.Row(
+        [
+            ft.Column(
+                [
+                    ft.Text("Регистрация"),
+                    user_login,
+                    user_pass,
+                    btn_reg
+                ]
+            )
+        ],
+        alignment=ft.MainAxisAlignment.CENTER
+    )
+
+    panel_auth = ft.Row(
+        [
+            ft.Column(
+                [
+                    ft.Text("Авторизация"),
+                    user_login,
+                    user_pass,
+                    btn_auth
+                ]
+            )
+        ],
+        alignment=ft.MainAxisAlignment.CENTER
+    )
+
+    # Функция для навигации между панелями
+    def navigate(e):
+        index = page.navigation_bar.selected_index
+        page.clean()
+        if index == 0: page.add(panel_register)
+        elif index == 1: page.add(panel_auth)
+
+    # Создание навигационной панели
+    page.navigation_bar = ft.NavigationBar(
+        destinations=[
+            ft.NavigationDestination(icon=ft.icons.VERIFIED_USER, label="Регистрация"),
+            ft.NavigationDestination(icon=ft.icons.VERIFIED_USER_OUTLINED, label="Авторизация")
+        ],
+        on_change=navigate
+    )
+
+    # Отображение панели регистрации при запуске приложения
+    page.add(panel_register)
+
+# Запуск приложения с функцией main в качестве цели
+ft.app(target=main)
+
+
+Изучение Python UI (GUI Apps) / #6 – Личный кабинет на Flet
+https://youtu.be/KZyMtDnXaqI?list=PL0lO_mIqDDFVZr9lLryYHSbAbrn3YJGbE
+
+00:00 Создание личного кабинета
+
+• В этом уроке автор предлагает добавить личный кабинет в приложение, где будут отображаться все зарегистрированные пользователи.
+• Для этого он создает новую страницу с названием "Личный кабинет" и добавляет ее в панель навигации.
+• Однако, он не хочет, чтобы пользователи могли переходить в личный кабинет, если они еще не зарегистрированы или не авторизованы.
+• Поэтому он добавляет условие, которое проверяет, была ли успешная авторизация.
+• Если авторизация была успешной, то автор добавляет новую вкладку в панель навигации и открывает страницу с кабинетом.
+
+05:28 Реализация списка пользователей
+
+• В личном кабинете автор предлагает вывести список всех пользователей.
+• Для этого он создает новый объект, который будет отвечать за вывод списка, и заполняет его бессмысленной информацией.
+• Затем он указывает, что в личном кабинете будет отображаться весь этот список.
+
+10:04 Подключение к базе данных и вывод информации
+
+• В этом разделе автор подключает к базе данных и выбирает всех пользователей из таблицы "Юзеры".
+• Затем он перебирает все полученные записи и выводит информацию о каждом пользователе в терминал.
+
+11:52 Создание личного кабинета
+
+• Вводим данные для авторизации, заходим в личный кабинет.
+• Замечаем, что в терминале отображается только один пользователь, хотя их должно быть два.
+• Используем функцию fetchall для получения всех пользователей.
+
+12:48 Вывод данных из личного кабинета
+
+• Вводим данные для авторизации, авторизовано, личный кабинет.
+• Вводим имя пользователя для вывода его данных.
+• Реализуем функцию для вывода имени пользователя.
+• Запускаем программу несколько раз, добавляем новых пользователей.
+• Данные каждого пользователя подтягиваются заново при переходе на страницу кабинета.
+
+
+import flet as ft
+import sqlite3
+
+def main(page: ft.Page):
+    # Установка свойств страницы
+    page.title = "Aliadm App"
+    page.theme_mode = 'dark'
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.window_width = 350
+    page.window_height = 400
+    page.window_resizable = False
+
+    # Функция для регистрации пользователя
+    def register(e):
+        # Подключение к базе данных SQLite
+        db = sqlite3.connect('tg_app/pyguiapps/db_any.filename')
+        cur = db.cursor()
+
+        # Создание таблицы пользователей, если она не существует
+        cur.execute('''CREATE TABLE IF NOT EXISTS users (
+                    id INTEGER PRIMARY KEY,
+                    login TEXT,
+                    pass TEXT
+                    )''')
+
+        # Вставка данных нового пользователя в таблицу
+        cur.execute(f"INSERT INTO users VALUES(NULL, '{user_login.value}', '{user_pass.value}')")
+
+        # Сохранение изменений и закрытие базы данных
+        db.commit()
+        db.close()
+
+        # Очистка полей ввода и обновление страницы
+        user_login.value = ''
+        user_pass.value = ''
+        btn_reg.text = 'Добавлено'
+        page.update()
+
+    # Функция для валидации полей ввода
+    def validate(e):
+        if all([user_login.value, user_pass.value]):
+            btn_reg.disabled = False
+            btn_auth.disabled = False
+        else:
+            btn_reg.disabled = True
+            btn_auth.disabled = True
+        page.update()
+
+    # Функция для аутентификации пользователя
+    def auth_user(e):
+        db = sqlite3.connect('tg_app/pyguiapps/db_any.filename')
+        cur = db.cursor()
+        cur.execute(f"SELECT * FROM users WHERE login = '{user_login.value}' AND pass = '{user_pass.value}'")
+        if cur.fetchone() is not None:
+            user_login.value = ''
+            user_pass.value = ''
+            btn_auth.text = 'Авторизовано'
+
+            # Добавление новой цели в навигационную панель для личного кабинета
+            if len(page.navigation_bar.destinations) == 2:
+                page.navigation_bar.destinations.append(ft.NavigationDestination(
+                    icon=ft.icons.BOOK,
+                    label='Кабинет',
+                    selected_icon=ft.icons.BOOKMARK
+                ))
+            page.update()
+        else:
+            page.snack_bar = ft.SnackBar(ft.Text(f'Неверные учетные данные'))
+            page.snack_bar.open = True
+            page.update()
+        db.commit()
+        db.close()
+
+    # Создание текстовых полей для логина и пароля, а также кнопок для регистрации и аутентификации
+    user_login = ft.TextField(label="Логин", width=200, on_change=validate)
+    user_pass = ft.TextField(label="Пароль", password=True, width=200, on_change=validate)
+    btn_reg = ft.OutlinedButton(text="Добавить", width=200, on_click=register, disabled=True)
+    btn_auth = ft.OutlinedButton(text="Авторизовать", width=200, on_click=auth_user, disabled=True)
+
+    # Список пользователей для личного кабинета
+    users_list = ft.ListView(spacing=10, padding=20)
+
+    # Панель для регистрации пользователя
+    panel_register = ft.Row(
+        [
+            ft.Column(
+                [
+                    ft.Text("Регистрация"),
+                    user_login,
+                    user_pass,
+                    btn_reg
+                ]
+            )
+        ],
+        alignment=ft.MainAxisAlignment.CENTER
+    )
+
+    # Панель для аутентификации пользователя
+    panel_auth = ft.Row(
+        [
+            ft.Column(
+                [
+                    ft.Text("Аутентификация"),
+                    user_login,
+                    user_pass,
+                    btn_auth
+                ]
+            )
+        ],
+        alignment=ft.MainAxisAlignment.CENTER
+    )
+
+    # Панель для личного кабинета пользователя
+    panel_cabinet = ft.Row(
+        [
+            ft.Column(
+                [
+                    ft.Text("Личный кабинет"),
+                    users_list
+                ]
+            )
+        ],
+        alignment=ft.MainAxisAlignment.CENTER
+    )
+
+    # Функция для навигации между панелями
+    def navigate(e):
+        index = page.navigation_bar.selected_index
+        page.clean()
+        if index == 0:
+            page.add(panel_register)
+        elif index == 1:
+            page.add(panel_auth)
+        elif index == 2:
+            users_list.controls.clear()
+            db = sqlite3.connect('tg_app/pyguiapps/db_any.filename')
+            cur = db.cursor()
+            cur.execute("SELECT * FROM users")
+            res = cur.fetchall()
+            if res is not None:
+                for user in res:
+                    users_list.controls.append(ft.Row([
+                        ft.Text(f'Пользователь {user[1]}'),
+                        ft.Icon(ft.icons.VERIFIED_USER_ROUNDED)
+                    ]))
+            db.commit()
+            db.close()
+            page.add(panel_cabinet)
+
+    # Создание навигационной панели с целями для регистрации и аутентификации
+    page.navigation_bar = ft.NavigationBar(
+        destinations=[
+            ft.NavigationDestination(icon=ft.icons.VERIFIED_USER, label="Регистрация"),
+            ft.NavigationDestination(icon=ft.icons.VERIFIED_USER_OUTLINED, label="Аутентификация")
+        ],
+        on_change=navigate
+    )
+
+    # Отображение панели регистрации при запуске приложения
+    page.add(panel_register)
+
+# Запуск приложения с функцией main в качестве цели
+ft.app(target=main)
+
+
+Комментарии к функции для навигации между панелями (если вставить в код - становится неопределенным page.
+
+
+# Функция для навигации между панелями
+def navigate(e):
+    # Получаем индекс выбранной цели навигационной панели
+    index = page.navigation_bar.selected_index
+    
+    # Очищаем страницу от предыдущих элементов
+    page.clean()
+    
+    # В зависимости от индекса выбранной цели
+    if index == 0:
+        # Показываем панель для регистрации пользователя
+        page.add(panel_register)
+    elif index == 1:
+        # Показываем панель для аутентификации пользователя
+        page.add(panel_auth)
+    elif index == 2:
+        # Очищаем список пользователей в личном кабинете
+        users_list.controls.clear()
+        
+        # Подключаемся к базе данных SQLite и извлекаем данные пользователей
+        db = sqlite3.connect('tg_app/pyguiapps/db_any.filename')
+        cur = db.cursor()
+        cur.execute("SELECT * FROM users")
+        res = cur.fetchall()
+        
+        # Если есть данные, отображаем их в списке пользователей
+        if res is not None:
+            for user in res:
+                users_list.controls.append(ft.Row([
+                    ft.Text(f'Пользователь {user[1]}'),
+                    ft.Icon(ft.icons.VERIFIED_USER_ROUNDED)
+                ]))
+        
+        # Закрываем соединение с базой данных и показываем панель для личного кабинета
+        db.commit()
+        db.close()
+        page.add(panel_cabinet)
+
+
+Изучение Python UI (GUI Apps) / #7 – Разработка программы «Текстовый редактор»
+https://youtu.be/j-2ZNqaX4MY?list=PL0lO_mIqDDFVZr9lLryYHSbAbrn3YJGbE
+
+00:00 Создание текстового редактора
+
+• Создание структуры для приложения на библиотеке Флэт.
+• Указание ширины и высоты окна, расположение элементов.
+
+01:50 Выбор файлов и обработка ошибок
+
+• Создание функции для выбора файлов и обработки ошибок.
+• Создание обработчика события "onclick" для кнопки выбора файлов.
+
+09:24 Текстовое поле и кнопка сохранения
+
+• Создание текстового поля и кнопки сохранения.
+• Обработка текста из выбранного файла и вывод его в текстовое поле.
+
+11:18 Тестирование и завершение
+
+• Запуск приложения и тестирование выбора файлов, редактирования текста и сохранения.
+• Добавление обработчика события "onclick" для кнопки сохранения.
+
+12:01 Создание текстового редактора
+
+• В видео автор создает текстовый редактор, который позволяет выбирать, редактировать и сохранять файлы.
+• Для этого он использует глобальную переменную, которая хранит путь к выбранному файлу.
+
+13:45 Реализация функций
+
+• Автор реализует функции для открытия, записи и закрытия файла, а также для очистки текстового поля и изменения текста на кнопках.
+• Он также добавляет функцию для повторного выбора файла.
+
+15:12 Тестирование и заключение
+
+• Автор тестирует созданный редактор, выбирая и редактируя файлы, а также сохраняет их.
+• Он подчеркивает, что все это было реализовано исключительно на языке Python.
+
+
+import flet as ft
+# Глобальный путь к файлу
+path = ''
+
+def main(page: ft.Page):
+    # Установка свойств страницы
+    page.title = "Aliadm App"
+    page.theme_mode = 'dark'
+    page.window_width = 300
+    page.window_height = 450
+    page.window_resizable = False
+    page.horizontal_alignment = ft.MainAxisAlignment.CENTER
+
+    # Создание текстового поля для содержимого файла
+    text_field = ft.TextField(label='Текст файла', width=180, multiline=True)
+
+    # Обработчик события для результата выбора файла
+    def pick_result(e: ft.FilePickerResultEvent):
+        if not e.files:
+            selected_files.value = 'Ничего не выбрано'
+        else:
+            selected_files.value = ''
+            global path
+            for el in e.files:
+                path = el.path
+            f = open(path, 'r')
+            text_field.value = f.read()
+            f.close()
+        page.update()
+
+    # Обработчик события для сохранения содержимого файла
+    def save_file(e):
+        global path
+        f = open(path, 'w')
+        f.write(text_field.value)
+        f.close()
+        text_field.value = ''
+        save_btn.text = 'Готово'
+        page.update()
+
+    # Создание диалогового окна выбора файла
+    pick_dialog = ft.FilePicker(on_result=pick_result)
+    page.overlay.append(pick_dialog)
+
+    # Добавление элементов интерфейса на страницу
+    selected_files = ft.Text()
+    save_btn = ft.FilledButton('Сохранить', on_click=save_file)
+    page.add(
+        ft.Row([ft.Text('Выбор файлов', size=25, weight=500)], alignment=ft.MainAxisAlignment.CENTER),
+        ft.Row(
+            [
+                ft.ElevatedButton(
+                    'Выбрать файл',
+                    icon=ft.icons.UPLOAD_FILE,
+                    on_click = lambda _: pick_dialog.pick_files(allow_multiple=False)
+                )
+            ]
+        ),
+        ft.Row([text_field]),
+        ft.Row([save_btn]),
+        ft.Row([selected_files])
+    )
+
+# Запуск приложения с функцией main в качестве цели
+ft.app(target=main)
+
+
+Изучение Python UI (GUI Apps) / #8 – Обзор библиотеки PyDracula
+https://youtu.be/nnfiismsk9o?list=PL0lO_mIqDDFVZr9lLryYHSbAbrn3YJGbE
+
+00:00 Обзор проекта PyDracula
+
+• Видео представляет обзор проекта PyDracula, который разработан сторонним разработчиком и обеспечивает набор красивых стилей для пользовательских интерфейсов на языке Python.
+• Проект включает в себя различные анимации, вкладки меню, панели настроек и другие виджеты, которые можно настроить в соответствии с проектом.
+
+01:43 Использование PyDracula в программе Qt Designer
+
+• PyDracula является надстройкой для программы Qt Designer, которая обеспечивает графический дизайнер для создания дизайна пользовательского интерфейса.
+• С помощью PyDracula можно быстро и просто расставлять объекты на окне проекта, а затем копировать код и выполнять его функционал.
+• Проект PyDracula позволяет использовать готовые стили для создания красивых проектов с помощью Qt Designer.
+
+03:26 Пример использования PyDracula
+
+• В видео демонстрируется пример использования PyDracula в проекте, который можно скачать с официальной страницы GitHub.
+• После установки библиотеки PyDracula, проект можно запустить и использовать его функции, включая настройку дизайна в Qt Designer и добавление действий к объектам с помощью кода на Python.
+
+
+Изучение Python UI (GUI Apps) / #9 – Библиотека Pyxel для разработки игр
+https://youtu.be/pUEvf0CIlSY?list=PL0lO_mIqDDFVZr9lLryYHSbAbrn3YJGbE
+
+00:00 Создание игрового движка
+
+.\venv\Scripts\activate
+pip install pyxel 
+• Установка игрового движка "Пиксель" для создания графических игр в стиле ретро на языке Python.
+• Создание класса "Гейм" для создания игр.
+
+04:12 Добавление мышки и отслеживание клавиш
+
+• Добавление мышки и отслеживание нажатия на клавиши.
+• Создание текстовых надписей и их мигание.
+
+07:53 Рисование объектов и управление ими
+
+• Рисование квадратов и кругов.
+• Управление квадратом с помощью клавиш.
+• Передвижение квадрата при нажатии на клавиши.
+
+11:01 Обзор библиотеки Pixel
+
+• В этом уроке мы рассмотрим библиотеку Pixel, которая позволяет создавать шестнадцатибитную пиксельную графику, звуки и дизайн для игр.
+• Библиотека еще развивается, но уже имеет хорошие перспективы.
+
+12:58 Примеры приложений
+
+• В этом разделе мы рассмотрим примеры приложений, которые можно использовать для создания игр и других проектов.
+• Мы покажем, как запустить игру "Змейка" и как использовать приложение для создания музыки и картинок.
+pyxel copy_examples
+cd copy_examples
+python 07_snake.py
+pyxel edit PYXEL_RESOURCE_FILE
+
+16:18 Заключение
+
+• В заключение, мы обсудим, что библиотека Pixel еще нуждается в развитии, но имеет потенциал для создания интересных проектов.
+
+
+import pyxel
+
+class Game:
+    rect_y = 0
+    rect_x = 0
+
+
+    def __init__(self):
+         pyxel.init(300, 200, title='my game')
+         pyxel.mouse(True)
+         pyxel.run(self.update, self.draw)
+
+
+    def update(self):
+        if pyxel.btnp(pyxel.KEY_Q):
+            pyxel.quit()
+
+        if pyxel.btn(pyxel.KEY_W):
+             self.rect_x -= 1
+        if pyxel.btn(pyxel.KEY_S):
+             self.rect_x += 1
+
+        if pyxel.btn(pyxel.KEY_A):
+             self.rect_y -= 1
+        if pyxel.btn(pyxel.KEY_D):
+             self.rect_y += 1
+
+    def draw(self):
+         pyxel.cls(0)
+         pyxel.text(120, 100, "Hello Pyxel", pyxel.frame_count % 15)
+         pyxel.rect(self.rect_y, self.rect_x, 20, 15, 14)
+         # pyxel.circ(100, 100, 20, 15)
+    
+if __name__ == "__main__":
+     Game()
+

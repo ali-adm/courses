@@ -1,0 +1,415 @@
+# Python REST API. Разработка RESTFul проекта на Python Flask
+[Ссылка на видео](https://youtu.be/VfkTcR4J3Y4 "Георгий Дударь")
+
+## 00:00 Введение в REST API
+
+- Видео начинается с объяснения, что такое REST API и как оно работает.
+- REST API позволяет отделить клиентскую и серверную части веб-приложения, используя один общий URL для доступа к данным.
+
+## 01:37 Пример использования REST API
+
+- Пример использования REST API для получения всех статей из базы данных.
+- REST API позволяет обращаться к серверу по определенному URL и получать данные в формате JSON.
+
+## 05:07 Создание проекта на Python
+
+- Создание проекта на Python с использованием библиотеки Flask.
+- Установка дополнительных библиотек Flask и Flask RESTful.
+
+## 07:12 Создание файлов для REST API
+
+- Создание двух файлов: один для серверной части, другой для клиентской части.
+`main.py` и `local.py`
+- Использование библиотеки Flask для реализации REST API.
+
+## 09:04 Установка библиотеки
+
+- Установка библиотеки requests с помощью команды pip install requests.
+
+## 10:04 Создание объекта и обращение к серверу (local.py)
+
+`import requests`
+
+- Создание переменной resp для хранения ответа сервера.
+- Обращение к серверу по определенному адресу с помощью метода get.
+
+`resp = requests.get("http://127.0.0.1:3000/api/main")`
+
+## 11:04 Вывод ответа сервера
+
+- Вывод ответа сервера в формате JSON с помощью метода json.
+- Обработка ответа сервера в будущем проекте.
+
+`print(resp.json())`
+
+## 12:34 Создание основного файла (main.py)
+
+- Импортируем фласк и фласк рест фул.
+
+```python 
+from flask import Flask
+from flask_restful import Api, Resource
+```
+
+- Создаем приложение и апи.
+
+```python
+# Инициализация приложения Flask
+app = Flask(__name__)  # Создание экземпляра приложения Flask
+# Инициализация API для обработки RESTful запросов
+api = Api()  # Инициализация Api с передачей приложения
+```
+- Добавляем проверку при запуске проекта.
+
+```python
+# Проверка, запущено ли приложение
+if __name__ == "__main__":
+    app.run(debug=True)  # Запуск приложения с режимом отладки
+```
+
+## 15:26 Создание класса для отслеживания юл адреса
+
+- Создаем класс для отслеживания юл адреса.
+- Указываем порт и хост для запуска проекта.
+
+```python
+# Проверка, запущено ли приложение
+if __name__ == "__main__":  # Проверка, что скрипт запущен напрямую
+    app.run(debug=True, port=3000, host="127.0.0.1")  # Запуск приложения с режимом отладки
+```
+
+## 16:26 Создание основного класса
+
+- Наследуем от класса ресурс для обработки гет запросов.
+- Создаем метод гет для обработки запроса.
+
+```python
+# Определение класса Main для обработки запросов
+class Main(Resource):  # Определение класса Main, наследующего от Resource
+    def get(self):  # Метод обработки GET-запросов
+        return {"info": "Some info", "num": 56}  # Возвращает значения в формате json
+    
+# Добавление ресурса Main к API и указание маршрута
+api.add_resource(Main, "/api/main")  # Добавление ресурса к API на путь "/api/main"
+api.init_app(app)
+```
+
+## 18:26 Тестирование и запуск проекта
+
+- Запускаем проект в терминале.
+
+```PS
+python main.py
+```
+
+- Получаем ответ в формате джейсона.
+
+```browser http://127.0.0.1:3000/api/main
+{
+    "info": "Some info",
+    "num": 56
+}
+```
+
+- Реализован простейший рест лайк проект с отслеживанием одного запроса. Если другом терминале запустить local.py,
+
+```PS
+python local.py
+```
+
+То на стороне клиента, фронтенда получим ответ:
+
+```PS
+{'info': 'Some info', 'num': 56}
+```
+
+## 21:24 Работа с объектом "курсы"
+
+- В видеоуроке объясняется, как работать с объектом "курсы", который будет использоваться для хранения и взаимодействия с различными видеокурсами.
+- Объект будет храниться в словаре и будет использоваться для добавления, удаления, обновления и получения курсов.
+
+```main.py
+from flask import Flask
+from flask_restful import Api, Resource
+
+# Инициализация приложения Flask
+app = Flask(__name__)  # Создание экземпляра приложения Flask
+# Инициализация API для обработки RESTful запросов
+api = Api()  # Инициализация Api с передачей приложения
+
+# Словарь с курсами
+courses = {"name": "Python"}
+
+
+# Определение класса Main для обработки запросов
+class Main(Resource):  # Определение класса Main, наследующего от Resource
+    def get(self):  # Метод обработки GET-запросов
+        return courses  # Возвращает все курсы в формате JSON
+    
+
+# Добавление ресурса Main к API и указание маршрута
+api.add_resource(Main, "/api/courses")  # Добавление ресурса к API на путь "/api/courses"
+api.init_app(app)
+
+
+# Проверка, запущено ли приложение
+if __name__ == "__main__":
+    app.run(debug=True, port=3000, host="127.0.0.1")  # Запуск приложения с режимом отладки
+```
+
+```local.py
+import requests
+
+resp = requests.get("http://127.0.0.1:3000/api/courses")
+
+print(resp.json())
+```
+
+При запуске main.py, в консоле local.py будет ответ
+
+```PS
+{'name': 'Python'}
+```
+
+- В словаре бэкенда может находится много курсов, и фронтенд может обращаться к определенным из них
+
+```main.py
+# Словарь с курсами
+courses = {
+    1: {"name": "Python", "videos": 15},
+    2: {"name": "Java", "videos": 10}
+}
+
+class Main(Resource):
+    def get(self, course_id):
+        if course_id == 0:
+            return courses
+        else:
+            return courses[course_id]
+    
+
+api.add_resource(Main, "/api/courses/<int:course_id>")
+api.init_app(app)
+```
+
+`api.add_resource(Main, "/api/courses/<int:course_id>")`
+Отслеживаемый тип данных: если отслеживается число, то указывается integer (int), если строка, то "...<name:string>".
+
+```local.py
+resp = requests.get("http://127.0.0.1:3000/api/courses/2")
+```
+
+```PS local.py
+{'name': 'Java', 'videos': 10}
+```
+
+Таким образом если в качестве course_id будет передано число 0, то будет возвращаться полностью весь объект courses, со всеми курсами.
+
+```local.py
+resp = requests.get("http://127.0.0.1:3000/api/courses/0")
+```
+
+```PS local.py
+{'1': {'name': 'Python', 'videos': 15}, '2': {'name': 'Java', 'videos': 10}}
+```
+
+Если будет передано что-то другое, то будет возвращаться курс по его id.
+
+```local.py
+resp = requests.get("http://127.0.0.1:3000/api/courses/1")
+```
+
+```PS local.py
+{'name': 'Python', 'videos': 15}
+```
+
+## 27:22 Добавление и удаление курсов
+
+- В видеоуроке объясняется, как добавить и удалить курсы из объекта "курсы".
+- Для удаления курса используется метод "delete", который принимает идентификатор курса в качестве параметра.
+
+```main.py
+class Main(Resource):
+    def get(self, course_id):
+        if course_id == 0:
+            return courses
+        else:
+            return courses[course_id]
+        
+    def delete(self, course_id):  # Функция удаления
+        del courses[course_id]  # Удаление по course_id
+        return courses  # Возвращает состояние courses
+```
+
+```local.py
+resp = requests.delete("http://127.0.0.1:3000/api/courses/1")
+```
+
+```PS local.py
+{'2': {'name': 'Java', 'videos': 10}}
+```
+
+- Для добавления нового курса используется метод "post", который также принимает идентификатор курса в качестве параметра.
+
+## 29:20 Добавление новых записей
+
+- В видеоуроке объясняется, как добавить новые записи в объект "курсы".
+- Для этого используется метод "post", который принимает идентификатор курса в качестве параметра.
+- Для получения данных, передаваемых с URL-адресом, используется метод "request.parse".
+
+```main.py
+from flask_restful import Api, Resource, reqparse
+...
+class Main(Resource):
+    def post(self, course_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument()
+```
+
+## 30:20 Создание парсера для работы с курсами
+
+- Создание объекта "парсер" и обращение к методу "рек парс" для создания класса "рек реквест парсер".
+- Передача аргументов в метод "пост" для создания нового курса.
+
+```main.py
+class Main(Resource):
+    def post(self, course_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument("name", type=str)
+        parser.add_argument("videos", type=int)
+        courses[course_id] = parser.parse_args()
+        return courses
+```
+
+```local.py
+resp = requests.post("http://127.0.0.1:3000/api/courses/3", json={"name": "Golang", "videos": 5})
+resp = requests.post("http://127.0.0.1:3000/api/courses/4", json={"name": "PHP", "videos": 15})
+```
+
+```PS local.py
+{'1': {'name': 'Python', 'videos': 15}, '2': {'name': 'Java', 'videos': 10}, '3': {'name': 'Golang', 'videos': 5}, '4': {'name': 'PHP', 'videos': 15}}
+```
+
+## 34:20 Обновление курса
+
+- Использование метода "пут" для обновления курса.
+- Обращение к существующему курсу и обновление его содержимого.
+
+Для удобства можно вынести парсер из функции "пост", и поместить его перед классом мэин
+
+```main.py
+parser = reqparse.RequestParser()
+parser.add_argument("name", type=str)
+parser.add_argument("videos", type=int)
+
+
+class Main(Resource):
+...
+```
+
+Тогда функции будут иметь вид
+
+```main.py
+    def post(self, course_id):
+        courses[course_id] = parser.parse_args()
+        return courses
+    
+    def put(self, course_id):
+        courses[course_id] = parser.parse_args()
+        return courses
+```
+
+Обращение к существующему курсу Java и замена его на Golang - обновление его содержимого
+
+```local.py
+resp = requests.put("http://127.0.0.1:3000/api/courses/2", json={"name": "Golang", "videos": 5})
+```
+
+```PS local.py
+{'1': {'name': 'Python', 'videos': 15}, '2': {'name': 'Golang', 'videos': 5}}
+```
+
+Файл main.py с комментариями и поправками копилота 4о mini
+
+```mani.py
+from flask import Flask
+from flask_restful import Api, Resource, reqparse
+
+app = Flask(__name__)
+api = Api(app)
+
+# Словарь для хранения курсов
+courses = {
+    1: {"name": "Python", "videos": 15},
+    2: {"name": "Java", "videos": 10}
+}
+
+parser = reqparse.RequestParser()
+parser.add_argument("name", type=str)  # Добавление аргумента для имени курса
+parser.add_argument("videos", type=int)  # Добавление аргумента для количества видео
+
+class Main(Resource):
+    def get(self, course_id):
+        # Если course_id равно 0, возвращаем все курсы
+        if course_id == 0:
+            return courses  # Возвращаем весь словарь курсов
+        elif course_id in courses:
+            return courses[course_id]  # Возвращаем курс по ID, если он существует
+        else:
+            return {"message": "Курс не найден"}, 404  # Ошибка 404, если курс не найден
+    
+    def delete(self, course_id):
+        # Проверяем, существует ли курс перед удалением
+        if course_id in courses:
+            del courses[course_id]  # Удаляем курс по ID
+            return {"message": "Курс удален"}, 200  # Возвращаем сообщение об успешном удалении
+        else:
+            return {"message": "Курс не найден"}, 404  # Ошибка 404, если курс не найден
+    
+    def post(self, course_id):
+        # Проверяем, чтобы курс с таким ID не существовал
+        if course_id in courses:
+            return {"message": "Курс с таким ID уже существует"}, 400  # Ошибка 400, если курс уже существует
+        courses[course_id] = parser.parse_args()  # Добавляем новый курс
+        return courses[course_id], 201  # Возвращаем курс и статус 201 (создано)
+    
+    def put(self, course_id):
+        # Будем обновлять курс только если он существует
+        if course_id in courses:
+            courses[course_id] = parser.parse_args()  # Обновляем курс
+            return courses[course_id], 200  # Возвращаем обновленный курс и статус 200 (успешно)
+        else:
+            return {"message": "Курс не найден"}, 404  # Ошибка 404, если курс не найден
+
+# Добавляем ресурс Main к API с маршрутом
+api.add_resource(Main, "/api/courses/<int:course_id>")
+api.init_app(app)
+
+
+if __name__ == "__main__":
+    app.run(debug=True, port=3000, host="127.0.0.1")
+
+"""
+### Объяснение исправлений:
+
+1. **Проверка существования курса**: 
+   - В методах `get`, `delete`, `post`, и `put` добавлена проверка на существование курса перед выполнением операции.
+   - В случае, если курс не найден, возвращается сообщение и код состояния HTTP (404).
+
+2. **Обработка ошибок в POST**:
+   - В методе `post` добавлена проверка на существование курса с одинаковым ID. Если такой курс уже существует, возвращается ошибка 400 (неправильный запрос).
+
+3. **Возврат сообщений и статус-кодов**:
+   - В каждом методе, помимо данных, теперь также возвращаются соответствующие сообщения и статус-коды, что делает API более информативным.
+
+Эти изменения делают код более устойчивым и соответствующим стандартам проектирования RESTful API.
+"""
+```
+
+
+
+## 36:20 Заключение
+
+- Разделение фронтенд и бэкенд разработчиков для создания полноценного рест-фул приложения.
+- Использование базы данных для сохранения данных при перезапуске сервера.
+

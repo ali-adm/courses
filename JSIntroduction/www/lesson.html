@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Доступ к элементу
+            const heading = document.querySelector('h1');
+            // Изменение текста элемента
+            heading.textContent = 'Hello, DOM!';
+            
+            // Создание нового элемента
+            const newParagraph = document.createElement('p');
+            newParagraph.textContent = 'This paragraph was added dynamically.';
+            document.body.appendChild(newParagraph);
+        });
+    </script>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>This is a paragraph.</p>
+</body>
+</html>
