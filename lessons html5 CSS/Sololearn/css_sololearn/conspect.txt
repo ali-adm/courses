@@ -1,9 +1,11 @@
-CSS.
+Sololearn CSS.
 ===
+
 Наш курс CSS научит вас, как управлять стилем и версткой веб-сайтов. Вы выполните ряд упражнений и попрактикуетесь при заполнении реальных шаблонов CSS — так вы получите реальный опыт программирования, который укрепит вашу уверенность и поможет вам в реализации ваших собственных проектов!
 
 Начало работы с CSS
-===
+---
+
 - CSS используется для стилизации элементов на веб-странице. CSS - это язык стилизации, который работает вместе с HTML, чтобы придать странице ее вид и макет.
 - CSS основан на HTML. Атрибут **style** позволяет вам использовать свойства CSS для настройки визуального представления элементов HTML.
 
@@ -12,7 +14,15 @@ CSS.
 
 Свойство color property используется для управления цветом текста. Код синего заголовка:
 ```<h1 style="color: blue">Main Menu</h1>```
-
+.capitalize { 
+  text-transform: capitalize; 
+}
+.uppercase { 
+  text-transform: uppercase; 
+}
+.lowercase { 
+  text-transform: lowercase; 
+}
 CSS **свойства** контролируют стиль HTML элементов. Примеры CSS свойств - это цвет, граница, размер шрифта и отступ. Увеличение текста в параграфе:
 ```<p style="font-size: large">Text</p>```
 
@@ -500,6 +510,68 @@ img {
 .child {
     font-size: 50%;
     background-color: #FFD700;
+}
+```
+
+Стилизация текста
+---
+
+Еще одним важным элементом веб-дизайна является стилизация текста. 
+```text-align: center``` - выравнивание текста (по аналогии - right, left)
+
+Используйте text-align: justify для выравнивания текста по обоим краям, регулируя расстояние между словами, чтобы гарантировать, что каждая строка имеет одинаковую ширину
+```
+p {
+  text-align: justify;
+}
+```
+
+Можно добавить text-decoration (подчеркивание, надчеркивание, зачеркивание), чтобы передать смысл или привлечь внимание к определенным частям текста, например, к ссылкам.
+```html
+<html>
+<body>
+  <h1>Underlined text</h1>
+  <h2>Overlined text</h2>
+  <h3>Line-through text</h3>
+  <h4>Underlined and overlined text</h3>
+</body>
+</html>
+```
+```css
+body {
+  background-color: #333333;
+}
+
+h1 {
+  /*Underlined text*/
+  text-decoration: underline;
+  color: #F28D35;
+}
+
+h2 {
+  /*Overlined text*/
+  text-decoration: overline;
+  color: #6BBE92;
+}
+
+h3 {
+  /*Line-through text*/
+  text-decoration: line-through;
+  color: #D83367;
+}
+
+h4 {
+  /*Underlined and overlined text*/
+  text-decoration: underline overline;
+  color: #149EF2;
+}
+
+Некоторые свойства CSS могут принимать несколько значений. Вы можете контролировать цвет декорации, добавив название цвета, rgb или hex-код после типа декорации.
+```css
+.article-title {
+  text-decoration: underline #FF4500;
+  font-size: 24px;
+  text-align: right;
 }
 ```
 
