@@ -360,3 +360,178 @@ h1 {
 Стили шрифтов
 ---
 
+- ```font-family``` позволяет вам указывать тип шрифта
+
+- вы можете использовать ```font-weight``` для контроля толщины текста
+
+Шрифты играют важную роль в веб-дизайне, влияя на читаемость, эстетику и пользовательский опыт. Они оживляют слова на странице и задают тон содержимого.
+
+Свойство ```font-family``` в CSS позволяет вам указать **шрифт** для вашего текста. Это определяет, как текст выглядит на веб-странице.
+```html
+<body>
+  <p id="font-georgia">Georgia</p>
+  <p id="font-arial">Arial</p>
+  <p id="font-courier">Courier New</p>
+  <p id="font-comic">Comic Sans MS</p>
+</body>
+```
+```css
+body {
+  background-color: #000A23;
+  font-size: 24px;
+  color: #FFFFFF;
+}
+#font-georgia {
+  font-family: Georgia;
+}
+#font-arial {
+  font-family: Arial;
+}
+#font-courier {
+  font-family: "Courier New";
+}
+#font-comic {
+  font-family: "Comic Sans MS";
+}
+```
+
+Многие шрифты установлены по умолчанию на всех устройствах. Они известны как **веб-безопасные** шрифты.
+
+Другие шрифты могут потребовать установки на устройстве пользователя, поэтому вам нужно указать веб-безопасный шрифт в качестве запасного, на случай, если у пользователя их нет.
+```html
+<html>
+<body>
+  <h2 id="font1">Daily Brews</h2>
+  <h2 id="font2">Daily Brews</h2>
+  <h2 id="font3">Daily Brews</h2>
+  <h2 id="font4">Daily Brews</h2>
+</body>
+</html>
+```
+```css
+/*некоторые веб-безопасные шрифты:
+Arial, Courier New, Times New Roman,
+Trebuchet MS, Verdana
+*/
+#font1 {
+  font-family: Georgia;
+}
+#font2 {
+  font-family: Tahoma;
+}
+#font3 {
+  font-family: Lucida Console;
+}
+#font4 {
+  font-family: Comic Sans MS;
+}
+/* Вот еще веб-безопасные шрифты, которые вы можете попробовать: Arial, Courier New, Times New Roman, Trebuchet MS, Verdana */
+```
+
+Свойство ```font-family``` указывает список шрифтов, от самого приоритетного до наименее приоритетного. Выбор шрифта останавливается на первом шрифте в списке, который есть в системе пользователя.
+
+Например, если ```Helvetica``` недоступен браузер сначала пробует ```Georgia```, затем семейства шрифтов ```Arial```:
+```css
+p {
+  font-family: Helvetica, Georgia, Arial;
+}
+```
+
+**Обобщенные семейства шрифтов** - это группы шрифтов с похожими начертаниями, и они используются в качестве универсальных резервных вариантов. Это лучшая практика, чтобы помещать их в качестве последнего варианта в свойстве font-family. Если предпочтительные шрифты недоступны, браузеры будут использовать шрифт из этого семейства.
+
+Ниже приведен код пяти общих обобщенных семейств шрифтов:
+```html
+<body>
+  <h2 class="serif-font">This is a serif font.</h2>
+  <h2 class="sans-serif-font">This is a sans-serif font.</h2>
+  <h2 class="monospace-font">This is a monospace font.</h2>
+  <h2 class="cursive-font">This is a cursive font.</h2>
+  <h2 class="fantasy-font">This is a fantasy font.</h2>
+</body>
+```
+```css
+.serif-font {
+  /*Шрифты имеют декоративные
+  штрихи или засечки.*/
+  font-family: serif;
+}
+.sans-serif-font {
+  /*В шрифтах отсутствуют 
+  декоративные штрихи.*/
+  font-family: sans-serif;
+}
+.monospace-font {
+  /*Шрифты имеют одинаковый 
+  интервал между символами.*/
+  font-family: monospace;
+}
+.cursive-font {
+  /*Шрифты имитируют почерк для 
+  придания персонального или 
+  художественного штриха.*/
+  font-family: cursive;
+}
+fantasy-font {
+  /*Декоративные или уникальные шрифты, 
+  которые не подходят ни в одну 
+  другую категорию.*/
+  font-family: fantasy;
+}
+body {
+  background-color: #0C1527;
+  color: #FFFFFF;
+}
+```
+
+Используйте кавычки для обертывания названий шрифтов, состоящих из нескольких слов. Это хорошая практика. 
+```css
+p {
+  font-family: "Courier New", Monaco, monospace;
+}
+```
+
+Свойство ```font-weight``` контролирует толщину (или жирность) шрифта (или текста).
+```css
+.button {
+  font-weight: 500;
+}
+```
+
+Можно использовать числовые значения от **100** (самый тонкий) до **900** (самый жирный) для указания веса шрифта, увеличивая на **100 единиц**.
+```html
+<body>
+  <p id="light">This is light text.</p>
+  <p id="normal">This is normal text.</p>
+  <p id="bold">This is bold text.</p>
+  <p id="bolder">This is bolder text.</p>
+</body>
+```
+```css
+p {
+  font-family: Arial, sans-serif;
+  font-size: 1.5em;
+}
+#light {
+  font-weight: 100;
+}
+#normal {
+  font-weight: 400;
+}
+#bold {
+  font-weight: 700;
+}
+#bolder {
+  font-weight: 900;
+}
+```
+
+Пример - выравнивание текста по левому краю, размер шрифта 22px и вес 300
+```css
+p {
+  text-align: left;
+  font-size: 22px;
+  font-weight: 300;
+}
+```
+
+Некоторые значения веса, такие как **400** и **700**, имеют именованные эквиваленты, которые можно использовать непосредственно в качестве значений: **normal** и **bold**.
