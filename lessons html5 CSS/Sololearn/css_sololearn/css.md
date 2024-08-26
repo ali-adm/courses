@@ -148,3 +148,215 @@ button {
 Приведенный выше код, будет применять стили для всех кнопок на странице. Можно добавить столько объявлений, сколько нужно, аждое объявление должно заканчиваться на точку с запятой. Объявление состоит из двух частей: **property (свойства)** и **value (значения).** Свойство и значение внутри объявления всегда идут парами. Декларация состоит из пары **свойство: значение**. Пара **свойство: значение** в декларации отделяется двоеточием ```:```. 
 CSS код может содержать столько стилевых правил, сколько нужно.
 
+----обрыв записи------
+---
+
+Стилизация текста
+---
+
+- ```text-align``` контролирует горизонтальное выравнивание текста
+-  ```text-decoration``` добавляет декоративные эффекты к тексту
+-  ```text-transform``` изменяет написание текста
+-  ```text-shadow``` применяет теневые эффекты за текстом
+
+Еще одним важным элементом веб-дизайна является стилизация текста. 
+```text-align: center``` - выравнивание текста (по аналогии - ```right```, ```left```)
+
+Используйте ```text-align: justify``` для выравнивания текста по обоим краям, регулируя расстояние между словами, чтобы гарантировать, что каждая строка имеет одинаковую ширину
+```
+p {
+  text-align: justify;
+}
+```
+
+Можно добавить ```text-decoration``` (подчеркивание, надчеркивание, зачеркивание), чтобы передать смысл или привлечь внимание к определенным частям текста, например, к ссылкам.
+```html
+<html>
+<body>
+  <h1>Underlined text</h1>
+  <h2>Overlined text</h2>
+  <h3>Line-through text</h3>
+  <h4>Underlined and overlined text</h3>
+</body>
+</html>
+```
+```css
+body {
+  background-color: #333333;
+}
+h1 {
+  /*Underlined text*/
+  text-decoration: underline;
+  color: #F28D35;
+}
+h2 {
+  /*Overlined text*/
+  text-decoration: overline;
+  color: #6BBE92;
+}
+h3 {
+  /*Line-through text*/
+  text-decoration: line-through;
+  color: #D83367;
+}
+h4 {
+  /*Underlined and overlined text*/
+  text-decoration: underline overline;
+  color: #149EF2;
+}
+```
+
+Некоторые свойства CSS могут принимать несколько значений. Вы можете контролировать цвет декорации, добавив название цвета, rgb или hex-код после типа декорации.
+```html
+html>
+  <body>
+    <h1>My Personal Blog</h1>
+    <h2 class="article-title">Adventures in New Zealand</h2>
+    <p>During my trip to New Zealand, I had the chance to visit...</p>
+    <h2 class="article-title">Gourmet Cooking on a Budget</h2>
+    <p>Believe it or not, it's possible to cook gourmet meals without breaking the bank...</p>
+  </body>
+</html>
+```
+```css
+body {
+  background-color: #F3F4F6;
+  color: #333333;
+}
+h1 {
+  text-align: center;
+  color: #555555;
+}
+.article-title {
+  text-decoration: underline #FF4500;
+  font-size: 24px;
+}
+```
+
+Текстовое оформление может принимать различные стили, такие как точечный, двойной, пунктирный и волнистый.
+```html
+<body>
+  <div class="container">
+    <p class="double">
+      This is a double underline.</p>
+    <p class="dotted">
+      This is a dotted underline.</p>
+    <p class="dashed">
+      This is a dashed underline.</p>
+    <p class="wavy">
+      This is a wavy underline.</p>
+  </div>
+</body>
+```
+```css
+body {
+  background-color: #000A23;
+  color: #EDEDED;
+}
+p {
+  font-size: 18px;
+}
+.double {
+  text-decoration: double underline #E67112;
+}
+.dotted {
+  text-decoration: underline dotted #2A9D8F;
+}
+.dashed {
+  text-decoration: dashed underline #E76F51;
+}
+.wavy {
+  text-decoration: wavy underline #62767E;
+}
+```
+
+Свойство ```text-decoration``` - это короткий и простой способ ссылаться на различные подсвойства, такие как ```text-decoration-line```, ```text-decoration-color``` и ```text-decoration-style```.
+
+```css
+text-decoration: wavy overline #2A9D8F;
+
+text-decoration-line: overline;
+text-decoration-color: #2A9D8F;
+text-decoration-style: wavy;
+```
+
+Свойство ```text-transform``` позволяет вам контролировать использование заглавных букв в текстовом контенте (каждое слово с заглавной, все заглавные и все строчные).
+Оно может принимать 3 значения: ```capitalize```, ```uppercase``` и ```lowercase```.
+```html
+<html>
+  <body>
+    <p class="capitalize">
+    this is a sentence with capitalize transformation.</p>
+    <p class="uppercase">
+     This is a sentence with uppercase transformation.</p>
+    <p class="lowercase">
+     THIS IS A SENTENCE WITH LOWERCASE TRANSFORMATION.</p>
+  </body>
+</html>
+```
+```css
+.capitalize { 
+  text-transform: capitalize; 
+}
+.uppercase { 
+  text-transform: uppercase; 
+}
+.lowercase { 
+  text-transform: lowercase; 
+}
+body{
+  background-color: #000A23;
+  color: white;
+}
+```
+
+Например CSS правило для кнопки с текстом в верхнем регистре, размером шрифта 18px и зеленым фоном:
+```css
+button {
+  text-transform: apitalize;
+  background-color: green;
+  font-size: 18px;
+}  
+```
+
+Свойство ```text-shadow``` создает эффект глубины, придает выразительность или просто добавляет стильный акцент в вашу типографику.
+
+Оно принимает два обязательных значения в следующем порядке: сначала горизонтальное смещение, затем вертикальное.
+- Горизонтальное смещение - это насколько далеко вправо (положительные значения) или влево (отрицательные значения) будет тень.
+- Вертикальное смещение - это насколько далеко вниз (положительные значения) или вверх (отрицательные значения) будет тень.
+
+Как пример - применить теневой эффект текста со смещением в 5px вправо и 6px вверх:
+```css
+h1 {
+  text-shadow: 8px 6px;
+}
+```
+
+```text-shadow``` может принимать два дополнительных, необязательных значения.
+- ```blur radius```: степень размытия, применяемая к тени
+- ```color```: цвет тени
+```html
+<html>
+  <body>
+    <h1>Harry Potter</h1>
+  </body>
+</html>
+```
+```css
+body {
+  background-color: #1a1a1a;
+}
+
+h1 {
+  color: #FFFFFF; /* white colored text */
+  text-shadow: 4px 4px 4px #4296CE; 
+  font-size: 4rem;
+}
+```
+
+Важно сохранять правильный порядок значений для свойства ```text-shadow```, иначе оно может не дать желаемого эффекта.
+
+
+Стили шрифтов
+---
+
