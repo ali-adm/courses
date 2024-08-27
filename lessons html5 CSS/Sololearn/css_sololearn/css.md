@@ -882,3 +882,269 @@ th, td {
   border: 2px solid #909092;
 }
 ```
+
+
+Стилизация списков
+---
+
+- ```list-style-type``` контролирует тип маркеров
+- ```list-style-position``` контролирует позицию маркеров
+- ```list-style-image``` добавляет пользовательские изображения в качестве маркеров
+
+Стилизация списков улучшает визуальную привлекательность, удобство использования и доступность. В этом уроке вы преобразуете простые списки в визуально привлекательные и хорошо организованные элементы на ваших веб-страницах.
+
+Списки бывают:
+- Упорядоченные ```<ol>```
+- Неупорядоченные ```<ul>```
+
+Свойство ```list-style``` требует 3 значения. Это короткий и простой способ обращения к 3 различным подсвойствам: ``type``, ```position``` и ```image```.
+```css
+ul {
+  list-style: square inside none;
+}
+```
+
+Подсвойство ```list-style-type``` изменяет маркеры для неупорядоченных и упорядоченных списков. Давайте сначала рассмотрим неупорядоченные списки.
+```html
+<body>
+  <h2>type square</h2>
+  <ul class="square">
+    <li>first marker</li>
+    <li>second marker</li>
+  </ul>
+  <h2>type circle</h2>
+  <ul class="circle">
+    <li>first marker</li>
+    <li>second marker</li>
+  </ul>
+  <h2>type disc</h2>
+  <ul class="disc">
+    <li>first marker</li>
+    <li>second marker</li>
+  </ul>
+  <h2>type none</h2>
+  <ul class="none">
+    <li>first marker</li>
+    <li>second marker</li>
+  </ul>
+</body>
+```
+```css
+.square {
+  list-style-type: square;
+}
+.circle {
+  list-style-type: circle;
+}
+.disc {
+  list-style-type: disc;
+}
+.none {
+  list-style-type: none;
+}
+body {
+  background-color: #232323;
+  color: #FFFFFF;
+  font-size: 18px;
+}
+h2 {
+  color: #B8A7C2;
+  text-align: center;
+}
+```
+
+Например нужно стилизовать список с ID items с помощью маркеров в виде пустых кружков:
+```css
+#items {
+  list-style-type: circle;
+}
+```
+
+По умолчанию элементы в упорядоченном списке отмечаются с помощью цифр. Для упорядоченных списков свойство ```list-style-type``` имеет различные возможные значения.
+```html
+<body>
+  <h1>Types of numbered lists</h1>
+  <h2>type: decimal-leading-zero</h2>
+  <ol class="zero">
+    <li>Harry Potter</li>
+    <li>The Hunger Games</li>
+    <li>The Da Vinci Code</li>
+  </ol>
+  <h2>type: decimal</h2>
+  <ol class="decimal">
+    <li>Pride and Prejudice</li>
+    <li>Moby-Dick</li>
+    <li>War and Peace</li>
+  </ol>
+  <h2>type: lower-roman</h2>
+  <ol class="l-roman">
+    <li>Steve Jobs</li>
+    <li>Einstein</li>
+    <li>The Diary of a Young Girl</li>
+  </ol>
+  <h2>type: upper-roman</h2>
+  <ol class="u-roman">
+    <li>A Song of Ice and Fire series</li>
+    <li>The Lord of the Rings</li>
+    <li>The Wheel of Time series</li>
+  </ol>
+</body>
+```
+```css
+.zero {
+  list-style-type: decimal-leading-zero;
+}
+.decimal {
+  list-style-type: decimal;
+}
+.l-roman {
+  list-style-type: lower-roman;
+}
+.u-roman {
+  list-style-type: upper-roman;
+}
+h1,h2 {
+  background-color: #FFA055;
+  text-align: center;
+}
+li {
+  font-size: 18px;
+}
+```
+
+Как пример стилизовать списки с классом **songs**, используя римские цифры в верхнем регистре:
+```css
+.songs {
+  list-style-type: upper-roman;
+}
+```
+
+Можно отмечать элементы списка буквами алфавита, либо в нижнем ```lower-alpha```, либо в верхнем ```upper-alpha``` регистре.
+```css
+ol {
+  color: #F2F2F2;
+  text-transform: capitalize;
+  list-style-type: upper-alpha;
+}
+```
+
+Технически возможно стилизовать упорядоченный список с помощью маркеров и неупорядоченный список с помощью чисел, но это семантически не правильно и может сбивать с толку пользователей и поисковые системы.
+
+Рассмотрим позицию маркеров. Свойство ```list-style-position``` принимает два возможных значения: ```inside``` и ```outside```.
+```html
+<body>
+  <p>list-inside</p>
+  <ul id="list-inside">
+    <li>When planning a road trip, make sure to check the weather forecast.</li>
+    <li>Research and choose your destination based on your interests.</li>
+    <li>Book your accommodations in advance to secure the best deals and availability.</li>
+  </ul>
+<br>
+  <p>list-outside</p>
+  <ul id="list-outside">
+    <li>Start your day by identifying the most important tasks you need to accomplish.</li>
+    <li>Allocate dedicated time blocks for specific tasks or projects.</li>
+    <li>Plan your day or week in advance to reduce decision-making stress.</li>
+  </ul>
+</body>
+```
+```css
+/* помещает маркер в текстовую область, 
+  внутри элемента*/
+#list-inside {
+  list-style-position: inside;
+}
+/* помещает маркер за пределы 
+  текстовой области, за пределы элемента*/
+#list-outside {
+  list-style-position: outside;
+}
+p {
+  text-align: center;
+  background-color: #B538E7;
+  font-size: 26px;
+}
+li {
+  border: 2px solid #CCCCCC;
+  font-size: 18px;
+}
+```
+
+Например нужны буквенные маркеры внутри текста, когда текст обтекает маркеры:
+```css
+ol {
+  list-style-type: upper-alpha;
+  list-style-position: inside;
+}
+```
+
+Финальное подсвойство, ```list-style-image```, позволяет добавить пользовательское изображение в качестве маркера.
+```css
+ul {
+  list-style-image: url('url_image');
+}
+```
+Значение для свойства ```list-style-image``` - это URL, заключенный в кавычки, следующий за ключевым словом ```url```. Он указывает путь к файлу изображения, который будет использован в качестве маркера для элементов списка. По умолчанию значение свойства ```list-style-image``` равно ```none```.
+
+Проект Страницы Профиля Шаг 3
+---
+
+На этом шаге вы стилизуете списки в разделах ```#profile``` и ```#streak```, чтобы улучшить визуальное восприятие страницы.
+
+Задания:
+
+- Переопределите стиль списка по умолчанию от списков в обоих разделах ```profile``` и ```streak```, установив ```list-style``` на ```none```
+- Дайте списку в разделе ```#streak``` контрастный белый фон и добавьте закругленные углы с ```border-radius 5px```
+- Измените цвет абзацев в разделе ```streak``` на ```#676767```, чтобы текст можно было прочитать на новом фоне
+
+```html
+<html>
+<head>
+  <title>John Doe's Profile</title>
+  <style>
+    /*Task 1*/
+    body {
+      background-color: DarkSlateGrey;
+      font-family: Arial, sans-serif;
+      }
+    #profile {
+      text-align: center;
+      color: #FFFFFF;
+      }  
+    h2, p {
+      text-align: center;
+      color: yellow;
+      }
+    .active-day {
+      color: #00CC00
+      }
+    .inactive-day {
+      color: #CCCCCC 
+      }
+  </style>
+</head>
+<body>
+  <ul id="profile">
+    <img src="https://blob.sololearn.com/courses/ava.png">
+    <h2>John Doe</h2>
+    <p>🇺🇸USA</p>
+    <li>25 Followers</li>
+    <li>20 Following</li>
+    <li>⭐️1581 XP</li>
+  </ul>
+  <div id="streak">Streak
+    <ul>
+      <li class="active-day">M</li>
+      <li class="active-day">T</li>
+      <li class="active-day">W</li>
+      <li class="inactive-day">T</li>
+      <li class="inactive-day">F</li>
+      <li class="inactive-day">S</li>
+      <li class="inactive-day">S</li>
+    </ul>
+    <p>Current Streak: 3</p>
+    <p>Longest Streak: 16</p>
+  </div>
+</body>
+</html>
+```
