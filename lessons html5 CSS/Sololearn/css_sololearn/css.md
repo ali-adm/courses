@@ -1885,6 +1885,9 @@ a:[...] {
 <a id="Box-Model">Box Model</a>
 ---
 
+- **Box Model** рассматривает каждый HTML элемент как коробку, состоящую из **4 слоев**
+- **Content**, **padding**, **border** и **margin** могут быть настроены при проектировании веб-страниц
+- Вы можете задать значения `padding` и `margin` для разных сторон коробки, запомните **последовательность: верх, право, низ, лево**
 
 **Box Model** - это способ представления о том, как HTML-элементы отображаются на веб-странице. Каждый элемент рассматривается как прямоугольная коробка с четырьмя слоями: содержимое, отступ, рамка и поле. В этом уроке вы узнаете о различных частях **Box Model** и о том, как использовать свойства CSS для контроля их размера и внешнего вида.
 
@@ -1945,7 +1948,7 @@ h1 {
 }
 ```
 
-По умолчанию, граница будет применена к краям содержимого блока, если только не было добавлено **padding**. Слой padding обеспечивает отступ вокруг содержимого блока, чтобы создать дополнительное пространство внутри элемента и отодвинуть границу наружу.
+По умолчанию, граница будет применена к краям содержимого блока, если только не было добавлено **padding**. Слой `padding` обеспечивает отступ вокруг содержимого блока, чтобы создать дополнительное пространство внутри элемента и отодвинуть границу наружу.
 ```html
 <body>
   <div class="padded-box">
@@ -1972,12 +1975,422 @@ body {
 }
 ```
 
-**Border** является 3-м слоем. Он окружает padding. Пример правила, применяющего сплошную синюю рамку толщиной 1px к кнопкам на странице
+**Border** является 3-м слоем. Он окружает `padding`. Пример правила, применяющего сплошную синюю рамку толщиной `1px` к кнопкам на странице:
+```css
+button {
+  border: 1px solid blue;
+}
+```
 
+Таким образом первые три слоя модели Box, начиная изнутри, распологаются следующим образом: **Content -> Padding -> Border**.
+
+По умолчанию, значение отступа для большинства HTML элементов равно 0. **Padding** представляет собой область между содержимым и границами слоев. Можно задать разные значения отступа для каждой из 4 сторон. Для этого нужно добавить 4 значения, разделенные пробелами, в следующем порядке: **верх**, **право**, **низ**, **лево**.
+```css
+p {
+  padding: 5px 13px 7px 12px;
+}
+```
+
+Используйте `padding-top`, `padding-right`, `padding-bottom` и `padding-left` для того, чтобы нацелиться на конкретные стороны. 
+
+Пример отступа в `10px` с левой стороны элемента `div`:
+```css
+div {
+  padding-left: 10px;
+}
+```
+
+В качестве примера правило CSS для применения отступа в 10px и границы в 3px ко всем абзацам
+```css
+p {
+  padding: 10px;
+  border: 3px solid;
+}
+```
+
+Чтобы вычислить **общие размеры блока**, нужно сложить размеры 3 слоев: содержимого, отступов и рамки.
+
+**Margin** - это самый внешний слой в Box Model. Он оборачивает слой `border` и создает дополнительное пространство вне элемента, между границей и соседними элементами. Margin прозрачен, обеспечивает разделение и предотвращает перекрытие.
+
+Свойство `margin` можно использовать для применения равномерного отступа со всех сторон элемента HTML:
+```html
+<body>
+  <div class="default-box">
+    This is a div without padding and 
+    margin.
+  </div>  
+  <div class="custom-box1">
+    This is a div with padding.
+  </div> <br>
+  <div class="custom-box2">
+    This is a div with padding and margin.
+  </div>
+</body>
+```
+```css
+.custom-box2 {
+  border: 2px solid #FFA310;
+  padding: 10px;
+  margin: 10px;
+  color: #FFFFFF;
+}
+
+.custom-box1 {
+  border: 2px solid #FFA310;
+  padding: 10px;
+  color: #FFFFFF;
+}
+.default-box {
+  border: 2px solid #FFA310;
+  color: #FFFFFF;
+}
+
+body {
+  background-color: #0C1527;
+}
+```
+
+Аналогично отступам `padding`, можно установить значения полей `margin` со всех 4-х сторон элемента (верх, право, низ, лево):
+```css
+p {
+  margin: 5px 10px 8px 15px;
+}
+```
 
 
 <a id="Flexbox-Layout">Flexbox Layout</a>
 ---
+
+- Можно переопределить поведение элементов *встроенного* и *блочного* уровня с помощью свойства `display`
+- **Flexbox layout** располагает элементы внутри контейнера в одном направлении: либо в ряд, либо в столбец
+- `display: flex` делает контейнер гибким
+- `flex-grow` и `flex-shrink` контролируют пропорции элементов в flex-контейнере для создания адаптивных дизайнов
+
+Современные веб-сайты разработаны так, чтобы отлично выглядеть на любом устройстве, независимо от размеров экрана. В этом уроке вы научитесь использовать **Flexbox layout** для расположения HTML-элементов для более адаптивных дизайнов.
+
+Каждый HTML элемент может быть классифицирован как строчный или блочный.
+- полная доступная ширина - блочный (block-level), всегда начинается с новой строки; 
+- ширина его содержимого - строчный (inline), НЕ начинается с новой строки.
+
+Свойство `display` может переопределить стандартные поведения строчных и блочных элементов. Заставим элемент `<a>` вести себя как блочный элемент:
+```html
+<body>
+  <h1>My Blog</h1>
+  <p>Today, I went to the <a href="#">park</a> 
+  and saw some birds.</p>
+</body>
+```
+```css
+a {
+  display: block;
+  border: #4478B1 solid;
+  text-decoration: none;
+}
+```
+
+Изображения по умолчанию являются строчными элементами, вот как можно переопределить их поведение:
+```css
+img {
+  display: block;
+}
+```
+
+Параграфы являются элементами уровня блока. По умолчанию они всегда начинаются с новой строки. Вот как можно переопределить это поведение, чтобы показать две колонки абзацев на изображении:
+```css
+p {
+  display: inline;
+}
+```
+
+**Макет Flexbox** упрощает создание и дизайн адаптивных страниц. Он создает макет в виде строки или колонки.
+
+Flexbox используется для автоматического расположения элементов внутри контейнера. Чтобы создать гибкий (flex) контейнер, установите свойство `display` в значение `flex`.
+```html
+<body>
+  <div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+</body>
+```
+```css
+div {
+  border: 1px solid rgb(189, 185, 185);
+  box-shadow: 0 2px 4px #000000;
+  display: flex;
+}
+
+p {
+  border: 1px solid rgb(189, 185, 185);
+  margin-left: 2px;
+}
+```
+
+По умолчанию, дочерние элементы в контейнере `flex` автоматически располагаются в 1 ряд, пытаясь максимально эффективно использовать доступное пространство.
+
+Например как сделать элемент `div` контейнером `flex`:
+```css
+div {
+  display: flex;
+}
+```
+
+Чтобы автоматически расположить дочерние элементы внутри родительского контейнера, вам нужно применить `display: flex` к контейнеру (родительскому элементу).
+
+По умолчанию, дочерние элементы в контейнере `flex` располагаются в ряд (горизонтально). Установите подсвойство `flex-direction` в значение `column`, чтобы расположить элементы вертикально внутри контейнера `flex`.
+```html
+<body>
+  <h2>This is a row flex container</h2>
+  <div class="container-row">
+    <p>Item 1</p>
+    <p>Item 2</p>
+    <p>Item 3</p>
+  </div>
+
+  <h2>This is a column flex container</h2>
+  <div class="container-column">
+    <p>Item 1</p>
+    <p>Item 2</p>
+    <p>Item 3</p>
+  </div>
+</body>
+```
+```css
+.container-row {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid red;
+  margin-bottom: 25px;
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid blue;
+}
+
+p {
+  border: 1px solid rgb(150, 150, 150);
+  padding: 8px;
+  margin: 5px;
+  font-size: 18px;
+}
+
+h2 {
+  border: 1px solid purple;
+  box-shadow: 5px 5px #000000;
+}
+```
+
+`flex` контейнер с элементами, расположенными вертикально:
+```css
+div {
+  display: flex;
+  flex-direction: column;
+}
+```
+
+По умолчанию, дочерние элементы в контейнере `flex` все попытаются уместиться на одной линии. Можно изменить это и разрешить элементам переноситься по мере необходимости с помощью подсвойства `flex-wrap`. Опять же, элементы будут автоматически располагаться, и количество строк будет зависеть от размера экрана.
+```html
+<body>
+  <p>Items that do not wrap to the next line:</p>
+  <div id="nowrap">
+    <button>Submit</button>
+    <button>Revert</button>
+    <button>Delete all</button>
+  </div>
+  <p>Items that wrap to the next line if needed:</p>
+  <div id="wrap">
+    <button>Submit</button>
+    <button>Revert</button>
+    <button>Delete all</button>
+  </div>
+</body>
+```
+```css
+#wrap {
+  padding: 20px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(189, 185, 185);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#nowrap {
+  padding: 20px;
+  border: 1px solid rgb(189, 185, 185);
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+button {
+  border: 1px solid rgb(189, 185, 185);
+  box-shadow: 0 2px 4px #000000;
+  background-color: rgb(247, 228, 203);
+  margin: 5px;
+  font-size: 30px;
+}
+
+p {
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: blueviolet;
+  color: #FFFFFF;
+}
+```
+
+Таким образом, чтобы автоматически расположить элементы с использованием макета **Flexbox**, сначала нужен родительский контейнер, который установлен как `flex`.
+
+По умолчанию, дочерние элементы внутри flex-контейнера будут располагаться автоматически. Пространство, которое занимает каждый элемент, будет зависеть от его содержимого. Так что возможно, что некоторые элементы будут отображаться больше других, если они имеют больше содержимого.
+```html
+<body>
+  <div id="container">
+    <p id="small-content">A quick brown fox.</p>
+    <p id="large-content">The quick brown fox jumps over the lazy dog. </p>
+  </div>
+</body>
+```
+```css
+#container {
+  display: flex;
+  border: 1px solid #333;
+  padding: 10px;
+  margin: 10px;
+}
+#small-content {
+  border: 1px solid black;
+  margin-right: 2px;
+}
+
+#large-content {
+  border: 1px solid black;
+}
+```
+
+Чтобы иметь больший контроль над пространством, которое занимают элементы внутри контейнера `flex`, можно установить подсвойство `flex-grow`. 
+
+Подсвойство `flex-grow` дает элементу возможность увеличиваться, чтобы занять больше пространства, когда это пространство доступно в контейнере (больший экран). Оно принимает безразмерное значение в качестве пропорции.
+
+Пример показывает три `flex` элемента с относительными пропорциями 1, 2 и 3.
+```html
+<body>
+  <div id="container">
+    <p id="item1">Element 1</p>
+    <p id="item2">Element 2</p>
+    <p id="item3">Element 3</p>
+  </div>
+</body>
+```
+```css
+#container {
+  border: 1px solid #818181;
+  box-shadow: 2px 2px #474747;
+  display: flex;
+}
+
+#item1 {
+  flex-grow: 1;
+  border: 1px solid #868686;
+  box-shadow: 2px 2px black;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+#item2 {
+  flex-grow: 2;
+  border: 1px solid #868686;
+  box-shadow: 2px 2px black;
+  margin-right: 10px;
+}
+
+#item3 {
+  flex-grow: 3;
+  border: 1px solid #868686;
+  box-shadow: 2px 2px black;
+  margin-right: 5px;
+}
+```
+
+Свойство `flex-grow` позволяет элементам в flex-контейнере занимать больше пространства на больших экранах. Элемент `item2` займет в два раза больше места, чем элемент `item1`.
+
+Возможные значения для `flex-grow` - это целые неотрицательные числа (0, 1, 2, 3, ...). Это безразмерные значения, которые служат пропорциями для размеров элементов.
+
+Значения `flex-grow` `1` к `1` к `1` приведут к тому, что все три элемента будут занимать одинаковое пространство, независимо от размера экрана.
+
+По умолчанию, элементы внутри flex-контейнера имеют значение flex-grow равное 0. Это означает, что когда имеется доступное пространство (например, на большем экране), они не всегда будут увеличиваться.
+```html
+<body>
+  <div id="container">
+    <p class="item">Item 1</p>
+    <p class="item">Item 2</p>
+  </div>
+</body>
+```
+```css
+#container {
+  display: flex;
+  border: 1px solid black;
+}
+
+.item {
+  flex-grow: 0;
+  border: 1px solid green;
+  margin-right: 2px;
+}
+```
+
+`flex-shrink` делает противоположное `flex-grow`. Он используется для адаптации дизайна к меньшим экранам. 
+
+Это значение определяет, насколько сильно `flex` элемент будет сжиматься относительно остальных элементов, когда в `flex` контейнере недостаточно места. Более высокое значение означает, что элемент будет сжиматься больше.
+```html
+<body>
+  <div>
+    <p id="item1">In a world increasingly driven by technology and automation, the importance of nurturing human connection and empathy cannot be overstated. </p>
+    <p id="item2">In the pursuit of personal growth and fulfillment, resilience emerges as an invaluable trait. Life is rife with challenges, setbacks, and unexpected turns.</p>
+  </div>
+</body>
+```
+```css
+div {
+  padding: 20px;
+  border: 1px solid rgb(189, 185, 185);
+  box-shadow: 0 2px 4px #000000;
+  display: flex;
+}
+
+#item1 {
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+
+#item2 {
+  flex-shrink: 2;
+  flex-grow: 1;
+}
+
+p {
+  border: 1px solid rgb(189, 185, 185);
+  box-shadow: 0 2px 4px #000000;
+  background-color: rgb(247, 228, 203);
+  margin: 5px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+```
+
+Значение по умолчанию для `flex-shrink` равно единице.
+
+Пример: элемент `item2` уменьшается больше, когда в контейнере не хватает места из-за меньшего экрана:
+```css
+#item1 {
+  flex-shrink: 1;
+}
+#item2 {
+  flex-shrink: 2;
+}
+```
 
 
 <a id="Позиционирование">Позиционирование</a>
