@@ -2397,6 +2397,280 @@ body {
 ---
 
 
+При дизайне профессиональных страниц, вам скорее всего потребуется расположить элементы в определенных позициях. Вот тут в игру вступает позиционирование CSS! В этом уроке вы научитесь располагать элементы точно там, где вы хотите, на страницах.
+
+Свойство `position` дает больше контроля над размещением элементов HTML в проектах. По умолчанию все элементы имеют позицию `static`. Это означает, что они не позиционированы никаким особым образом, и браузер отображает их один за другим, в том порядке, в котором они появляются в HTML-коде.
+
+**Система координат** страницы используется в веб-дизайне для точного определения и описания позиции элементов на странице. Точкой отсчета (или началом) является *верхний левый угол*.
+- **Ось x** (или горизонтальная) идет слева направо. 
+- **Ось y** (или вертикальная) идет сверху вниз.
+
+С использованием позиционирования `absolute`, можно задать точное положение элементов на странице. Так-же, используя left и top, можно добавить горизонтальные и вертикальные координаты в пикселях.
+```html
+<body>
+  <button id="item1">Element 1</button>
+  <button id="item2">Element 2</button>
+  <button id="item3">Element 3</button>
+</body>
+```
+```css
+#item1 {
+  position:absolute;
+  left: 10px;
+  top: 20px;
+}
+#item2 {
+  position:absolute;
+  left: 50px;
+  top: 60px;
+}
+#item3 {
+  position:absolute;
+  left: 80px;
+  top: 120px;
+}
+```
+
+Позиционирование элемента HTML означает позиционирование его блока, точнее, *верхнего левого угла* блока.
+
+Применение `property: absolute` к элементу удаляет элемент из его статического потока (порядок элементов). В примере, второй элемент абсолютно позиционирован, это означает, что он больше не является вторым элементом в потоке.
+```html
+<body>
+  <div id="item1"></div>
+
+  <div id="item2"></div>
+</body>
+```
+```css
+/* Статическая позиция по умолчанию */
+#item1 {
+  background-color: #0000FF;
+  height: 100px;
+  width: 300px;
+}
+
+/* Абсолютное позиционирование */
+#item2 {
+  position: absolute;
+  left: 50px;
+  top: 40px;
+  background-color: #FF0000;
+  height: 100px;
+  width: 300px;
+}
+```
+
+Элемент с `position: fixed` всегда остается на том же месте, даже если страница прокручивается:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Header Social Network Feed</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Fixing header -->
+    <header class="fixed-header">
+        MySocialApp
+    </header>
+    <div class="feed">
+        <!-- Create several posts for the newsfeed -->
+        <div class="post">
+            <strong>John Doe</strong>
+            <p>Having a great day at the park!</p>
+        </div>
+        <div class="post">
+            <strong>Jane Smith</strong>
+            <p>Check out this amazing recipe I found!</p>
+        </div>
+        <div class="post">
+            <strong>Alice Adams</strong>
+            <p>Spending time with family is the best.</p>
+        </div>
+        <div class="post">
+            <strong>Bob Brown</strong>
+            <p>Attending a concert tonight! So excited!</p>
+        </div>
+        <div class="post">
+            <strong>Charlie Chaplin</strong>
+            <p>Learning to cook has been a rewarding journey.</p>
+        </div>
+        <div class="post">
+            <strong>Dana White</strong>
+            <p>Who else loves hiking during the summer?</p>
+        </div>
+        <div class="post">
+            <strong>Edward Stone</strong>
+            <p>Reading a fantastic book about space exploration.</p>
+        </div>
+        <div class="post">
+            <strong>Fiona Frost</strong>
+            <p>Visited the museum today and learned so much!</p>
+        </div>
+        <div class="post">
+            <strong>George Graham</strong>
+            <p>Saw a brilliant play at the theatre today.</p>
+        </div>
+        <div class="post">
+            <strong>Hannah Hill</strong>
+            <p>Photography has become a new hobby of mine.</p>
+        </div>
+        <!-- ... Feel free to add more posts if needed ... -->
+    </div>
+</body>
+</html>
+```
+```css
+body {
+    font-family: Arial, sans-serif;
+}
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #cc005c;
+    color: white;
+    text-align: center;
+}
+.feed {
+    margin-top: 50px;
+    padding: 10px;
+}
+.post {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+``` 
+
+`relative` позиционированные элементы берут статическую позицию в качестве отсчета. Таким образом, верхний левый угол статической позиции становится новым отсчетом.
+```html
+<body>
+  <div>First</div>
+  <div class="special">Second</div>
+  <div>Third</div>
+</body>
+```
+```css
+div {
+    width: 80%;
+    margin: 10px 0px;
+    border: 1px solid #747171;
+    text-align: center;
+}
+
+.special {
+    background-color: #FFD700;
+    position: relative;
+    /*сдвиг слева*/
+    left: 20px;
+}
+```
+
+По умолчанию, `relative` делает статическую позицию элемента новой точкой отсчёта.
+
+Пример правила для размещения элемента на основе его статического положения:
+```css
+#element {
+  position: relative;
+  left: 30px;
+  top: 15px;
+}
+```
+
+Чтобы точно расположить дочерние элементы по отношению к позиции родителя, нужно установить для родителя `position: relative`. Это сделает верхний левый угол родительского блока новой точкой отсчета (началом координат):
+```html
+<body>
+  <div id="parent">
+    <button id="child">Accept</button>
+  </div>
+</body>
+```
+```css
+#parent {
+  border:solid;
+  width: 150px;
+  height: 80px;
+  left: 40px;
+  top: 60px;
+  position: relative;
+}
+
+#child {
+  position:absolute;
+  top: 10px;
+  left: 20px
+}
+```
+
+`Relative` и `absolute` используются в комбинации для позиционирования дочерних элементов относительно их родителей. Если у родителя не установлена позиция, ссылкой будет ближайший предок со свойством, установленным на `relative`:
+```html
+<body>
+  <div id="grandparent">
+    <div id="parent">
+      <button id="child">Click me</button>
+    </div>
+  </div>
+</body>
+```
+```css
+#grandparent {
+  position: relative;
+  width: 250px;
+  height: 150px;
+  border: 1px solid;
+}
+
+#parent {
+  width: 150px;
+  height: 100px;  
+  border: 1px solid blue;
+  margin: 40px 20px;
+}
+
+#child {
+  position: absolute;
+  left: 150px;
+  top: 110px;
+}
+```
+
+Если ни у одного из предков не установлено свойство `position` со значением `relative`, то точкой отсчета для позиционирования является `body` (родитель всех элементов).
+
+В дополнение к `top` и `left` вы также можете использовать `bottom` и `right` для контроля позиции элементовw
+```html
+<body>
+  <div id="parent">
+      <button id="child">Click me</button>
+  </div>
+</body>
+```
+```css
+#parent {
+  position: relative;
+  width: 150px;
+  height: 100px;
+  border: 1px solid;
+}
+
+#child {
+  position: absolute;
+  /* правый и нижний края дочернего 
+  элемента будут выровнены с правым и 
+  нижним краями #parent */
+  right: 0px;
+  bottom: 0px;
+}
+```
+
+
+
+
+
 <a id="Проект-страницы-профиля-Шаг-4">Проект страницы профиля Шаг 4</a>
 ---
 
