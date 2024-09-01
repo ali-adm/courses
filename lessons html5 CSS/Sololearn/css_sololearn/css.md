@@ -3289,6 +3289,10 @@ transform: translate (0px, -20px);
 <a id="Переходы">Переходы</a>
 ---
 
+- Используйте `transition` для создания визуальных эффектов, которые меняются от одного значения свойства к другому
+- Переходы требуют **свойство(а)**, **начальное значение**, **конечное значение**, **продолжительность** и **триггер**
+- Вы можете применять эффекты перехода к трансформациям
+
 Современные веб-сайты содержат анимированные элементы, которые завораживают, направляют и даже влияют на поведение пользователей. В этом уроке вы научитесь создавать анимации с помощью **CSS transitions**.
 
 Псевдоселекторы играют важную роль в создании переходов для анимаций.
@@ -3360,17 +3364,695 @@ p:active {
 }
 ```
 
+Пример: переход, который изменяет высоту элемента за 3 секунды и размер шрифта за 2 секунды
+```css
+#element {
+  height: 15%;
+  font-size: 20px;
+  transition: height 3s, font-size 2s;
+}
+#element:hover {
+  height: 100%;
+  font-size: 30%;
+}
+```
+
+Используйте `transition-delay` чтобы добавить время ожидания для эффекта перехода. В следующем примере задержка перед началом составляет 2 секунды:
+```html
+<body>
+  <div id="element">Press & hold at least 2 seconds</div>
+</body>
+```
+```css
+#element {
+  width: 100px;
+  background-color: blue;
+  color: white;
+  transition: width 2s, 
+  background-color 1s;
+  transition-delay: 2s;
+}
+
+#element:active {
+  width: 200px;
+  background-color: red;
+}
+```
+
+Таким образом задержка к переходу в три секунды будет выглядеть следующим образом:
+```css
+#box {
+  width: 15%;
+  transition: width 5s;
+  transition-delay: 3s;
+}
+```
+
+Можно добавлять переходы к трансформациям. Напомним как выглядит трансформация, которая удваивает размер элемента:
+```css
+transform: scale (2);
+```
+
+Эффект перехода к трансформации, кнопка будет масштабироваться при активации:
+```html
+<body>
+  <button>Press & Hold</button>
+</body>
+```
+```css
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498DB;
+  color: #FFFFFF;
+  transition: transform 1s;
+}
+
+button:active {
+    transform: scale(1.3);
+}
+```
+
+Изменение высоты элемента и применение трансформации, оба действия с длительностью 5 секунд:
+```css
+transition: transform 5s, height 5s;
+```
+
+Переход для поворота элемента `#card` на 35 градусов за 2 секунды при наведении:
+```css
+#card {
+  transition: transform 2s;
+}
+#card:hover {
+  transform: rotate (35deg);
+}
+```
+
+Переход к `#element`, который изменяет радиус границы в течение 3 секунд при наведении:
+```css
+#element {
+  border-radius: 3px;
+  transition: border-radius 3s;
+}
+#element:hover {
+  border-radius: 6px;
+}
+```
+
+Переход к трансформации масштаба. Он должен увеличиваться в 1,5 раза при наведении
+
 
 <a id="Кадры-ключевые-и-Анимации">Кадры ключевые и Анимации</a>
 ---
+
+- `@keyframes` определяют последовательность стилей, через которые проходит элемент во время анимации
+- Свойство `animation-name` связывает `keyframes` с анимируемым элементом
+
+В прошлом уроке вы научились создавать простые анимации с использованием переходов. К концу этого урока вы сможете создавать более сложные анимации, чтобы оживить вашу страницу.
+
+Переходы используются для создания простых анимаций. У перехода есть начальное значение и конечное значение.
+```css
+#element {
+  color: red;
+  transition: color 3s;
+}
+
+#element:hover {
+  color: yellow;
+}
+```
+
+В приведенном выше примером начальным значением выступал `color: red;`, а конечным - `color: yellow;`.
+ 
+Анимации используются для создания более сложных переходов и трансформаций с большим количеством промежуточных состояний. С анимациями вы можете изменять столько свойств, сколько вам нужно, столько раз, сколько вам нужно.
+
+Анимации требуют `keyframes` для хранения стилей, которые элемент будет иметь в определенное время.
+```html
+<body>
+  <h2>Transition</h2>
+  <div id="element1"><p>Press & hold</p></div>
+  
+  <h2>Animation</h2>
+  <div id="element2"></div>
+</body>
+```
+```css
+#element1 {
+  width: 150px;
+  height: 150px;
+  background-color: red;
+  transition: background-color 3s; 
+  margin: 20px;
+}
+
+#element1:active {
+  background-color: yellow;
+}
+
+#element2 {
+  width: 150px;
+  height: 150px;
+  background-color: red;
+  margin: 20px;
+  animation-name: colorChange;
+  animation-duration: 3s;
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: red;
+    }
+  50% {
+    background-color: yellow;
+    }
+  100% {
+    background-color: blue;
+    }
+}
+
+p {
+  color: white;
+  text-align: center;
+  padding-top: 65px;
+  font-size: 20px;
+}
+
+h2 {
+  padding-left: 40px;
+}
+```
+
+**Анимация** - это последовательность переходов.
+
+**Keyframes** - это снимки с важными промежуточными состояниями, которые определяют анимацию.
+
+Новой анимации нужно присвоить `animation-name`. Используйте `@keyframes` за которыми следует `animation-name`, чтобы определить ключевые промежуточные состояния.
+
+Код ниже анимирует цвет фона элемента в четырех точках: при `0%`, `33%`, `66%` и `100%` завершения анимации.
+```html
+<body>
+  <div></div>
+</body>
+```
+```css
+div {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  margin: 50px;
+  animation-name: snakeMove;
+  animation-duration: 5s;
+}
+
+@keyframes snakeMove {
+  0% {
+    background-color: #7B41EA;
+    bottom: 0;
+    left: 0;
+  }
+  33% {
+    background-color: #CCB4FB;
+    bottom: 40px;
+    left: 40px;
+  }
+  66% {
+    background-color: #C833FD;
+    bottom: 0;
+    left: 80px;
+  }
+  100% {
+    background-color: #F91583;
+    bottom: 40px;
+    left: 120px;
+  }
+}
+```
+
+Например в следующей анимации элемент двигается по горизонтальной линии, начиная слева и заканчивая справа:
+```css
+@keyframes myAnimation {
+  0% {left: 0px;}
+  50% {left: 10px}
+  100% {left: 20px}
+}
+```
+
+`animation-duration` контролирует время, необходимое элементу для перемещения от первого ключевого кадра до последнего.
+
+Следующая анимация длилтся 5 секунд:
+```css
+div {
+  weight: 100px;
+  height: 100px;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 5s;
+}
+```
+
+Анимации и переходы представляют собой различные поведения. Вы могли заметить это на примерах. Если сопоставить визуальный эффект с поведением, то:
+- `transition` - требует триггер,
+- `animation` - может воспроизводиться автоматически.
+
+По умолчанию, анимация начинает воспроизводиться автоматически, когда страница загружается в браузере, если не установлена задержка.
+
+`animation-delay` добавляет время ожидания для начала воспроизведения анимации.
+```html
+<body>
+  <div>Disco!</div>
+</body>
+```
+```css
+div {
+  padding: 30px;
+  border-radius: 50%;
+  width: 50px;
+  background-color: #007BFF;
+  color: white;
+  animation-name: colorChange;
+  animation-duration: 4s;
+  animation-delay: 2s;
+}
+
+@keyframes colorChange {
+  0% {background-color: #007BFF;}
+  25% {background-color: #FFC107;}
+  50% {background-color: #28A745;}
+  75% {background-color: #DC3545;}
+  100% {background-color: #6610F2;}
+}
+```
+
+Следующие три ключевых кадра создадут визуальный эффект, который изменит толщину границы:
+```css
+@keyframes demo {
+  0% { border: 1px solid;}
+  50% { border: 2px solid;}
+  100% { border: 3px solid;}
+}
+```
+
+Когда в анимации есть только два кадра, в качестве альтернативы использованию процентов для ключевых кадров, можно использовать ключевые слова `from` и `to`.
+```html
+<body>
+  <div>Disco!</div>
+</body>
+```
+```css
+div {
+  padding: 30px;
+  border-radius: 50%;
+  width: 50px;
+  background-color: #007BFF;
+  color: white;
+  animation-name: colorChange;
+  animation-duration: 4s;
+}
+
+@keyframes colorChange {
+  from { background-color: #007BFF;}
+  to { background-color: #F2106E;}
+}
+```
+
+В примере анимация под названием demo, с ключевыми кадрами на 0% и 100%, контролирущая цвет текста:
+```css
+@keyframes demo {
+  from {color: green;}
+  to {color: blue;}
+}
+```
+
+Так-же можно анимировать трансформации. Название преобразования, которое изменяет размер элемента - `scale()`. Чтобы анимировать трансформации, нужно добавить их в ключевые кадры. После определения ключевых кадров анимации, можно применить их к различным элементам.
+
+В следующем примере можно увидеть как анимация с именем `pulse` объединяется с трансформацией `scale` и применяется к трем кругам:
+```html
+<body>
+  <div class="visual">
+    <div class="circle-yellow"></div>
+    <div class="circle-green"></div>
+    <div class="circle-blue"></div>
+  </div>
+</body>
+```
+```css
+body {
+  margin: 50px;
+  background-color: #0C1527;
+  display: flex;
+}
+
+.circle-yellow {
+  width: 40px;
+  height: 40px;
+  background-color: #FFA310;
+  border-radius: 50%;
+  animation-name: pulse;
+  animation-duration: 3s;
+}
+
+.circle-green {
+  width: 100px;
+  height: 100px;
+  top: 120px;
+  left: 30px;
+  background-color: #10FF14;
+  border-radius: 50%;
+  position: absolute;
+  animation-name: pulse;
+  animation-duration: 3s;
+}
+
+.circle-blue {
+  left: 170px;
+  top: 15px;
+  width: 60px;
+  height: 60px;
+  background-color: #1064FF;
+  border-radius: 50%;
+  position: absolute;
+  animation-name: pulse;
+  animation-duration: 3s;
+}
+
+.visual {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: inline;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1);}
+  50% { transform: scale(2);}
+  100% { transform: scale(1);}
+}
+```
+
+В примере два ключевых кадра анимации с именем `rotation`:
+```css
+@keyframes rotation {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+```
+
+В примере анимация под названием `moveRight` для элемента `div` c установленной продолжительностью в пять секунд:
+```css
+div {
+  animation-name: moveRight;
+  animation-duration: 5s;
+}
+```
 
 
 <a id="Свойства-анимации">Свойства анимации</a>
 ---
 
+- Функции скорости могут быть установлены для анимаций и переходов с помощью подсвойства `timing-function`
+- `animation-iteration-count` контролирует количество повторений анимации
+
+Думаете ли вы, что уже достаточно знаете об анимациях? Пройдите этот урок, чтобы стать профессионалом в анимации и применить передовые техники, которые выделят ваши веб-дизайны.
+
+В следующем примере три ключевых кадра анимации под названием `widening`:
+```css
+@keyframes widening {
+  0% {width: 20px;}
+  50% {widht: 30px;}
+  100% {width: 40px}
+}
+```
+
+Анимация - это последовательность изображений, известных как **кадры**. **Ключевые кадры** - это важные кадры, которые определяют начало и конец плавного перехода. Таким образом - есть **кадры**, и **ключевые кадры**.
+
+Переходы между двумя **ключевыми кадрами** являются плавными и вычисляются автоматически на основе функции скорости. Функция скорости определяет, насколько быстро происходят изменения на различных этапах перехода.
+
+По умолчанию, функция скорости - `ease`. Можно установить альтернативы стандартной функции скорости с помощью `animation-timing-function`:
+
+- `ease` - сначала ускоряется, затем замедляется;
+- `linear` - постоянная скорость;
+- `ease-in` - запускается медленно, затем ускоряется;
+- `ease-out` - запускается быстро, затем замедляется.
+```html
+<body>
+  <div class="visual">
+      <h3>ease</h3>
+      <div id="item1"></div>
+
+      <h3>linear</h3>
+      <div id="item2"></div>
+
+      <h3>ease-in</h3>
+      <div id="item3"></div>
+
+      <h3>ease-out</h3>
+      <div id="item4"></div>
+  </div>
+</body>
+```
+```css
+#item1 {
+  width: 40px;
+  height: 40px;
+  background-color: #FFA310;
+  animation: move 5s;
+  /*speeds up first, then slows down*/
+  animation-timing-function: ease;
+}
+
+#item2 {
+  width: 40px;
+  height: 40px;
+  background-color: #10FF14;
+  animation: move 5s;
+  /*constant speed*/
+  animation-timing-function: linear;
+}
+
+#item3 {
+  width: 40px;
+  height: 40px;
+  background-color: #1064FF;
+  animation: move 5s;
+  /*starts slow, then speeds up*/
+  animation-timing-function: ease-in;
+}
+
+#item4 {
+  width: 40px;
+  height: 40px;
+  background-color: #C73447;
+  animation: move 5s;
+  /*starts fast, then slows down*/
+  animation-timing-function: ease-out;
+}
+
+@keyframes move {
+  0% { left: 0;}
+  100% { left: 250px;}
+}
+
+div {
+  margin-top: 30px;
+  position: relative;
+}
+```
+
+Анимация - это последовательность переходов. Каждый переход происходит между двумя ключевыми кадрами. Можно установить функцию скорости при работе с переходами. Имя свойства для переходов - `transition-timing-function` со значением по умолчанию.
+
+По умолчанию функция плавности скорости - сначала ускорояется, затем замедляется.
+
+Свойство `animation-iteration-count` определяет количество повторений анимации. В примере ниже, анимация пульсации повторяется пять раз:
+```html
+<head>
+  <title>Notification Badge Animation</title>
+</head>
+<body>
+  <div class="visual">
+    <div class="circle-yellow"></div>
+    <div class="circle-green"></div>
+    <div class="circle-blue"></div>
+  </div>
+</body
+```
+```css
+body {
+  margin: 50px;
+  background-color: #0C1527;
+  display: flex;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1);}
+  50% { transform: scale(2);}
+  100% { transform: scale(1);}
+}
+
+.circle-yellow {
+  width: 40px;
+  height: 40px;
+  background-color: #FFA310;
+  border-radius: 50%;
+  animation: pulse 3s;
+  animation-iteration-count: 5;
+}
+
+.circle-green {
+  width: 100px;
+  height: 100px;
+  top: 120px;
+  left: 30px;
+  background-color: #10FF14;
+  border-radius: 50%;
+  position: absolute;
+  animation: pulse 3s;
+  animation-iteration-count: 5;
+}
+
+.circle-blue {
+  left: 170px;
+  top: 15px;
+  width: 60px;
+  height: 60px;
+  background-color: #1064FF;
+  border-radius: 50%;
+  position: absolute;
+  animation: pulse 3s;
+  animation-iteration-count: 5;
+}
+
+.visual {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: inline;
+}
+```
+
+В следующем примере анимация с именем `rotation`, длится две секунды, и повторяется три раза:
+```css
+#card {
+  animation-name: rotation;
+  animation-duration: 2s;
+  animation-iteration-count: 3;
+}
+```
+
+Чтобы анимация повторялась бесконечно, просто используйте значение `infinite` с `animation-iteration-count`. В примере анимация, которая повторяется бесконечно:
+```html
+<head>
+  <title>Animated Loading Spinner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="spinner"></div>
+</body>
+```
+```css
+body {
+  background-color: #0C1527;
+}
+
+.spinner {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: 8px solid #7F622F;
+  border-radius: 50%;  
+  border-top: 8px solid #FB9C02;
+  width: 50px;
+  height: 50px;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
+}
+```
+
+В примере бесконечная анимация пульсации круга:
+```css
+.circle {
+  animation-name: pulse;
+  animation-iteration-count: infinite;
+}
+@keyfranes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(2);}
+  100% {transform: scale(1);}
+}
+```
+
+Свойство `animation` может быть использовано в качестве краткой записи для всех свойств, связанных с анимацией. Возьмем пример:
+- `animation-name` - имя, напрмиер `spin`
+- `animation-duration` - продолжительность анимации, (1сек)
+- `animation-timing-function` - одна из четырех, например линейная
+- `animation-delay` - задержка перед воспроизведением анимации (0,5сек)
+- `animation-iteration-count` - количество воспроизведений анимации, например - пять;
+
+Все переичиленные свойства, в краткой записи `animation` будут выглядеть следующим образом:
+```css
+animation: spin 1s linear 0.5s infinite;
+```
+Подробный пример:
+```html
+<head>
+  <title>Animated Loading Spinner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="spinner"></div>
+</body>
+```
+```css
+body {
+  background-color: #0C1527;
+}
+
+.spinner {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: 8px solid #7F622F;
+  border-radius: 50%;  
+  border-top: 8px solid #FB9C02;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear 0.5s infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
+}
+```
+
+Порядок, в котором каждое свойство объявлено в сокращенном объявлении, важен и не может быть изменен. В противном случае анимация не будет работать должным образом.
+
+В примере анимация с названием loading, продолжительностью 5 секунд, которая будет повторяться бесконечно:
+```css
+animanion: loading 5s infinite;
+```
+
 
 <a id="Проект-Профильной-Страницы-Шаг-5">Проект Профильной Страницы Шаг 5</a>
 ---
+
+На этом шаге вы примените анимацию пульсации к секции развода, чтобы они меняли размер и цвет.
+
+Задачи: 
+1. Примените `animation-name: pulse` к элементам `.active-day`
+2. Сделайте продолжительность анимации `2s` и убедитесь, что она играет `infinite` раз
+3. Используйте `@keyframes` для анимации пульсации, чтобы размер текста колебался между `100%` и `120%`, и измените цвет на `#00CC00` на `50%` отметки анимации
+
 
 
 <a id="Контрольные-вопросы-к-модулю-4">Контрольные вопросы к модулю 4</a>
