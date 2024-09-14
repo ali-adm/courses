@@ -3508,3 +3508,331 @@ a:hover {
 Стилизация таблиц
 ---
 
+- Свойство `border` добавляет и стилизует границы вокруг элементов таблицы
+- Свойство `border-collapse` позволяет вам контролировать, остаются ли границы ячеек таблицы отдельными или объединяются
+- Селектор `nth-child()` позволяет вам выбирать и стилизовать определенные строки или группы строк, например, нечетные и четные строки
+
+Таблицы - мощный инструмент для представления данных в структурированном и организованном виде, но по умолчанию они могут быть довольно простыми и не соответствовать общему дизайну вашего веб-сайта.
+
+В этом уроке вы узнаете, как преобразовать простые таблицы в визуально привлекательные элементы, гармонирующие с дизайном вашего веб-сайта.
+
+Давайте повторим материал по HTML таблицам. Для добавления таблицы на страницу используется тег `<table>`. Еще существуют следующие теги с элементом таблицы:
+- таблица: `<table>`
+- строка таблицы: `<tr>`
+- ячейка данных: `<td>`
+- ячейка заголовка: `<th>`
+
+Внешний вид HTML-таблицы можно значительно улучшить с помощью свойства `border`. Это короткий и простой способ обращения к трем различным подсвойствам.
+```css
+border-width: 1px;  /* ширина/толщина линии */
+border-style: solid;  /* стиль лини - сплошная */
+border-color: red;  /* цвет линии */
+```
+
+**Чтобы добавить рамку вокруг таблицы**, примените свойство border к `<table>`.
+
+**Чтобы добавить границы ко всем ячейкам**, примените свойство border к `<th>` и `<td>`.
+```html
+<body>
+  <!-- Таблица с рамкой вокруг таблицы -->
+  <table id="table1">
+    <tr>
+      <th>Rank</th>
+      <th>Movie Title</th>
+      <th>Director</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Dune</td>
+      <td>Dennis Villeneuve</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Spider-Man: No Way Home</td>
+      <td>Jon Watts</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>The French Dispatch</td>
+      <td>Wes Anderson</td>
+    </tr>
+  </table>
+  <br>
+  <!-- Таблица с границами на всех ячейках -->
+  <table id="table2">
+    <tr>
+      <th>Rank</th>
+      <th>Movie Title</th>
+      <th>Director</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Dune</td>
+      <td>Dennis Villeneuve</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Spider-Man: No Way Home</td>
+      <td>Jon Watts</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>The French Dispatch</td>
+      <td>Wes Anderson</td>
+    </tr>
+  </table>
+</body>
+```
+```css
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F7F8FC;
+}
+
+/* Применение рамки вокруг таблицы */
+#table1 {
+  border: 2px solid #0C1527;
+}
+
+/* Применение границ к каждой ячейке */
+#table2 th, 
+#table2 td {
+  border: 2px solid #0C1527;
+}
+
+td {
+  text-align: left;
+}
+
+th{
+  text-align: left;
+  background-color: #149EF2;
+}
+```
+
+Правило CSS, дающее заголовкам таблицы синюю рамку:
+```css
+th {
+  border: 1px solid blue;
+}
+```
+
+Единственное обязательное подсвойство границы - это `border-style`. Если ширина не указана, значением по умолчанию будет средняя (`1px`). Если цвет не указан, цвет текста будет применен к границе.
+
+Вы можете использовать подсвойство `border-width` для определения толщины границы. Оно может принимать пиксели и проценты или именованные значения, такие как `medium`.
+
+Правило CSS для применения средней, пунктирной рамки ко всем ячейкам:
+```css
+td, th {
+  border: medium dotted blue;
+}
+```
+Ячейки таблицы, между собой, по умолчанию, имеют расстояние, из-за чего появляются двойные границы. Чтобы убрать это пространство, вы можете присвоить элементам `table` свойство `border-collapse`.
+```html
+<body>
+  <table>
+    <tr>
+      <th>Rank</th>
+      <th>Movie Title</th>
+      <th>Box Office Collection (in $ millions)</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Avatar</td>
+      <td>2.847</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Avengers: Endgame</td>
+      <td>2.798</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Titanic</td>
+      <td>2.202</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Star Wars: The Force Awakens</td>
+      <td>2.068</td>
+    </tr>
+  </table>
+</body>
+```
+```css
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F3F4F6;
+  color: #333;
+}
+
+table {
+  /* Оно */
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 2px solid #909092;
+}
+
+th {
+  background-color: #4A90E2;
+  color: white;
+}
+```
+
+Границы ячеек таблицы схлопываются:
+```css
+table {
+  border-collapse: collapse;
+}
+```
+
+В следующем коде:
+```html
+<table>
+  <tr>
+    <td>Rank</td>
+    …
+</table>
+```
+
+- `<table>` - является родительским элементом
+- `<tr>` - является дочерним элементом
+
+Следующий код будет стилизовать все строки в таблице:
+```css
+tr {
+  background-color: #000A23;
+}
+```
+
+У таблицы может быть несколько строк в качестве дочерних элементов. 
+**Псевдоселекторы** могут использоваться для выбора элементов исходя из их порядка или позиции.
+
+Псевдоселектор `:nth-child(n)` выбирает дочерние элементы исходя из их порядка. Например селектор для выбора **второй строки** в таблице:
+```css
+tr:nth-child(2) {
+  color: red;
+}
+```
+
+Этот Псевдоселектор дает вам больше контроля для стилизации элементов в таблице. Давайте применим фон к третьему ряду:
+```html
+<body>
+  <table>
+    <tr>
+      <th>Rank</th>
+      <th>Movie Title</th>
+      <th>Revenue</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Avatar</td>
+      <td>2,847</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Avengers: Endgame</td>
+      <td>2,798</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Titanic</td>
+      <td>2,202</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Star Wars: The Force Awakens</td>
+      <td>2,068</td>
+    </tr>
+  </table>
+</body>
+```
+```css
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F3F4F6;
+  color: #333;
+}
+/* Оно */
+tr:nth-child(3){
+  background-color: #FFA310;
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 2px solid #909092;
+}
+```
+
+Пример **жирного** текста во второй строке:
+```css
+tr:nth-child(2) {
+  font-weight: bold;
+}
+
+
+Вы также можете использовать псевдо-селектор `:nth-child()` для подсветки нечетных и четных строк:
+```html
+<body>
+  <table>
+    <tr>
+      <th>Rank</th>
+      <th>Movie Title</th>
+      <th>Box Office Collection (in $ millions)</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Avatar</td>
+      <td>2,847</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Avengers: Endgame</td>
+      <td>2,798</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Titanic</td>
+      <td>2,202</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Star Wars: The Force Awakens</td>
+      <td>2,068</td>
+    </tr>
+  </table>
+</body>
+```
+```css
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F3F4F6;
+  color: #333;
+}
+table {
+  border-collapse: collapse;
+}
+/* light gray for odd rows */
+tr:nth-child(odd) {
+  background-color: #E9E9E9;  
+}
+/* white for even rows */
+tr:nth-child(even) {
+  background-color: #FFFFFF;  
+}
+th, td {
+  border: 2px solid #909092;
+}
+```
+
+Селектор для выборы **четных** строк таблицы:
+```css
+tr:nth-child(even) {...}
+```
+
+Стилизация списков
+---
+
