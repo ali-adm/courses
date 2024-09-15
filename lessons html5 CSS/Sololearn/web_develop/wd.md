@@ -3836,3 +3836,235 @@ tr:nth-child(even) {...}
 Стилизация списков
 ---
 
+- `list-style-type` контролирует тип маркеров
+- `list-style-position` контролирует позицию маркеров
+- `list-style-image` добавляет пользовательские изображения в качестве маркеров
+
+Стилизация списков улучшает визуальную привлекательность, удобство использования и доступность. В этом уроке вы преобразуете простые списки в визуально привлекательные и хорошо организованные элементы на ваших веб-страницах.
+
+Давайте быстро повторим материал о списках.
+- Упорядоченный список: `<ol>`
+- Неупорядоченный список: `<ul>`
+
+По умолчанию, элементы неупорядоченного списка отмечены круглыми маркерами
+
+Свойство `list-style` требует три значения. Это короткий и простой способ обращения к трем различным подсвойствам: `type`, `position` и `image`.
+```css
+ul {
+  list-style: square inside none;
+}
+```
+
+Подсвойство `list-style-type` изменяет маркеры для неупорядоченных и упорядоченных списков. Давайте сначала рассмотрим неупорядоченные списки.
+```html
+<body>
+  <h2>Square elements</h2>
+  <ul class="square">
+    <li>One element</li>
+    <li>Two element</li>
+  </ul>
+  <h2>Circle elements</h2>
+  <ul class="circle">
+    <li>One element</li>
+    <li>Two element</li>
+  </ul>
+  <h2>Disc elements</h2>
+  <ul class="disc">
+    <li>One element</li>
+    <li>Two element</li>
+  </ul>
+  <h2>None value</h2>
+  <ul class="none">
+    <li>One element</li>
+    <li>Two element</li>
+  </ul>
+</body>
+```
+```css
+.square {
+  list-style-type: square;
+}
+.circle {
+  list-style-type: circle;
+}
+.disc {
+  list-style-type: disc;
+}
+.none {
+  list-style-type: none;
+}
+body {
+  background-color: #232323;
+  color: #FFFFFF;
+  font-size: 18px;
+}
+h2 {
+  color: #B8A7C2;
+  text-align: center;
+}
+```
+
+Пример: список с `ID` `items` с помощью маркеров в виде пустых кружков:
+```css
+#items {
+  list-style-type: circle
+}
+```
+
+Если список не был стилизован, браузер отобразит маркер в виде диска.
+
+Перейдем к упорядоченным спискам. По умолчанию элементы в упорядоченном списке отмечаются с помощью цифр. Для упорядоченных списков свойство list-style-type имеет различные возможные значения. 
+```html
+<body>
+  <h1>Order Lists</h1>
+  <h2>decimal-leading-zero</h2>
+  <ol class="decimal-leading-zero">
+    <li>One element</li>
+    <li>Second element</li>
+    <li>Third element</li>
+  </ol>
+  <h2>decimal</h2>
+  <ol class="decimal">
+    <li>One element</li>
+    <li>Second element</li>
+    <li>Third element</li>
+  </ol>
+  <h2>lower-roman</h2>
+  <ol class="lower-roman">
+    <li>One element</li>
+    <li>Second element</li>
+    <li>Third element</li>
+  </ol>
+  <h2>upper-roman</h2>
+  <ol class="upper-roman">
+    <li>One element</li>
+    <li>Second element</li>
+    <li>Third element</li>
+  </ol>
+</body>
+```
+```css
+.decimal-leading-zero {
+  list-style-type: decimal-leading-zero;
+}
+.decimal {
+  list-style-type: decimal;
+}
+.lower-roman {
+  list-style-type: lower-roman;
+}
+.upper-roman {
+  list-style-type: upper-roman;
+}
+h1,h2 {
+  background-color: #FFA055;
+  text-align: center;
+}
+li {
+  font-size: 18px;
+}
+```
+
+Пример стилизованного списка с классом `songs`, который использует римские цифры в верхнем регистре:
+```css
+.songs {
+  list-style-type: upper-roman;
+}
+```
+
+Вы можете отмечать элементы списка буквами алфавита, либо в нижнем регистре, либо в верхнем регистре:
+```css
+ol {
+  color: #F2F2F2;
+  text-transform: capitalize;
+  list-style-type: upper-alpha;
+}
+```
+`upper-alpha` - упорядочивает элементы списка с помощью букв.
+
+Технически возможно стилизовать упорядоченный список с помощью маркеров и неупорядоченный список с помощью чисел, но это семантически не правильно и может сбивать с толку пользователей и поисковые системы.
+- `<ol>` - `decimal-leading-zero`, `decimal`, `lower-roman`, `upper-roman`;
+- `<ul>` - `square`, `circle`, `disk`, `none`.
+
+Давайте посмотрим на позицию маркеров. Свойство `list-style-position` принимает два возможных значения: `inside` и `outside`. 
+- `inside` - текст обтекает маркеры, они внутри текста;
+- `outside` - маркеры выступают за пределы текста
+
+По умолчанию, значения для позиции маркеров - `outside`.
+```html
+<body>
+  <p>Plan the trip</p>
+  <ul id="list-inside">
+    <li>When planning a road trip, make sure to check the weather forecast.</li>
+    <li>Research and choose your destination based on your interests.</li>
+    <li>Book your accommodations in advance to secure the best deals and availability.</li>
+  </ul>
+<br>
+  <p>Tips for Time Management</p>
+  <ul id="list-outside">
+    <li>Start your day by identifying the most important tasks you need to accomplish.</li>
+    <li>Allocate dedicated time blocks for specific tasks or projects.</li>
+    <li>Plan your day or week in advance to reduce decision-making stress.</li>
+  </ul>
+</body>
+```
+```css
+/* places the marker within the text 
+  area, inside the item element */
+#list-inside {
+  list-style-position: inside;
+}
+/* places the marker outside the text 
+  area, outside the item element */
+#list-outside {
+  list-style-position: outside;
+}
+p {
+  text-align: center;
+  background-color: #B538E7;
+  font-size: 26px;
+}
+li {
+  border: 2px solid #CCCCCC;
+  font-size: 18px;
+}
+```
+
+Финальное подсвойство, `list-style-image`, позволяет вам добавить пользовательское изображение в качестве маркера.
+```css
+ul {
+  list-style-image: url("rocket.png")
+}
+```
+
+Значение для свойства `list-style-image` - это URL, заключенный в кавычки, следующий за ключевым словом `url`. Он указывает путь к файлу изображения, который будет использован в качестве маркера для элементов списка. По умолчанию значение свойства `list-style-image` равно `none`.
+```html
+<!-- Created by htmllessons -->
+<body>
+  <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+</body>
+```
+```css
+/* Created by htmllessons */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #282a36;
+    color: #f8f8f2;
+    font-size: 18px;
+}
+ul {
+    list-style-image: url('https://blob.sololearn.com/courses/logo.png');
+    background-color: #44475a;
+}
+li {
+    font-weight: 600;
+    text-shadow: 2px 2px 3px #6272a4;
+}
+```
+
+Проект Страницы Профиля Шаг 3
+---
