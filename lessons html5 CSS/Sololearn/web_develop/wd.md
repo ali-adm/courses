@@ -3715,6 +3715,12 @@ body {
 }
 ```
 
+- `:link` — определяет стиль непосещенных ссылок;
+- `:hover` — выбирает элемент, когда по нему щелкают мышью;
+- `:focus` — выбирает элемент, когда он получает фокус клавиатуры;
+- `:active` — когда вы кликаете по ссылке, но ещё не отпустили кнопку мыши;
+- `:visited` — ссылка, когда она была посещена;
+
 Пример правила, согласно которому ссылка становится красной, когда мышь находится над ней:
 ```css
 a:hover {
@@ -5940,5 +5946,646 @@ pic {
 ===
 
 Преобразования
+---
+
+- **Трансформации** используются для создания визуальных эффектов, связанных с движением
+- Вы можете перемещать, масштабировать и вращать элементы с помощью свойства `transform`
+
+Визуальные эффекты, такие как движущиеся элементы, делают вашу страницу более интересной для пользователя. В этом уроке вы научитесь масштабировать, перемещать и вращать элементы с помощью **CSS transformations**.
+
+Трансформации обычно запускаются действиями пользователя. `transform: translate` переставляет элемент в горизонтальном и/или вертикальном направлениях. Предоставление одного значения перемещает элемент в горизонтальном направлении.
+
+Следующий пример показывает как переместить элемент на `50px` в горизонтальном направлении, когда элемент активен (нажат):
+```css
+div:active {
+  transform: translate(50px);
+}
+```
+
+Трансформации не являются постоянными изменениями. Они используются для создания визуальных эффектов. Когда `translate` используется с двумя значениями, визуальный эффект перемещает элемент в горизонтальном и вертикальном направлениях.
+
+Пример кода для визуального эффекта, который перемещает элемент на `25px` вправо и на `10px` вниз при наведении:
+```css
+div:hover {
+  transform: translate(25px, 10px);
+}
+```
+
+Горизонтальное и вертикальное направления имеют два значения. 
+- Положительные значения перемещают элемент вправо и вниз. 
+- Отрицательные значения перемещают элемент влево и вверх.
+
+Следующий пример демонстрирует как это работает. При нажатии мышкой - элемент перемещается `-25px` влево и `50px` вниз:
+```html
+<body>
+  <div id="card"></div>
+</body>
+```
+```css
+#card {
+  width: 150px;
+  height: 150px;
+  background-color: #3498DB;
+  margin: 80px;
+  z-index: 10;
+}
+#card:active {
+  transform: translate(-25px, 50px);
+}
+```
+
+Или например перемещение на `50px` вправо и на `100px` вверх:
+```css
+transform: translate(50px, -100px);
+```
+
+`transform: scale` делает элемент больше или меньше, сохраняя пропорции. Возможные значения - это коэффициенты масштабирования (1 - это оригинальный размер). 
+- 2 - означает в два раза больше оригинального размера, 
+- 0.5 - в два раза меньше оригинального размера.
+```html
+<body>
+  <div class="blue"></div>
+  <div class="yellow"></div>
+</body>
+```
+```css
+.blue:active {
+  transform: scale(1.5);  
+}
+.yellow:active {
+  transform: scale(0.7);  
+}
+.blue {
+  width: 150px;
+  height: 150px;
+  background-color: #3498DB;
+  border-radius: 20px;
+  margin: 50px;
+}
+.yellow {
+  width: 150px;
+  height: 150px;
+  background-color: #DBBC34;
+  border-radius: 20px;
+  margin: 50px;
+}
+```
+
+Вы можете вращать элементы с помощью `transform: rotate`. Следующий пример показывает как повернуть элемент на 15 градусов по часовой стрелке:
+```html
+<body>
+  <div></div>
+</body>
+```
+```css
+div:active {
+  /* вращает карту на 15 градусов при нажатии */
+  transform: rotate(15deg);  
+}
+div {
+  width: 150px;
+  height: 150px;
+  background-color: #3498DB;
+  border-radius: 20px;
+  margin: 40px;
+}
+```
+
+А это объявление вращает на 90 градусов по часовой стрелке:
+```css
+transform: rotate(90deg);
+```
+
+Отрицательные значения приводят к вращению против часовой стрелки.
+```html
+<body>
+  <div class="blue"></div>
+  <div class="yellow"></div>
+</body>
+```
+```css
+.blue:active {
+  /*clockwise*/
+  transform: rotate(15deg);  
+}
+.yellow:active {
+  /*counter-clockwise*/
+  transform: rotate(-15deg);  
+}
+.blue {
+  width: 150px;
+  height: 150px;
+  background-color: #3498DB;
+  border-radius: 20px;
+  margin: 50px;
+}
+.yellow {
+  width: 150px;
+  height: 150px;
+  background-color: #DBBC34;
+  border-radius: 20px;
+  margin: 50px;
+}
+```
+
+По умолчанию, вращения происходят вокруг центра элемента. Используйте `transform-origin` для изменения точки, вокруг которой происходит вращение. `transform-origin` требует горизонтального и вертикального положения новой точки отсчета
+```html
+<body>
+  <div class="card"></div>
+  <div class="empty"></div>
+</body>
+```
+```css
+.card:active {
+  transform: rotate(30deg);
+  /*устанавливает точку в верхнем левом углу*/
+  transform-origin: top left;
+}
+.card {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: #3498DB;
+  border-radius: 20px;
+  margin-left: 81px;
+  margin-top: 1px;
+  z-index: 10;
+}
+.empty {
+   height: 150px;
+   width: 150px;
+   margin: 80px;
+   border: 1px solid black;
+}
+```
+
+Пример: элемент `.card` поворачивается на 30 градусов против часовой стрелки относительно его верхнего правого угла:
+```css
+.card {
+  transform: rotate(-30deg);
+  transform-origin: top right;
+}
+```
+
+Вы можете применить комбинацию преобразований к элементу.
+```html
+<body>
+  <div></div>
+</body>
+```
+```css
+div {
+  width: 150px;
+  height: 150px;
+  background-color: #3498DB;
+  border-radius: 20px;
+  margin: 50px;
+}
+div:active {
+  transform: translate(100px, 150px) 
+  rotate(70deg) scale(1.5);
+}
+```
+
+Пример перемещения элемента на `20px` вверх:
+```css
+transform translate(0px, -20px);
+```
+
+Переходы
+---
+
+- Используйте **transition** для создания визуальных эффектов, которые меняются от одного значения свойства к другому
+- Переходы требуют **свойство(а)**, **начальное значение**, **конечное значение**, **продолжительность** и **триггер**
+- Вы можете применять **эффекты перехода** к **трансформациям**
+
+Современные веб-сайты содержат анимированные элементы, которые завораживают, направляют и даже влияют на поведение пользователей. В этом уроке вы научитесь создавать анимации с помощью **CSS transitions**.
+
+Псевдоселекторы играют важную роль в создании переходов для анимаций. Примеры псевдоклассов:
+- `:hover` — выбирает элемент, когда на него наведен курсор мыши;
+- `:active` — выбирает элемент, когда по нему щелкают мышью;
+- `:focus` — выбирает элемент, когда он получает фокус клавиатуры;
+- `:first-child` — выбирает первый элемент из списка дочерних в родительском контейнере;
+- `:last-child` — выбирает последний элемент из списка дочерних в родительском контейнере;
+- `:nth-child(n)` — выбирает n-й элемент из списка дочерних в родительском контейнере.
+
+**Анимация** создает визуальные эффекты изменения в элементах HTML. Анимация создается, когда происходят визуальные изменения в течение определенного промежутка времени.
+
+**CSS переходы** - это изменения свойств элемента, которые происходят в течение определенного периода времени. Они могут быть применены к широкому спектру свойств и элементов.
+
+Для перехода требуется как минимум **свойство** (которое будет изменяться), его **начальное значение**, его **конечное значение**, **продолжительность** и **триггер**.
+```css
+p {
+  width: 30%;  /* Начальное значение */
+  translation: width 3s  /* width - свойство, 3s - продолжительность */
+}
+p:active {  /* триггер */
+  width: 100%;  /* конечное значение */
+}
+```
+
+Пример анимации строки параграфа при нажатии:
+```html
+<p>Press & hold</p>
+```
+```css
+p {
+  font-size: x-large;
+  color: white;
+  width: 40%;
+  background-color: blueviolet;
+  transition: width 3s;
+}
+p:active {
+  width: 100%;
+}
+```
+
+Еще пример:
+```css
+#element {
+  color: red;
+ transition: color 3s;
+}
+#element:hover {
+  color: yellow;
+}
+```
+В приведенном выше примере:
+- свойство, которое меняется: `color`;
+- начальное значение: `red`;
+- конечное значение: `yellow`;
+- длительность: `3s`;
+
+Далее пример перехода, который изменяет ширину элемента в течение трех секунд при наведении:
+```css
+#element {
+  width: 20%;
+  transition: width 3s;
+}
+#element:hover {
+  width: 100%;
+}
+```
+
+Вы можете изменить несколько свойств сразу в переходе. Убедитесь, что каждый набор инструкций для изменения свойства разделен запятыми:
+```html
+<div id="box">Press & Hold</div>
+```
+```css
+#box {
+  width: 100px;
+  height: 100px;
+  background-color: #4169E1;
+  transition: width 1s, height 1s, 
+  background-color 1s;
+}
+#box:active {
+  width: 150px;
+  height: 150px;
+  background-color: #DC143C;
+}
+```
+
+Пример перехода, который изменяет высоту элемента за три секунды и размер шрифта за две секунды:
+```css
+#element {
+  height: 15%;
+  font-size: 20px;
+  transition: height 3s, font-size 2s;
+}
+#element:hover {
+  height: 100%;
+  font-size: 30px;
+}
+```
+
+Используйте `transition-delay` чтобы добавить время ожидания для эффекта перехода. В следующем примере задержка перед началом составляет 2 секунды:
+```html
+<body>
+  <div id="element">Press & hold at least 2 seconds</div>
+</body>
+```
+```css
+#element {
+  width: 100px;
+  background-color: blue;
+  color: white;
+  transition: width 2s, 
+  background-color 1s;
+  transition-delay: 2s;
+}
+#element:active {
+  width: 200px;
+  background-color: red;
+}
+```
+
+Вы можете добавить переходы к трансформациям. Давайте сначала повторим. Следующее объявление, создает трансформацию, которая удваивает размер элемента:
+```css
+transform: scale(2);
+```
+
+Вы можете добавить эффекты перехода к трансформации. В следующем примере кнопка будет масштабироваться при активации:
+```html
+<body>
+  <button>Press & Hold</button>
+</body>
+```
+```css
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498DB;
+  color: #FFFFFF;
+  transition: transform 1s;
+}
+button:active {
+    transform: scale(1.3);
+}
+```
+
+Объявление изменяющее высоту элемента и применяющее трансформацию, оба действия с длительностью 5 секунд:
+```css
+transition: transform 5s, height 5s;
+```
+
+Переход для поворота элемента `#card` на 35 градусов за 2 секунды при наведении:
+```css
+#card {
+  transition: transform 2s;
+}
+#card:hover {
+  transform: rotate(35deg);
+}
+```
+
+Еще раз, обязательными значениями для перехода являются:
+- триггер
+- длительность
+- свойство(а)
+
+Переход #element, который изменяет радиус границы в течении трех секунд при наведении:
+```css
+#element {
+  border-radius: 3px;
+  transition: border-radius 3s;
+}
+#element:hover {
+  border-radius: 6px;
+}
+```
+
+Переход к трансформации масштаба. Он должен увеличиваться в 1,5 раза при наведении:
+```css
+#element {
+  transistion: transform 3s;
+}
+#element:hover {
+  transform:scale(1.5);
+}
+```
+
+
+Кадры ключевые и Анимации
+---
+
+- **@keyframes** определяют последовательность стилей, через которые проходит элемент во время анимации
+- Свойство **animation-name** связывает **keyframes** с анимируемым элементом
+
+В прошлом уроке вы научились создавать простые анимации с использованием переходов. К концу этого урока вы сможете создавать более сложные анимации, чтобы оживить вашу страницу.
+
+Переходы используются для создания простых анимаций. У перехода есть начальное значение и конечное значение.
+
+Анимации используются для создания более сложных анимаций с большим количеством промежуточных состояний. С анимациями вы можете изменять столько свойств, сколько вам нужно, столько раз, сколько вам нужно. Анимации требуют `keyframes` для хранения стилей, которые элемент будет иметь в определенное время.
+```html
+<body>
+  <h2>Transition</h2>
+  <div id="element1"><p>Press & hold</p></div>
+  <h2>Animation</h2>
+  <div id="element2"></div>
+</body>
+```
+```css
+#element1 {
+  width: 150px;
+  height: 150px;
+  background-color: red;
+  transition: background-color 3s; 
+  margin: 20px;
+}
+#element1:active {
+  background-color: yellow;
+}
+#element2 {
+  width: 150px;
+  height: 150px;
+  background-color: red;
+  margin: 20px;
+  animation-name: colorChange;
+  animation-duration: 3s;
+}
+@keyframes colorChange {
+  0% {
+    background-color: red;
+    }
+  50% {
+    background-color: yellow;
+    }
+  100% {
+    background-color: blue;
+    }
+}
+p {
+  color: white;
+  text-align: center;
+  padding-top: 65px;
+  font-size: 20px;
+}
+h2 {
+  padding-left: 40px;
+}
+```
+
+Новой анимации нужно присвоить `animation-name`. Используйте `@keyframes` за которыми следует `animation-name`, чтобы определить ключевые промежуточные состояния.
+
+Код ниже анимирует цвет фона элемента в четырех точках: при 0%, 33%, 66% и 100% завершения анимации.
+```html
+<body>
+  <div></div>
+</body>
+```
+```css
+div {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  margin: 50px;
+  animation-name: snakeMove;
+  animation-duration: 5s;
+}
+
+@keyframes snakeMove {
+  0% {
+    background-color: #7B41EA;
+    bottom: 0;
+    left: 0;
+  }
+  33% {
+    background-color: #CCB4FB;
+    bottom: 40px;
+    left: 40px;
+  }
+  66% {
+    background-color: #C833FD;
+    bottom: 0;
+    left: 80px;
+  }
+  100% {
+    background-color: #F91583;
+    bottom: 40px;
+    left: 120px;
+  }
+}
+
+`animation-duration` контролирует время, необходимое элементу для перемещения от первого ключевого кадра до последнего.
+
+Следующая анимация будет длиться 5 секунд:
+```css
+div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 5s;
+}
+```
+
+**Анимации** и **переходы** представляют собой различные поведения. Вы могли заметить это на примерах. Сопоставление визуального эффекта с поведением:
+- `transition` (переход) - требует триггер,
+- `animation` (анимация) - может воспроизводиться автоматически.
+
+По умолчанию, анимация начинает воспроизводиться автоматически, когда страница загружается в браузере, если не установлена задержка. `animation-delay` добавляет время ожидания для начала воспроизведения анимации. В следующем примере анимация будет воспроизведена с задержкой в две секунды после загрузки страницы. Элипс будет менять цвет, продолжаться это будет четыре секунды.
+```html
+<body>
+  <div>Disco!</div>
+</body>
+```
+```css
+div {
+  padding: 30px;
+  border-radius: 50%;
+  width: 50px;
+  background-color: #007BFF;
+  color: white;
+  animation-name: colorChange;
+  animation-duration: 4s;
+  animation-delay: 2s;
+}
+@keyframes colorChange {
+  0% {background-color: #007BFF;}
+  25% {background-color: #FFC107;}
+  50% {background-color: #28A745;}
+  75% {background-color: #DC3545;}
+  100% {background-color: #6610F2;}
+}
+```
+
+Когда для анимации есть только два кадра, в качестве альтернативы использованию процентов для ключевых кадров, вы можете использовать ключевые слова **from** и **to**:
+```html
+<body>
+  <div>Disco!</div>
+</body>
+```
+```css
+div {
+  padding: 30px;
+  border-radius: 50%;
+  width: 50px;
+  background-color: #007BFF;
+  color: white;
+  animation-name: colorChange;
+  animation-duration: 4s;
+}
+@keyframes colorChange {
+  from { background-color: #007BFF;}
+  to { background-color: #F2106E;}
+}
+```
+
+Вы можете анимировать трансформации. Напомним что `scale()` - преобразование, которое меняет размер элемента. Чтобы анимировать трансформации, добавьте их в ключевые кадры. После определения ключевых кадров анимации, вы можете применить их к различным элементам.
+
+В следующем примере показано, как анимация с именем `pulse` объединяется с трансформацией `scale` и применяется к трем кругам:
+```html
+<body>
+  <div class="visual">
+    <div class="circle-yellow"></div>
+    <div class="circle-green"></div>
+    <div class="circle-blue"></div>
+  </div>
+</body>
+```
+```css
+body {
+  margin: 50px;
+  background-color: #0C1527;
+  display: flex;
+}
+.circle-yellow {
+  width: 40px;
+  height: 40px;
+  background-color: #FFA310;
+  border-radius: 50%;
+  animation-name: pulse;
+  animation-duration: 3s;
+}
+.circle-green {
+  width: 100px;
+  height: 100px;
+  top: 120px;
+  left: 30px;
+  background-color: #10FF14;
+  border-radius: 50%;
+  position: absolute;
+  animation-name: pulse;
+  animation-duration: 3s;
+}
+.circle-blue {
+  left: 170px;
+  top: 15px;
+  width: 60px;
+  height: 60px;
+  background-color: #1064FF;
+  border-radius: 50%;
+  position: absolute;
+  animation-name: pulse;
+  animation-duration: 3s;
+}
+.visual {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: inline;
+}
+@keyframes pulse {
+  0% { transform: scale(1);}
+  50% { transform: scale(2);}
+  100% { transform: scale(1);}
+}
+```
+
+Определение двух ключевых кадров анимации с именем `rotation`:
+```css
+@keyframes rotation {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+```
+
+
+Свойства анимации
 ---
 
