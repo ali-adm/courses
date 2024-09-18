@@ -6589,3 +6589,258 @@ body {
 Свойства анимации
 ---
 
+- Функции скорости могут быть установлены для анимаций и переходов с помощью **подсвойства timing-function**
+- **animation-iteration-count** контролирует количество повторений анимации
+
+Думаете ли вы, что уже достаточно знаете об анимациях? Пройдите этот урок, чтобы стать профессионалом в анимации и применить передовые техники, которые выделят ваши веб-дизайны.
+
+Три ключевых кадра анимации под названием `widening`:
+```css
+@keyframe widening {
+  0% {width: 20px;}
+  50% {width: 30px;}
+  100% {width: 40px;}
+}
+```
+
+**Анимация** - это последовательность изображений, известных как **кадры**. 
+
+**Ключевые кадры** - это важные кадры, которые определяют начало и конец плавного перехода.
+
+Переходы между двумя ключевыми кадрами являются плавными и вычисляются автоматически на основе **функции скорости**. **Функция скорости** определяет, насколько быстро происходят изменения на различных этапах перехода.
+
+Кадры между двумя ключевыми кадрами автоматически генерируются на основе функции скорости. Функция скорости по умолчанию - **ease**.
+
+**Функция скорости** `ease` сначала ускоряется, затем замедляется.
+
+Вы можете установить альтернативы стандартной функции скорости с помощью `animation-timing-function`.
+
+Следующий код демонстрирует функции скорости `linear`, `ease-in` и `ease-out`:
+```html
+<body>
+  <div class="visual">
+      <h3>ease</h3>
+      <div id="item1"></div>
+      <h3>linear</h3>
+      <div id="item2"></div>
+      <h3>ease-in</h3>
+      <div id="item3"></div>
+      <h3>ease-out</h3>
+      <div id="item4"></div>
+  </div>
+</body>
+```
+```css
+#item1 {
+  width: 40px;
+  height: 40px;
+  background-color: #FFA310;
+  animation: move 5s;
+  /*speeds up first, then slows down*/
+  animation-timing-function: ease;
+}
+#item2 {
+  width: 40px;
+  height: 40px;
+  background-color: #10FF14;
+  animation: move 5s;
+  /*constant speed*/
+  animation-timing-function: linear;
+}
+#item3 {
+  width: 40px;
+  height: 40px;
+  background-color: #1064FF;
+  animation: move 5s;
+  /*starts slow, then speeds up*/
+  animation-timing-function: ease-in;
+}
+#item4 {
+  width: 40px;
+  height: 40px;
+  background-color: #C73447;
+  animation: move 5s;
+  /*starts fast, then slows down*/
+  animation-timing-function: ease-out;
+}
+@keyframes move {
+  0% { left: 0;}
+  100% { left: 250px;}
+}
+div {
+  margin-top: 30px;
+  position: relative;
+}
+```
+
+- сначала ускоряется, затем замедляется: `easy`
+- постоянная скорость: `linear`
+- ускоряется: `easy-in`
+- замедляется: `easy-out`
+
+**Анимация** - это последовательность переходов. Каждый переход происходит между двумя ключевыми кадрами.
+
+Вы также можете установить функцию скорости при работе с переходами. Имя свойства для переходов - `transition-timing-function` со значением по умолчанию: сначала ускоряется, затем замедляется.
+
+Свойство `animation-iteration-count` определяет количество повторений анимации. Давайте сделаем так, чтобы анимация пульсации повторялась пять раз:
+```html
+<head>
+  <title>Notification Badge Animation</title>
+</head>
+<body>
+  <div class="visual">
+    <div class="circle-yellow"></div>
+    <div class="circle-green"></div>
+    <div class="circle-blue"></div>
+  </div>
+</body
+```
+```css
+body {
+  margin: 50px;
+  background-color: #0C1527;
+  display: flex;
+}
+@keyframes pulse {
+  0% { transform: scale(1);}
+  50% { transform: scale(2);}
+  100% { transform: scale(1);}
+}
+.circle-yellow {
+  width: 40px;
+  height: 40px;
+  background-color: #FFA310;
+  border-radius: 50%;
+  animation: pulse 3s;
+  animation-iteration-count: 5;
+}
+.circle-green {
+  width: 100px;
+  height: 100px;
+  top: 120px;
+  left: 30px;
+  background-color: #10FF14;
+  border-radius: 50%;
+  position: absolute;
+  animation: pulse 3s;
+  animation-iteration-count: 5;
+}
+.circle-blue {
+  left: 170px;
+  top: 15px;
+  width: 60px;
+  height: 60px;
+  background-color: #1064FF;
+  border-radius: 50%;
+  position: absolute;
+  animation: pulse 3s;
+  animation-iteration-count: 5;
+}
+.visual {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: inline;
+}
+```
+
+Слелующий код показывает что имя анимации `rotation`, ее длительность две секунды, она повторяется три раза.
+```css
+#card {
+  animation-name: rotation;
+  animation-duration: 2s;
+  animation-iteration-count: 3; 
+}
+```
+
+Чтобы анимация повторялась бесконечно, просто используйте значение `infinite` с `animation-iteration-count`. В примере показана анимация, которая повторяется бесконечно:
+```html
+<head>
+  <title>Animated Loading Spinner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="spinner"></div>
+</body>
+```
+```css
+body {
+  background-color: #0C1527;
+}
+.spinner {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: 8px solid #7F622F;
+  border-radius: 50%;  
+  border-top: 8px solid #FB9C02;
+  width: 50px;
+  height: 50px;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
+}
+```
+
+Следующий код описывает бесконечную анимацию пульсирующего круга:
+```css
+.circle {
+  animation-name: pulse;
+  animation-iteration-count: infinite;
+}
+@keyframes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(2);}
+  100% {transform: scale(1);}
+}
+```
+
+Свойство `animation` может быть использовано в качестве краткой записи для всех свойств, связанных с анимацией. 
+```css
+animation: spin 1s linear 0.5s infinite;
+```
+
+- `animation-name` - имя, `spin`
+- `animation-duration` - продолжительность анимации, (1сек)
+- `animation-timing-function` - одна из четырех, например линейная
+- `animation-delay` - задержка перед воспроизведением анимации (0,5сек)
+- `animation-iteration-count` - количество воспроизведений анимации, например - пять;
+```html
+<head>
+  <title>Animated Loading Spinner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="spinner"></div>
+</body>
+```
+```css
+body {
+  background-color: #0C1527;
+}
+.spinner {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: 8px solid #7F622F;
+  border-radius: 50%;  
+  border-top: 8px solid #FB9C02;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear 0.5s infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
+}
+```
+
+
+Проект Профильной Страницы Шаг 5
+---
+
