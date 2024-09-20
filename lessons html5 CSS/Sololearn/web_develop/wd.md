@@ -7834,6 +7834,10 @@ console.log(user name);
 Пользовательский ввод
 ---
 
+- **Inputs** генерируются, когда пользователь взаимодействует со страницей
+- **prompt()** запрашивает у пользователя ввод
+- Значения, отправленные пользователями через формы, можно получить с помощью **.value**
+
 Компьютерные программы разработаны для взаимодействия с пользователями и внешним миром. В этом уроке вы научитесь создавать код, который принимает информацию.
 
 **Ввод** - это любая информация, которая поступает в компьютер. Нажатие клавиши или щелчок кнопки - это примеры ввода от пользователя. Или другой пример - пользователь заполняет и отправляет форму.
@@ -7974,3 +7978,53 @@ let input1 = document.getElementById("t1");
 
 Как только вы получите доступ к полю ввода, вы можете получить значение, отправленное пользователем, с помощью **.value**. Следующий код демонстрирует, как используются значения формы:
 ```html
+<body id="body">
+  <h3>Ensure you enter valid color names.</h3>
+  <form id="myForm">
+    <label for="background">Enter background color:</label></br>
+    <input type="text" id="background" value="grey"></br></br>
+    <label for="color">Enter text color:</label></br>
+    <input type="text" id="color" value="white"></br></br>
+    <input type="button" onclick="changeStyle()" value="Change">
+  </form>
+</body>
+```
+```css
+#body{
+  background-color:lavender;
+  color: midnightblue;
+}
+h3{
+    color: rgb(199, 97, 97);
+}
+```
+```js
+function changeStyle() {
+  let body = document.getElementById('body');
+  let background = document.getElementById('background').value;
+  let color = document.getElementById('color').value;
+
+  body.style.background = background;
+  body.style.color = color;
+};
+```
+
+В следующем примере в консоль будет выведено значение, введенное пользователем в поле с `ID` `t2`:
+```js
+let input3 = document.getElementById("t2");
+console.log(input3.value);
+```
+
+Или вот например: переменная с именем `input2` уже была создана для доступа к элементу ввода, следующий код отобразит значение в доступном элементе:
+```js
+alert(input2.value);
+```
+
+Переменная с именем `country` уже была создана для доступа к элементу ввода, код выведет значение страны в консоль:
+```js
+console.log(country.value);
+```
+
+Операции с числами и строками
+---
+
