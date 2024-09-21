@@ -8028,3 +8028,610 @@ console.log(country.value);
 Операции с числами и строками
 ---
 
+- Компьютеры хранят и обрабатывают разные типы данных по-разному
+- Числа в кавычках рассматриваются как строки
+- Строки могут быть сконкатенированы
+
+Работа с данными включает в себя выполнение операций с числами и строками. В этом уроке вы научитесь включать вычисления в свой код.
+```js
+let book = "The Hobbit";
+let pages = 310;
+```
+
+`Pages` хранит числовое значение. Строки - в кавычках, числа без кавычек.
+
+Вы можете выполнять математические операции с числами. Каждое выражение `console.log()` в коде ниже - покажет результат операции в новой строке (в консоли браузера):
+```js
+console.log(7 + 3);
+console.log(10 - 5);
+console.log(5 * 3);
+console.log(10 / 2);
+```
+```bash
+10
+5
+15
+5
+```
+
+Вы можете делать вычисления, используя значения, хранящиеся в переменных. Следующий код выведет в консоль (здесь и далее всегда имеется ввиду консоль браузера) - `30`.
+```js
+let budget = 20;
+console.log(budget + 10);
+```
+
+Следующий код выведет `15`:
+```js
+let price = 5;
+let amount = 3;
+console.log(price * amount);
+```
+
+Вы можете сохранить результат вычисления в переменной (вывод в диалоговом окне - `15`).
+```js
+let score = 7 + 8;
+alert(score);
+```
+
+Вы можете создать новую переменную для хранения результата вычисления, сделанного с использованием других переменных. Обратите внимание на переменную `total`:
+```js
+let price = 5;
+let amount = 6;
+let totat = price * amount
+```
+
+Следующий код выведет начения `Tom` и `15`.
+```js
+let name = "Tom";
+let level = 14;
+console.log(name);
+level = level + 1;
+console.log(level);
+```
+
+значение скидки `discount` в диалоговом окне `alert`:
+```js
+let price = 14;
+let discount = price / 2;
+alert(discount);
+```
+
+Способ работы компьютеров с величинами зависит от типа данных. Следующий код:
+```js
+console.log(3 + 5); 
+console.log("Iron" + "Man");
+```
+
+Выведет в консоль:
+```bash
+8
+IronMan 
+```
+
+Когда вы используете оператор сложения + со строковыми значениями, строки соединяются вместе. Это известно как **конкатенация**.
+
+В следующем примере, консоль выведет `basketball`:
+```js
+let a = "basket";
+let b = "ball";
+alert(a + b);
+```
+
+Все, что находится в кавычках, будет восприниматься как строка, даже числа. Пример `let variable = "360";` - переменная `variable` хранит строку.
+
+Вы не сможете выполнять математические операции, если числа окружены кавычками. Они будут восприниматься как строки. Результатом `alert("360" + "360");` - станет `360360`.
+
+Следующий код выведет в консоль `butterfly`:
+```js
+let c = "fly";
+let b = "fire";
+let a = "butter";
+console.log(a + c);
+```
+
+Операции важны для Back-end.
+- **Frontend** - то что пользователи видят и с чем взаимодействуют 
+- **Backend** - хранение, организация и запрос данных
+
+
+Контрольные вопросы к модулю
+---
+
+```js
+1.
+Код для определения функции с именем greet, а затем её вызов:
+
+function greet {
+   let name = prompt();
+   alert("Добро пожаловать " + name);
+}
+greet();
+```
+```js
+2.
+function alertText() {
+  let text = "Message";
+  alert(text);
+}
+AlertText();
+
+Какой результат выведет этот код?
+
+[] текст
+[] сообщение
+[x] сообщение об ошибке
+```
+```js
+3.
+function alertText() {
+  let text = "Message";
+  alert(text);
+}
+AlertText();
+
+Этот код приведет к сообщению об ошибке, почему?
+
+[] Вы не можете использовать alert() внутри функции
+[] Text не является допустимым именем переменной
+[x] JS чувствителен к регистру
+```
+```js
+4.
+Используйте изображение для определения метода кодирования
+
+A: internal
+B: inline
+C: external
+```
+```js
+5.
+function changeColor() {
+  let x = document.getElementById('p1');
+  x.style.color = "green";
+  alert("Text color changed");
+}
+
+Какую хорошую практику пропускает этот код?
+
+[] заглавные буквы
+[x] комментарии
+[] отступы
+```
+```js
+6.
+Объясните, что делает этот код
+
+let user_entry = prompt();
+
+[] отображает сообщение user_entry на экране
+[x] запрашивает ввод пользователя и сохраняет его в переменной
+```
+```js
+7.
+Дополните код и добавьте комментарий
+
+// запрашивает у пользователя ввод и сохраняет его в переменной
+
+let user_entry = prompt();
+```
+```js
+8.
+Дополните код, чтобы отобразить Keyboard
+
+let a = "Key";
+let b = "board";
+alert(a + b);
+```
+```js
+9.
+Код для доступа к значению, введенному пользователем, в элементе с ID p1
+
+let input = document.getElementById("p1");
+console.log(input.value);
+```
+```js
+10.
+Какие значения будут записаны в консоль?
+
+let name = "Quizzes passed:";
+let qty = 1;
+console.log(name);
+qty = qty + 1;
+console.log(qty);
+
+[x] 2
+[] имя
+[x] Quizzes passed:
+[] 1
+```
+
+
+Работа с данными
+===
+
+Операции сравнения
+---
+
+- тип данных Boolean может иметь одно из двух возможных значений: true или false
+- операция сравнения всегда дает в результате Boolean
+
+**Операции сравнения** являются ключевыми в разработке компьютерных программ. В этом уроке вы изучите операции сравнения, чтобы создать код, который принимает решения.
+
+Строка кода `5 < 9;` показывает пример операции сравнения. 5 меньше 9? Ответ утвердительный - Да (`true`), это правда.
+
+Операция сравнения всегда приводит к одному из этих двух результатов: Да или Нет. 
+
+`50 > 100;` 50 больше 100? Ответ - Нет (`false`) - ложь.
+
+Результат операции сравнения в JS равен либо `true`, либо `false`. Следующий код:
+```js
+console.log(30 < 25);
+console.log(5 < 9);
+console.log(50 > 100);
+```
+
+Покажет в консоли следующий вывод:
+```bash
+false
+true
+false
+```
+
+Диалоговое окно, при следующих значениях будет содержать:
+- alert(3 > 15): `false`
+- alert(3 < 15): `true`
+
+Электронные цепи внутри компьютеров используют миллионы маленьких переключателей для хранения этих значений `true`/`false`. У таких переключателей два возможных значения "Вкл" и "Выкл".
+
+Компьютеры используют двоичный код для представления информации. Включая и выключая переключатели, мы меняем информацию, хранящуюся в компьютере. В этом контексте **бинарный** означает два возможных состояния переключателя.
+
+Теперь вы готовы познакомиться с другим типом данных. **Boolean** - это тип данных, который имеет только два возможных значения: **true** или **false**.
+
+Этот тип данных назван в честь Джорджа Буля, который создал теорию, лежащую в основе современных компьютеров. Операции сравнения и булевы значения позволяют машинам принимать решения.
+
+Следующий код выведет в диалоговм окне - `true`:
+```js
+let active = true;
+let registered = false;
+alert(active);
+```
+
+Вы можете сохранить результат сравнения в переменной. 
+
+Например система трафик-камер обнаруживает автомобили, превышающие скорость, чтобы автоматически выписывать штраф. Следующий код выведет в консоль - `false`:
+```js
+let speed = 65;
+let ticket = speed > 70;
+console.log(ticket);
+```
+
+Приложение рекомендует фильм, если его рейтинг выше 80. Следующий код отобразит рекомендуется ли фильм или нет:
+```js
+let rating = 84;
+alert(rating > 80);
+```
+
+Вы можете использовать оператор сравнения `===` для проверки равенства значений. Значение `console.log(5 === 5);` выведет в консоль `true`.
+
+Следующий кодв выведет в окне `false`:
+```js
+let a = 5;
+let b = 8;
+alert(a === b);
+```
+
+В следующем примере, переменные `b` и `d` будут иметь значение `true`:
+```js
+let a = 5;
+let b = true;
+let c = a > 8;
+let d = a === 5;
+```
+
+Продвинутый ввод пользователя
+---
+
+- **Booleans** используются для `.check` выбора пользователя в чекбоксах и `confirm()` окнах
+- `.elements.name` предоставляет доступ к данным поля ввода
+
+Эффективная работа с пользовательским вводом сделает ваши веб-страницы выдающимися. В этом уроке вы углубитесь в изучение пользовательского ввода, чтобы повысить свои навыки веб-разработки.
+
+Вы будете использовать **Booleans** для обработки пользовательских вводов. Напомним, что Boolean - Это тип данных с двумя возможными значениями: **true** или **false**.
+
+Окно `confirm()` просит пользователя принять или отклонить что-то. Аналогично `alert()` и `prompt()`, окно отвлекает внимание от текущего окна и заставляет пользователя прочитать сообщение.
+
+Вы можете сохранить решение пользователя в переменной и использовать его позже в своем коде. Команда `confirm()` возвращает `true`, если пользователь нажимает **OK** и `false`, если пользователь нажимает на **Отмена**. У вас есть возможность добавить текст в диалоговое окно, чтобы дать пользователю более точные инструкции.
+```js
+let x = confirm("Proceed to payment?");
+console.log(x);
+```
+
+Если, в следующем примере, пользователь нажимает на опцию **cancel** для `confirm()` окна, то **alert** окно - отобразит `false`:
+```js
+let decision = confirm();
+alert(decision);
+```
+
+Аналогичным образом, `checkbox` представляет два состояния: выбрано (`true`) или не выбрано (`false`). Вы можете использовать `.checked` для получения состояния чекбокса:
+```html
+<form id="myForm">
+  <label for="c1">Tick this box</label>
+  <input type="checkbox" id="c1"></br></br>
+  <input type="button" onclick="checkTicked()" value="Check if Ticked"></input>
+</form>
+```
+```js
+function checkTicked() {
+  let box = document.getElementById("c1");
+  console.log(box.checked);
+}
+```
+
+Например флажок на сайте используется для "Принятия условий и положений". Элемент флажка был доступен и сохранен в переменной под названием `terms`. Строка кода `alert(terms.checked);` - отобразит состояние флажка.
+
+Вы можете использовать флажки для сбора предпочтений пользователя или указания согласия. Например подписаться на новостную рассылку, или принять условия и соглашения.
+
+Взаимодействие пользователя с чекбоксами может быть отслежено и сохранено в базах данных. Каждая отправка сгенерирует новую строку (запись) в таблице. Запустите следующий код и заполните форму несколько раз, чтобы увидеть, как это работает:
+```html
+<body>
+<h2>Registration Form</h2>
+
+<form id="myForm">
+  <label for="name">Enter email:</label>
+  <input type="text" id="email" name="email"></br></br>
+
+  <label for="age">Enter password:</label>
+  <input type="password" id="pass" name="pass"></br></br>
+
+  <input type="checkbox" id="subscribe" name="subscribe">
+  <label for="subscribe">Subscribe to our newsletter</label><br><br>
+
+  <input type="submit">
+</form>
+<div id="table">
+<h2>Database Simulation</h2>
+  <table id="dataTable">
+    <tr>
+      <th>email</th>
+      <th>password</th>
+      <th>isSubscribed</th>
+    </tr>
+  </table>
+</div>
+</body>
+```
+```css
+#table {
+  background-color: #525252;
+  padding: 20px;
+  color: white;
+}
+#dataTable {
+  width: 60%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  color: white;
+}
+th, td {
+  border: 1px solid #DDDDDD;
+  padding: 8px;
+}
+th {
+  background-color: #494949;
+  padding-top: 12px; 
+  padding-bottom: 12px; 
+  text-align: left;
+}
+h2{
+  text-align: center;
+}
+```
+```js
+function processFormData() {
+
+  let email = document.getElementById('email').value;
+  let password = document.getElementById('pass').value;
+  let isSubscribed = document.getElementById('subscribe').checked;
+
+  //Insert data into table with predefined function
+  insertdata(email, password, isSubscribed);
+    
+  // Clear the form fields
+  document.getElementById('email').value = '';
+  document.getElementById('pass').value = '';
+
+};
+```
+
+`.checked` - правильный способ проверки состояния флажка, возвращает булево значение `false` илм `true`.
+
+Радиокнопки позволяют пользователям выбирать из двух или более взаимоисключающих вариантов. Например добавление двух радиокнопок для способа оплаты:
+```js
+<input type="radio" id ="r1">
+<label for="r1">Card</label>
+<input type="radio" id="r2">
+<label for="r2">Cash</label>
+```
+
+Помните, что это хорошая практика добавлять атрибуты `name`, чтобы вводы могли быть размещены в правильном поле в базе данных. Взаимоисключающие опции могут иметь одно и то же имя. Различные значения добавляются в базу данных, когда выбираются различные опции.
+```html
+<body>
+<h2>Registration Form</h2>
+
+<form id="myForm">
+  <label for="number">Card number:</label>
+  <input type="text" id="number" name="number"><br><br>
+
+  <label for="holder">Card holder's name:</label>
+  <input type="text" id="holder" name="holder"><br><br>
+
+  <p>Payment method:</p>
+  <input type="radio" id="r1" name="pay" value="cash">
+  <label for="r1">Cash</label>
+  <input type="radio" id="r2" name="pay" value="card">
+  <label for="r2">Card</label>
+  <input type="radio" id="r3" name="pay" value="Credit">
+  <label for="r3">Credit</label></br></br>
+
+  <input type="button" onclick="processFormData()" value="Submit">
+  </form>
+
+  <div id="table">
+  <h2>Database Simulation</h2>
+  <table id="dataTable">
+    <tr>
+      <th>number</th>
+      <th>holder</th>
+      <th>method</th>
+    </tr>
+  </table>
+</div>
+</body>
+```
+```css
+#table {
+  background-color: #525252;
+  padding: 20px;
+  color: white;
+}
+#dataTable {
+  width: 60%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  color: white;
+}
+th, td {
+  border: 1px solid #DDDDDD;
+  padding: 8px;
+}
+th {
+  background-color: #494949;
+  padding-top: 12px; 
+  padding-bottom: 12px; 
+  text-align: left;
+}
+```
+```js
+function processFormData() {
+
+  let form = document.getElementById('myForm');
+
+  let cardNumber = form.elements.number.value;
+  let holder = form.elements.holder.value;
+  let method = form.elements.pay.value;
+
+
+  //Insert data into table with predefined function
+  insertdata(cardNumber, holder, method);
+    
+  // Clear the form fields
+  clearFormData();
+};
+```
+
+Вы можете представить базу данных как таблицу с рядами и столбцами. Атрибут name контролирует куда данные попадают в таблицу.
+
+Атрибут `value` контролирует *что написано на таблице - (?)* какие данные попадут в таблицу.
+- город - `name`
+- Париж - `value`
+
+Когда взаимоисключающие радиокнопки имеют одно и то же имя атрибута, значения данных собираются в ту же ячейку (колонку) таблицы.
+
+При работе с данными формы, очень хорошей практикой является присвоение всему элементу формы `ID`. Затем вы можете использовать `.elements.name` для обращения к различным полям ввода в форме.
+
+При наличии более двух взаимоисключающих опций в радиокнопках, более разумно дать всем радиокнопкам одно и то же имя и получить доступ к ним с помощью имени. Используйте .value для доступа к значению выбранной радиокнопки.
+```html
+<body>
+<h2>Payment</h2>
+
+<form id="myForm">
+  <label for="number">Card number:</label>
+  <input type="text" id="number" name="number"><br><br>
+
+  <label for="holder">Card holder's name:</label>
+  <input type="text" id="holder" name="holder"><br><br>
+
+  <p>Payment method:</p>
+  <input type="radio" id="r1" name="pay" value="cash">
+  <label for="r1">Cash</label>
+  <input type="radio" id="r2" name="pay" value="card">
+  <label for="r2">Card</label>
+  <input type="radio" id="r3" name="pay" value="credit">
+  <label for="r3">Credit</label></br></br>
+
+  <input type="button" onclick="processFormData()" value="Submit">
+  </form>
+
+  <div id="table">
+  <h2>Database Simulation</h2>
+  <table id="dataTable">
+    <tr>
+      <th>number</th>
+      <th>holder</th>
+      <th>method</th>
+    </tr>
+  </table>
+</div>
+</body>
+```
+```css
+#table {
+  background-color: #525252;
+  padding: 20px;
+  color: white;
+}
+#dataTable {
+  width: 60%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  color: white;
+}
+th, td {
+  border: 1px solid #DDDDDD;
+  padding: 8px;
+}
+th {
+  background-color: #494949;
+  padding-top: 12px; 
+  padding-bottom: 12px; 
+  text-align: left;
+}
+```
+```js
+function processFormData() {
+  let form = document.getElementById('myForm');
+
+  let cardNumber = form.elements.number.value;
+  let holder = form.elements.holder.value;
+  let method = form.elements.pay.value;
+
+  //Insert data into table with predefined function
+  insertdata(cardNumber, holder, method);
+    
+  // Clear the form fields
+  clearFormData();
+};
+```
+
+Например была создана переменная `myForm` для доступа к элементу формы. Следующий код демонстрирует как получить отправленное значение для поля с именем равным "city":
+```js
+myForm.elements.city.value;
+```
+
+id=f1
+| userName | age | city |
+|----------|-----|------|
+| sarah.lee| 41  | Hamburg|
+```js
+myForm = document.getElementById("f1");
+a = myForm.elements.age;
+v = a.value;
+console.log(v);
+```
+
+В косоль будет выведено - `41`.
+
+
+Объекты и Нотация через точку
+---
+
