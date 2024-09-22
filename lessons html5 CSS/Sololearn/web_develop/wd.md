@@ -8635,3 +8635,241 @@ console.log(v);
 Объекты и Нотация через точку
 ---
 
+- **Объекты** являются важным строительным блоком (и типом данных!) в JS
+- **Нотация через точку** используется для доступа к свойствам объекта
+- Некоторые свойства также могут **выполнять задачи** на объекте
+
+**Объекты** являются самыми важными строительными блоками современного **JavaScript**. В этом уроке вы научитесь работать с объектами и их свойствами, используя **нотацию с точкой**.
+
+Вы помните, что означает **DOM**? - Документная объектная модель.
+
+Большинство “вещей” в JS являются объектами. Веб-документ это объект JS. Все элементы HTML в документе также являются примерами объектов. 
+
+Объекты имеют свойства. Точечная (`.`) нотация - это самый простой способ доступа к свойствам объекта. Например нотация через точку для доступа к заголовку страницы - `document.title`
+
+Вы активно использовали точечную нотацию для доступа к свойствам объекта в предыдущих уроках. Точечная нотация символизирует принадлежность.
+
+Пример доступа к свойству общего объекта - `objectName.property.Name`
+
+Вы можете использовать точечную нотацию для доступа, установки и изменения свойств объектов. 
+Например, можно установить заголовок страницы:
+`document.title = "My Page";`
+
+У объектов есть **значения свойств**. В следующем примере, во всплывающем окне предупреждения, значение `title` будет - `My Page`:
+```js
+document.title = "My Page";
+alert(document.title);
+```
+
+Значения для свойств можно хранить в переменных. Например, в следующем коде в консоль будет записано `My Blog`:
+```js
+document.title = "My Blog";
+let x = document.title;
+console.log(x);
+```
+
+Некоторые свойства могут содержать задачу, которую нужно выполнить над объектом.
+
+Пример свойства с задачей - это `getElementById()`; в последующем примере текст в параграфе буедт заменен на `Updated text`:
+```html
+<h3>Get Element By Id Example</h3>
+<p id="p1">Paragraph text</p>
+```
+```js
+document.getElementById('p1').textContent = 'Updated text';
+```
+
+`document.getElementById("p1");` - Находит и получает доступ к элементу с определенным `ID` в документе.
+
+Объект `document` представляет вашу веб-страницу. Если вы хотите получить доступ к любому HTML-элементу, вы всегда начинаете с доступа к объекту `document`.
+
+Вы можете сохранять доступные объекты в переменных, чтобы они были готовы к повторному использованию. В примере ниже текст в параграфе буедт также заменен на `Updated text`, но уже из переменной `x`:
+```html
+<h3>Get Element By Id Example</h3>
+<p id="p1">Paragraph text</p>
+```
+```js
+let x = document.getElementById("p1");
+x.textContent = "Updated text";
+```
+
+Доступные объекты хранятся в переменных, так что они не должны быть доступны снова. 
+
+Задача над объектом может привести к другому объекту. Мы используем термин **return** для обозначения результата задачи.
+
+Когда `getElementById()` применяется к документу, он возвращает другой объект. Объект может содержать другие объекты.
+
+Получив результирующий объект, мы можем продолжить использовать точечную нотацию для доступа к его свойствам. `textContent` является свойством.
+
+Что происходит?
+```html
+<h3>Get Element By Id Example</h3>
+<p id="p1">Paragraph text</p>
+```
+```js
+let x = document.getElementById("p1");
+x.textContent = "Update text";
+```
+- Найдет и доступен конкретный HTML элемент `id="p1"`
+- Возвращаемый объект сохраняется в переменной `x`
+- Устанавливается/изменяется свойство сохраненного объекта `x.textContent`
+
+Точечная нотация используется для обращения к различным свойствам объекта. 
+
+Некоторые свойства также могут выполнять задачу с объектом.
+
+Еще пример: в HTML документе есть поле для флажка (`checkbox`) с `ID` `c1`:
+```js
+document.getElementById("c1").checked;
+```
+Что происходит?
+- Элемент `c1` найден в документе
+- Элемент `checkbox` возвращается как объект
+- Доступ к свойству возвращаемого объекта
+
+В HTML-документе есть параграф с `ID` `p2`:
+```js
+let par = document.getElementById("p2");
+par.style.color = "red";
+```
+Что происходит?
+- Элемент с `ID` `p2` находится в документе
+- Элемент возвращается как объект и сохраняется в переменной
+- Свойство цвета абзаца устанавливается/изменяется
+
+Логические операции
+---
+
+- **логические операции** принимают **несколько** булевых значений в качестве входных данных
+- **логические операции** возвращают **одно** булево значение в качестве выходных данных
+- **AND (&&)** и **OR (||)** - это примеры логических операций
+
+**Логические операции** необходимы для оценки сложных сценариев на ваших страницах. В этом уроке вы изучите логические операции для создания кода, который оценивает различные ситуации.
+
+**Логические операции** используют *булевы значения*. Вы помните, что такое булево значение - это тип данных с двумя возможными значениями: `true` или `false`.
+
+Логическая операция:
+- принимает **несколько** Boolean входов
+- производит **только один** Boolean выход
+
+**Операция AND (И)** (`&&`) дает значение `true` только когда все входы являются `true` в одно и то же время. `true && true = true`.
+
+Логическая операция объединяет булевы входы для получения булевого выхода.
+```js
+true && true = true
+true && false = false
+Every other combination = false
+```
+
+Помните, что некоторые пользовательские вводы отслеживаются как **Booleans**. Следующий код демонстрирует при вводе различных комбинаций входных данных - результаты операции **AND**:
+```html
+<h3>Операция AND (И) в пользовательском вводе</h3>
+<p>В JavaScript синтаксисе <b>&&</b> - является символом операции <b>AND (И)</b>.
+<p>Выберите и отправьте различные комбинации исходных данных, чтобы увидеть результат.</p>
+
+<form onsubmit="performAndOperation(event)">
+  <input type="checkbox" id="input1" name="input1">
+  <label for="input1">Input 1</label><br>
+
+  <input type="checkbox" id="input2" name="input2">
+  <label for="input2">Input 2</label><br></br>
+    
+  <input type="button" onclick="performAndOperation()" value="Submit">
+</form>
+```
+```css
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-top: 50px;
+}
+form {
+  background-color: #F2F2F2;
+  padding: 20px;
+  display: inline-block;
+  border-radius: 10px;
+}
+label {
+  margin-left: 10px;
+}
+input[type="submit"] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+```
+```js
+function performAndOperation() {
+  let input1 = document.getElementById('input1').checked;
+  let input2 = document.getElementById('input2').checked;
+
+  let result = input1 && input2;
+  alert("Result of AND operation: " + result);
+}
+```
+
+**Логическая операция OR (ИЛИ)** (`||`) приводит к значению `True`, если хотя бы один из входов равен `True`: `true || false = true`
+```js
+false || false = false
+true || true = true
+true || false = true
+false || true = true
+```
+
+Флажки (`checkboxes`) хранят пользовательские вводы как булевы значения (Booleans). Следующий код демонстрирует при вводе различных комбинаций входных данных - результаты операции **OR**:
+```html
+<h3>Операция OR (ИЛИ) в пользовательском вводе</h3>
+<p>В JavaScript синтаксисе <b>||</b> - является символом операции <b>OR (ИЛИ)</b>.
+<p>Выберите и отправьте различные комбинации исходных данных, чтобы увидеть результат.</p>
+
+  <form onsubmit="performAndOperation(event)">
+      <input type="checkbox" id="input1" name="input1">
+      <label for="input1">Input 1</label><br>
+
+      <input type="checkbox" id="input2" name="input2">
+      <label for="input2">Input 2</label><br></br>
+    
+      <input type="button" onclick="performAndOperation()" value="Submit">
+  </form>
+```
+```css
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-top: 50px;
+}
+form {
+  background-color: #F2F2F2;
+  padding: 20px;
+  display: inline-block;
+  border-radius: 10px;
+}
+label {
+  margin-left: 10px;
+}
+input[type="submit"] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+} 
+```js
+function performAndOperation() {
+  let input1 = document.getElementById('input1').checked;
+  let input2 = document.getElementById('input2').checked;
+
+  let result = input1 || input2;
+  alert("Result of OR operation: " + result);
+}
+```
+
+Результатом логической операции всегда является **Boolean**.
+
+Типы данных
+---
+
