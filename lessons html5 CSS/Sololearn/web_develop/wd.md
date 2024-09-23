@@ -9110,3 +9110,250 @@ blocks
 
 Люди используют код для общения с машинами. Для того чтобы машины выполнили задачу, инструкции должны быть даны в правильном порядке, без ошибок и даны на языке, который машина может понять.
 
+Условные выражения
+---
+
+- **Условные операторы if-else** используются для реализации выбора в ваших программах
+- **Скобки** и **фигурные скобки** необходимы для предотвращения ошибок.
+
+Выбор это как развилка на дороге. Он позволяет вашим программам решать, какой путь выбрать. В этом уроке вы научитесь создавать код, который использует выбор для принятия решений.
+
+**Условные выражения**, или **if-else выражения**, позволяют программам выполнять различные действия в зависимости от условий.  
+
+Давайте рассмотрим реальный пример:
+```js
+let age = prompt();
+
+if (age > 18) {
+  alert("Regular price");
+}
+else{
+  alert("Discount");
+}
+```
+
+В примере выше - если пользователь введет цифру восемнадцать или меньше - всплывет сообщение `"Discount"`, если больше - `"Regular price"`. Этот код решает, следует ли применять скидку в зависимости от возраста.
+
+Вы можете использовать пользовательский ввод в условных выражениях. В следующем примере показан диалог с пользователем, по результатам которого, пользователю будет либо предложено играть в игру, либо обновить свой компьютер:
+```html
+<h2>Новая видео игра</h2>
+<p> Чтобы играть в желаемую видеоигру, необходимо убедиться, 
+    что объем оперативной памяти вашего компьютера достаточно высок, нажмите "Проверить", и введите количество ОЗУ.</p>
+<button onclick="check()">Проверить</button>
+<p id="result"></p>
+```
+```css
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding-top: 50px;
+}
+h2 {
+    color: #1a1aff;
+}
+p {
+    font-size: 18px;
+    margin: 20px auto;
+    width: 80%;
+    line-height: 1.6;
+}
+button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    margin: 20px;
+    border-radius: 5px;
+}
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #d35400;
+}
+```
+```js
+function check() {
+  let ram = Number(prompt());
+  let element = document.getElementById('result');
+
+  if (ram > 16) {
+    element.textContent = 'Запуск игры...';
+    } 
+  else {
+    element.textContent = 'PC нуждается в апгрейде';
+    }
+}
+```
+
+Результаты с операцией сравнения, когда возраст равен 16:
+- alert(age > 18) - `false`
+- alert(age < 18) - `true`
+
+**Блок кода** - это группа утверждений в фигурных скобках `{}`.
+
+**Условные операторы if** начинаются с ключевого слова `if`, за которым следует условие в скобках и блок кода. 
+- Блок кода ниже строки `if` выполняется, когда условие выполнено (`true`).
+
+**Условное выражение else** начинается с ключевого слова `else`, за которым следует блок кода.
+- Блок кода ниже строки `else` выполняется, когда условие (в скобках после `if`) не выполняется (`false`)
+
+```js
+if(age > 18) {
+  alert("Обычная цена");
+}
+else {
+  alert("Скидка");
+}
+```
+
+Отступы делают ваш код более читаемым!
+
+**Booleans** используются для отслеживания выполнения условия. Вы также можете использовать статус ввода в условных выражениях. В следующем примере, в зависимости от того каким будет ответ пользователя в диалоговом окне - выполнится одно из условий.
+```html
+<h2>Добро пожаловать в наш зоопарк!</h2>
+<p>У нас есть специальное предложение для наших посетителей! 
+    Сегодня мы предлагаем специальную скидку для наших маленьких посетителей. 
+</p>
+<p id="price">Цена билета будет отображаться здесь.</p>
+<button onclick="calculate()">START</button>
+```
+```css
+body {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  background-color: #F3F3F3;
+}
+h2 {
+  color: #4A7C59;
+  margin-bottom: 10px;
+}
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+#price {
+  font-weight: bold;
+  margin: 15px 0;
+}
+button {
+  background-color: #4A7C59;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+```
+```js
+function calculate(){
+  let x = document.getElementById("price");
+
+  let isOver18 = confirm("Нажмите OK если меньше 18");
+
+  if (isOver18 === true) {
+    x.textContent = "Скидка: 10$";
+  }
+  else {
+    x.textContent = "Обычная цена: 50$";
+  }
+}
+```
+
+При использовании булевых значений напрямую в условиях, мы можем сделать наш код более кратким.
+```js
+if (isOver18) {
+  alert("10$");
+}
+else {
+  alert("50$");
+}
+```
+
+Помните, что значения чекбоксов являются **булевыми**:
+```html
+<h2>Настройте свой продукт</h2>
+<p>Обычная цена: $20</p>
+<form id="productForm">
+  <label>Добавьте расширенную гарантию $5</label>
+  <input type="checkbox" id="feature"></br></br>
+  <button type="button" onclick="calculateTotal()">Итого</button>
+</form>
+<p id="totalPrice"></p>
+```
+```css
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+}
+input, button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+#totalPrice {
+  color: white;
+  font-size: 22px;
+  background-color: blueviolet;
+}
+```
+```js
+function calculateTotal() {
+  let basePrice = 20;
+  let feature = document.getElementById('feature').checked;
+
+  if (feature) {
+    let total = basePrice + 5;
+    document.getElementById('totalPrice').textContent = total;
+  }
+  else {
+    document.getElementById('totalPrice').textContent = basePrice;
+  }
+}
+```
+
+Например, когда флажок НЕ выбран, следующий код вернет значение 20$:
+```js
+let boxValue = document.getElementById('cb1').checked;
+
+if (boxValue) {
+  alert("10$");
+}
+else {
+  alert("20$");
+}
+```
+
+После того как компьютер завершит выполнение оператора `if-else`, он продолжит выполнение любых последующих операторов по порядку. В примере ниже после сообщения `"Regular price"`, последует `"Proceed to payment"`.
+```js
+let age = 30;
+
+if (age>=18) {
+  alert("Regular price");
+}
+else {
+  alert("Discount");
+}
+
+alert("Proceed to payment");
+```
+
+В следующем примере вывод кода будет следующим: сначала будет сообщение `"No ticket"`, затем `"Drive with care"`:
+```js
+let speed = 70;
+if (speed < 100) {
+  alert("No ticket");
+}
+else {
+  alert("Traffic ticket");
+}
+
+alert("Drive with care");
+```
+
+
+Продвинутые условия
+---
