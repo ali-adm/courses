@@ -9493,3 +9493,277 @@ function checkDiscount() {
 Больше об условных операторах
 ---
 
+Условные операторы необходимы для создания интерактивных и динамичных веб-приложений. В этом уроке вы узнаете, как использовать условные операторы для программирования сложных решений, улучшая функциональность ваших веб-страниц.
+
+Следующий код выведет в сообщении "No fever" - нет жара:
+```js
+let temperature = 36;
+if (temperature>39) {
+  alert("High temperature");
+}
+else {
+  alert("No fever");
+}
+```
+
+Бывают ситуации, когда вам не нужен оператор `else`.
+
+В следующем выражении оператор `else` - не нужен, т.к. если условия оператора `if` выполняются, то пользователь получает два сообщения - `"Применена скидка"` и `"Перейти к оплате"`; если же условия НЕ выполняются, то пользователь получает только одно сообщение - `"Перейти к оплате"`.
+```js
+let age = 16;
+if (age < 18) {
+  alert("Применена скидка");
+}
+alert("Перейти к оплате");
+```
+
+Эта программа выводит предупреждение с текстом о бесплатной доставке только когда сумма заказа больше 100. Программа больше ничего не делает, если условие не выполняется, поэтому оператор `else` можно пропустить.
+```js
+let total = 120;
+if (total > 100) {
+  alert("Free shipping");
+}
+```
+
+Вы можете использовать оператор `else if` для проверки дополнительных условий, если первое условие не выполняется.
+```html
+<h2>Choose Your Products</h2>
+<div id="productSection">
+<select id="product">
+  <option value="150">SmartPhone $150</option>
+  <option value="750">Laptop $750</option>
+  <option value="120">Headphones $120</option>
+</select>
+<label><input type="checkbox" id="insurance"> Add Insurance $10</label>
+<input id="quantity" min="1">
+</div>
+<button onclick="calculate()">Calculate Total and Shipping</button>
+
+<p id="shipping">Shipping: </p> 
+```
+```css
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-top: 20px;
+}
+#productSection {
+  background-color: #F2F2F2;
+  padding: 20px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+select, input {
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #DDD;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+}
+```
+```js
+function calculate(){
+  let product = document.getElementById('product').value;
+  let insurance = document.getElementById('insurance').checked;
+  let quantity = Number(document.getElementById('quantity').value);
+
+  let total = product * quantity + (insurance && 10);
+
+  let shipping = "";
+  if (total > 400) {
+      shipping = "Free";
+  }
+  else if (total > 100) {
+      shipping = "Discounted";
+  } 
+  else {
+      shipping = "Standard";
+  }
+  let ship = document.getElementById("shipping");
+  ship.textContent = ship.textContent + shipping;
+}
+```
+
+`if`, `else if` и `else` выражения должны быть в правильном порядке. Как и в любом другом условном операторе, `else if` требует скобок. Блок кода должен быть заключен в фигурные скобки.
+```js
+if (total > 400) {
+alert("Бесплатно");
+}
+else if (total > 100) {
+  alert("Со скидкой");
+}
+else
+alert("Стандарт");
+}
+```
+
+Вы можете вкладывать `if` `else` выражения друг в друга. Разные уровни отступов используются для того, чтобы показать вложенные блоки.
+```html
+<form onsubmit="event.preventDefault(); checkDiscount();">
+  <label for="age">Введите свой возраст:</label>
+  <input type="number" id="age" name="age"><br><br>
+
+  <input type="checkbox" id="isStudent" name="isStudent">
+  <label for="isStudent">Вы студент?</label><br><br>
+
+  <input type="button" onclick="checkDiscount()" 
+  value="Проверить скидку">
+</form>
+```
+```js
+function checkDiscount() {
+  let age = document.getElementById('age').value;
+  let isStudent = document.getElementById('isStudent').checked;
+  
+  if (age < 18) {
+  //execute if age is less than 18
+    if (isStudent) {
+      //execute if under 18 and also a student
+      alert("Скидка 20%");
+    }
+    else {
+      //execute if under 18 and not a student
+      alert("Скидка 10%");
+    }
+  }
+  else {
+    //execute this code customer 18 or over
+    alert("Обычная цена");
+  }
+}
+```
+
+Выводом следующего кода будут сообщения `"Senior discount"` и `"Proceed to payment"`:
+```js
+let age = 80;
+
+if (age < 18) { 
+  alert("Junior discount");
+else if (age >= 75) { 
+  alert("Senior discount");
+}
+alert("Proceed to payment");
+```
+
+Циклы while
+---
+
+- вы можете применять итерации к своим программам с помощью **циклов while**
+- **счетчики** отслеживают количество итераций и предотвращают бесконечные циклы
+- **скобки** и **фигурные скобки** необходимы для того, чтобы код работал без ошибок
+
+Итерация используется для автоматизации задач, которые нужно выполнять снова и снова. Итерация делает ваши программы проще, быстрее и сокращает количество ошибок. В этом уроке вы научитесь использовать **while loop** для создания итерации в вашем коде.
+
+**While цикл** повторяет блок кода снова и снова, пока условие не будет выполнено и не станет равным `true`. Цикл начинается с ключевого слова `while`.
+```js
+let seats = 5;
+
+while (seats>0) {
+  console.log("number of seats left " + seats);
+  seats = seats - 1;
+}
+```
+Вывод консоли:
+```js
+
+number of seats left 5 
+number of seats left 4 
+number of seats left 3 
+number of seats left 2 
+number of seats left 1 
+```
+
+Циклы часто включают в себя **счетчики**. Счетчик - это переменная, которая отслеживает количество итераций. Переменные счетчика обновляются внутри цикла, поэтому они меняются с каждой итерацией. Начальное значение устанавливается вне цикла, как отправная точка. Это называется **инициализацией**. При каждой итерации значения счетчика увеличиваются.
+```js
+let counter = 0;
+while (counter < 5) {
+  console.log("Message" + counter);
+  counter = counter + 1;
+}
+```
+Вывод в консоль:
+```js
+Message0 
+Message1 
+Message2 
+Message3 
+Message4 
+```
+
+- Счётчик отслеживает количество итераций. 
+- Счётчик обновляется внутри цикла с каждой итерацией. 
+- Счётчику можно присвоить любое начальное значение.
+```js
+let counter = 5;
+
+while (counter < 10) {
+  console.log("Message" + counter);
+  counter = counter + 1;
+}
+```
+Вывод в консоль:
+```js
+Message5 
+Message6 
+Message7 
+Message8 
+Message9 
+```
+
+Условие включено в скобки. Когда условие больше не выполняется, мы выходим из цикла `while`. Результат условия это Булево значение (`true` или `false`). Переменная счетчика должна быть инициализирована (ВНЕ цикла) и обновлена (внутри цикла).
+
+Вы можете использовать разные имена для переменной счетчика. Вы можете обновлять счетчик разными способами для решения различных задач.
+
+Например, продавец билетов в театре будет продолжать продавать билеты, пока все места не будут заняты:
+```js
+let seats = 10;
+
+while (seats > 0) {
+  console.log("Мест осталось: " + seats);
+  seats = seats - 1;
+}
+```
+
+Вывод в консоль:
+```js
+Мест осталось: 10 
+Мест осталось: 9 
+Мест осталось: 8 
+Мест осталось: 7 
+Мест осталось: 6 
+Мест осталось: 5 
+Мест осталось: 4 
+Мест осталось: 3 
+Мест осталось: 2 
+Мест осталось: 1 
+```
+
+Отступы делают ваш код более читаемым. 
+
+В циклах `while` вы можете столкнуться с тем, что известно как **бесконечный цикл**. Это когда условие остается истинным навсегда, и код никогда не прекращает повторение.
+
+В следующем примере сообщение Sell ticket будет отображено бесконечное количество раз:
+```js
+let seats = 300;
+
+while (seats > 0) {
+  alert("Sell ticket");
+}
+```
+
+Код ниже приведет к бесконечному циклу:
+```js
+let counter = 0;
+while (counter < 4) {
+  alert(counter);
+}
+```
+
+Для Циклов
+---
+
