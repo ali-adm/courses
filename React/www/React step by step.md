@@ -2,7 +2,7 @@
 
 # 1. Привет, мир
 
-Самый небольшой пример на React выглядит так:
+### Самый небольшой пример на React выглядит так:
 ```js
 ReactDOM.render(
   <h1>Привет, мир!</h1>,
@@ -21,9 +21,8 @@ ReactDOM.render(
 
 В этом руководстве мы рассмотрим строительные блоки React-приложений: элементы и компоненты. Как только вы освоите их, то сможете создавать сложные приложения из небольших повторно используемых частей.
 
-### Совет
-
-Это руководство предназначено для людей, которые предпочитают **концепцию обучения «шаг за шагом»**. Если вы предпочитаете учиться на практике, ознакомьтесь с нашим [практическим руководством](https://ru.react.js.org/tutorial/tutorial.html). Возможно, вы обнаружите, что руководство и учебник дополняют друг друга.
+> ### Совет 
+> Это руководство предназначено для людей, которые предпочитают **концепцию обучения «шаг за шагом»**. Если вы предпочитаете учиться на практике, ознакомьтесь с нашим [практическим руководством](https://ru.react.js.org/tutorial/tutorial.html). Возможно, вы обнаружите, что руководство и учебник дополняют друг друга.
 
 Это первая глава в пошаговом руководстве по основным концепциям React. В боковой панели навигации вы найдёте список всех его глав. Если вы читаете эту страницу с мобильного устройства, вы можете открыть навигацию по главам, нажав на кнопку в правом нижнем углу экрана.
 
@@ -33,30 +32,28 @@ ReactDOM.render(
 ---
 React — это библиотека JavaScript, поэтому мы предполагаем, что у вас есть базовое понимание языка JavaScript. **Если вы не очень уверенны, мы рекомендуем [изучить данное введение в JavaScript](https://developer.mozilla.org/ru/docs/Web/JavaScript/A_re-introduction_to_JavaScript) для проверки своего уровня знаний,** чтобы успешно изучить это руководство. Это может занять от 30 минут до часа, но в результате вам не придётся чувствовать, что вы одновременно изучаете и React, и JavaScript.
 
-### Примечание
-Данное руководство в примерах иногда использует некоторые из новых возможностей JavaScript. Если вы не работали с JavaScript в последние несколько лет, [эти три пункта](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) должны дать знания, достаточные для комфортного чтения этой документации.
+> ### Примечание
+> Данное руководство в примерах иногда использует некоторые из новых возможностей JavaScript. Если вы не работали с JavaScript в последние несколько лет, [эти три пункта](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) должны дать знания, достаточные для комфортного чтения этой документации.
 
-### Примечание'
-Вышеупомянутые три пункта - являются важным дополнением данного руководства, поэтому их перевод, для удобства, будет приведен здесь.
-
-Если вы не работали с JavaScript в последние несколько лет, эти три пункта должны дать вам достаточно знаний, чтобы чувствовать себя комфортно при чтении документации React:
-- Мы определяем переменные с помощью операторов [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) и [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const). Для целей документации React вы можете считать их эквивалентными [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var).
-- Мы используем `class` ключевое слово для определения [классов JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). О них стоит помнить две вещи. Во-первых, в отличие от объектов, вам не нужно ставить запятые между определениями методов класса. Во-вторых, в отличие от многих других языков с классами, в JavaScript значение `this` в методе [зависит от того, как он вызывается](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Boxing_with_prototype_and_static_methods).
-- Мы иногда используем `=>` для определения ["функций со стрелками"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions). Они похожи на обычные функции, но короче. Например, `x => x * 2` примерно эквивалентно `function(x) { return x * 2; }`. Важно отметить, что функции со стрелками [не имеют собственного `this` значения](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this), поэтому они удобны, когда вы хотите сохранить `this` значение из определения внешнего метода.
-
-**Не волнуйтесь, если этого слишком много для восприятия за один раз. [Справочник MDN по JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - отличный ресурс, и вы можете обратиться к нему всякий раз, когда вас что-то смущает.**
-
-Кроме того, если вы не уверены в значении какого-либо нового синтаксиса, вы можете использовать [Babel REPL с предустановкой ES2015](http://babeljs.io/repl/#?babili=false&browsers=&build=&builtIns=false&code_lz=MYewdgzgLgBAllApgWwjAvDA2gRgDQwBMBAzALoDcAUKJLACYgCuARgDaL0bxKoB0yAIYAHABQAPDAD4YkgFREAlBSA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&lineWrap=true&presets=es2015%2Creact%2Cstage-1%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=), чтобы проверить, к какому эквивалентному старому синтаксису он компилируется.
-
-**--- конец примечания'**
+>> ### Примечание'
+>> Вышеупомянутые три пункта - являются важным дополнением данного руководства, поэтому их перевод, для удобства, будет приведен здесь.
+> 
+> Если вы не работали с JavaScript в последние несколько лет, эти три пункта должны дать вам достаточно знаний, чтобы чувствовать себя комфортно при чтении документации React:
+> 1.  Мы определяем переменные с помощью операторов [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) и [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const). Для целей документации React вы можете считать их эквивалентными [`var`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var).
+> 2. Мы используем `class` ключевое слово для определения [классов JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). О них стоит помнить две вещи. Во-первых, в отличие от объектов, вам не нужно ставить запятые между определениями методов класса. Во-вторых, в отличие от многих других языков с классами, в JavaScript значение `this` в методе [зависит от того, как он вызывается](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Boxing_with_prototype_and_static_methods).
+> 3. Мы иногда используем `=>` для определения ["функций со стрелками"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions). Они похожи на обычные функции, но короче. Например, `x => x * 2` примерно эквивалентно `function(x) { return x * 2; }`. Важно отметить, что функции со стрелками [не имеют собственного `this` значения](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this), поэтому они удобны, когда вы хотите сохранить `this` значение из определения внешнего метода. 
+> 
+> **Не волнуйтесь, если этого слишком много для восприятия за один раз. [Справочник MDN по JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - отличный ресурс, и вы можете обратиться к нему всякий раз, когда вас что-то смущает.**
+>
+> Кроме того, если вы не уверены в значении какого-либо нового синтаксиса, вы можете использовать [Babel REPL с предустановкой ES2015](http://babeljs.io/repl/#?babili=false&browsers=&build=&builtIns=false&code_lz=MYewdgzgLgBAllApgWwjAvDA2gRgDQwBMBAzALoDcAUKJLACYgCuARgDaL0bxKoB0yAIYAHABQAPDAD4YkgFREAlBSA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&lineWrap=true&presets=es2015%2Creact%2Cstage-1%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=), чтобы проверить, к какому эквивалентному старому синтаксису он компилируется.
 
 ## Давайте начнём
 Продолжайте прокручивать страницу вниз, и вы найдете ссылку на [следующую главу руководства](https://ru.react.js.org/docs/introducing-jsx.html) прямо перед футером сайта.
 
 
-Введение в JSX
-===
-Рассмотрим это объявление переменной:
+# 2. Введение в JSX
+
+### Рассмотрим это объявление переменной:
 ```js
 const element = <h1>Привет, мир!</h1>;
 ```
@@ -147,11 +144,11 @@ const element = <img src={user.avatarUrl}></img>;
 ```
 Не используйте кавычки вокруг фигурных скобок при вставке выражения JavaScript в атрибут. Нужно использовать либо кавычки (для строковых значений), либо фигурные скобки (для выражений), но не оба в одном и том же атрибуте.
 
-### ** Внимание: **
-
-Поскольку JSX ближе к JavaScript, чем к HTML, React DOM использует соглашение об именах свойств camelCase вместо имён атрибутов HTML.
-
-Например, `class` становится `className` в JSX, а tabindex становится [tabIndex] (https://developer.mozilla.org/ru/docs/Web/API/HTMLElement/tabIndex).
+> ### ** Внимание: **
+>
+>Поскольку JSX ближе к JavaScript, чем к HTML, React DOM использует соглашение об именах свойств camelCase вместо имён атрибутов HTML.
+>
+>Например, `class` становится `className` в JSX, а tabindex становится [tabIndex](https://developer.mozilla.org/ru/docs/Web/API/HTMLElement/tabIndex).
 
 Установка детей с помощью JSX
 ---
@@ -219,11 +216,315 @@ const element = {
 
 Мы рассмотрим отрисовку элементов React в DOM в следующем разделе.
 
-### ** Совет: **
+> ### ** Совет: **
+>
+>Мы рекомендуем использовать [определение языка «Babel»](http://babeljs.io/docs/editors) в вашем редакторе, чтобы как код ES6, так и JSX были правильно подсвечены. Этот сайт использует цветовую схему [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/), которая совместима с этим определением.
 
-Мы рекомендуем использовать [определение языка «Babel»](http://babeljs.io/docs/editors) в вашем редакторе, чтобы как код ES6, так и JSX были правильно подсвечены. Этот сайт использует цветовую схему [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/), которая совместима с этим определением.
 
+# 3. Отрисовка элементов
 
-Отрисовка элементов
-===
+### Элементы — это самые маленькие строительные блоки приложений React.
+
+Элемент описывает, что вы хотите видеть на экране:
+```js
+const element = <h1>Hello, world</h1>;
+```
+
+В отличие от DOM-элементов браузера, элементы React — обычные объекты, лёгкие для создания. React DOM берёт заботу по обновлению DOM на себя для соответствия элементам React.
+
+> ### Примечание: 
+> Может сбить с толку элементы с более широко известной концепцией «компонентов». Мы представим компоненты в следующем разделе (/docs/components-and-props.html). Элементы — это то, что из чего компоненты «сделаны», и мы рекомендуем вам прочитать этот раздел, прежде чем идти вперёд.
+
+### Отрисовка элемента в DOM
+
+Предположим, что в вашем файле HTML есть `<div>`:
+```js
+<div id="root"></div>
+```
+
+Мы называем это «корневым» узлом DOM, потому что всё внутри него будет управляться DOM React.
+
+У приложений, созданных только с использованием React, обычно есть только единственный корневой узел DOM. Если вы интегрируете React в существующее приложение, у вас может быть как можно больше изолированных корневых узлов DOM.
+
+Чтобы отрисовать элемент React в корневом узле DOM, передайте его в `ReactDOM.render()`:
+```js
+const element = <h1>Привет, мир</h1>;
+ReactDOM.render(element, document.getElementById('root'));
+```
+
+[Попробовать на CodePen](https://ru.react.js.org/redirect-to-codepen/rendering-elements/render-an-element)
+
+На странице отобразится «Привет, мир».
+
+## Обновление отрисованного элемента
+
+React-элементы — [неизменяемы](https://ru.wikipedia.org/wiki/Неизменяемый_объект). Создав однажды элемент, вы не сможете изменить его дочерние элементы или атрибуты. Элемент похож на один кадр в фильме: он представляет собой пользовательский интерфейс в определённый момент времени.
+
+Насколько известно из предыдущих разделов, единственный способ обновить интерфейс — создать новый элемент и передать его в `ReactDOM.render()`.
+
+Рассмотрим этот пример тикающих часов:
+```js
+function tick() {
+  const element = (
+    <div>
+      <h1>Привет, мир!</h1>
+      <h2>Сейчас {new Date().toLocaleTimeString()}.</h2>
+    </div>
+  );
+  ReactDOM.render(element, document.getElementById('root'));
+}
+
+setInterval(tick, 1000);
+```
+[Попробовать на CodePen](https://ru.react.js.org/redirect-to-codepen/rendering-elements/update-rendered-element)
+
+Он вызывает каждую секунду `ReactDOM.render()` из колбэка `setInterval()`.
+
+> ### Примечание:
+>
+> На практике большинство приложений React только один раз вызывают `ReactDOM.render()`. В следующих разделах мы узнаем, как такой код инкапсулируется в [компоненты с состоянием](/docs/state-and-lifecycle.html).
+>
+>Мы рекомендуем вам не пропускать эти темы, потому что они опираются друг на друга.
+
+## React обновляет только то, что необходимо
+
+DOM React сравнивает элемент и его дочерние элементы с предыдущими и применяет только обновления DOM, необходимые для преобразования DOM в желаемое состояние.
+
+Вы можете убедиться в том, проверив [последний пример](https://ru.react.js.org/redirect-to-codepen/rendering-elements/update-rendered-element) с помощью инструментов браузера:
+
+![react_refresh](https://ru.react.js.org/granular-dom-updates-c158617ed7cc0eac8f58330e49e48224.gif)
+
+Несмотря на то, что мы создаём элемент, описывающий всё дерево пользовательского интерфейса на каждом тике, только текстовый узел, содержимое которого изменилось, обновляется в DOM React.
+
+По нашему опыту, размышление о том, как пользовательский интерфейс должен выглядеть в любой данный момент, а не то, как его менять со временем, устраняет целый класс багов.
+
+# 4. Компоненты и свойства
+
+### Компоненты позволяют разделить пользовательский интерфейс на независимые, повторно используемые части и работать с каждой из частей отдельно. На этой странице представлено введение в идею компонентов. [Здесь](https://ru.react.js.org/docs/react-component.html) вы можете найти подробный справочник API по компоненту.
+
+Концептуально компоненты похожи на функции JavaScript. Они принимают произвольные входные данные (называемые «props» или свойствами) и возвращают React-элементы, описывающие, что должно появиться на экране.
+
+## Функциональные и классовые компоненты
+
+Самый простой способ определить компонент — написать JavaScript-функцию:
+```js
+function Welcome(props) {
+  return <h1>Привет, {props.name}</h1>;
+}
+```
+
+Данная функция — корректный компонент React, потому что он принимает один аргумент-объект «props» (который обозначает свойства) с данными и возвращает элемент React. Такие компоненты мы называем «функциональными», потому что они являются буквально функциями JavaScript.
+
+Вы также можете использовать [класс из ES6](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Classes) для определения компонента:
+```js
+class Welcome extends React.Component {
+  render() {
+    return <h1>Привет, {this.props.name}</h1>;
+  }
+}
+```
+
+Два вышеуказанных компонента эквивалентны с точки зрения React.
+
+У классов есть дополнительные возможности, которые мы обсудим в [следующих разделах](https://ru.react.js.org/docs/state-and-lifecycle.html). До этого момента мы будем использовать функциональные компоненты из-за их краткости.
+
+## Отрисовка компонента
+
+Раньше мы сталкивались только с элементами React, представляющие DOM-теги:
+```js
+const element = <div />;
+```
+
+Однако элементы также могут быть пользовательскими компонентами:
+```js
+const element = <Welcome name="Сара" />;
+```
+
+Когда React видит элемент, представляющий пользовательский компонент, он передаёт JSX-атрибуты этому компоненту в виде единственного объекта. Мы называем этот объект «props».
+
+Например, этот код отображает «Привет, Сара» на странице:
+```js
+function Welcome(props) {
+  return <h1>Привет, {props.name}</h1>;
+}
+
+const element = <Welcome name="Sara" />;
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+```
+
+[Попробовать на CodePen](https://ru.react.js.org/redirect-to-codepen/components-and-props/rendering-a-component)
+
+Давайте посмотрим, что происходит в этом примере:
+
+1. Мы вызываем `ReactDOM.render()` с элементом `<Welcome name="Сара" />`.
+2. React вызывает компонент `Welcome` с объектом `{name: 'Sara'}` как `props`.
+3. Наш компонент `Welcome` возвращает элемент `<h1>Hello, Sara</h1>` в качестве результата.
+4. React DOM эффективно обновляет DOM, чтобы соответствовать `<h1>Hello, Sara</h1>`.
+
+> ### Примечание: Всегда именуйте компоненты с заглавной буквы.
+>
+>React обрабатывает компоненты, начинающиеся со строчных букв, как DOM-теги. Например, <div /> представляет HTML-тег div, но <Welcome /> представляет компонент и требует, чтобы Welcome был в области видимости.
+>
+>Вы можете больше узнать о причинах, лежащих в основе этого соглашения [здесь](https://ru.react.js.org/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+
+## Композиция компонентов
+
+Компоненты могут ссылаться на другие компоненты в своём выводе. Это позволяет использовать одну и ту же абстракцию компонента для любого уровня детализации. Кнопка, форма, диалоговое окно, экран: в приложениях React все они обычно являются компонентами.
+
+Например, мы можем создать компонент `App`, который многократно отрисовывает `Welcome`:
+```js
+function Welcome(props) {
+  return <h1>Привет, {props.name}</h1>;
+}
+
+function App() {
+  return (
+    <div>
+      <Welcome name="Сара" />
+      <Welcome name="Кахаль" />
+      <Welcome name="Эдит" />
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```
+
+[Попробовать на CodePen](https://ru.react.js.org/redirect-to-codepen/components-and-props/composing-components)
+
+Как правило, в новых приложениях React есть один компонент App, который находится в самом верху иерархии компонентов. Однако, если вы интегрируете React в существующее приложение, вы можете начать снизу вверх с небольшого компонента, такого как Button, и постепенно идти вверх по иерархии представлений.
+
+## Извлечение компонентов
+
+Не бойтесь разделять компоненты на более мелкие компоненты.
+
+Например, рассмотрим этот компонент Comment:
+```js
+function Comment(props) {
+  return (
+    <div className="Comment">
+      <div className="UserInfo">
+        <img className="Avatar"
+          src={props.author.avatarUrl}
+          alt={props.author.name}
+        />
+        <div className="UserInfo-name">
+          {props.author.name}
+        </div>
+      </div>
+      <div className="Comment-text">
+        {props.text}
+      </div>
+      <div className="Comment-date">
+        {formatDate(props.date)}
+      </div>
+    </div>
+  );
+}
+
+[Попробовать на CodePen](https://ru.react.js.org/redirect-to-codepen/components-and-props/extracting-components)
+
+Он принимает `author` (объект), `text` (строка) и `date` (дата) в качестве свойств и описывает комментарий на сайте социальных сетей.
+
+Этот компонент может быть сложно изменить из-за вложенности, а также трудно повторно использовать отдельные его части. Давайте извлечём из него несколько компонентов.
+
+Сначала мы извлечём `Avatar`:
+```js
+function Avatar(props) {
+  return (
+    <img className="Avatar"
+      src={props.user.avatarUrl}
+      alt={props.user.name}
+    />
+
+  );
+}
+```
+Компонент `Avatar` не должен знать, что он отрисовывается внутри `Comment`. Вот почему мы присвоили свойству объекта `props` более общее имя: `user`, а не `author`.
+
+Мы рекомендуем называть свойства объекта `props` с точки зрения самого компонента, а не контекста, в котором он используется.
+
+Теперь мы можем чуть-чуть упростить `Comment`:
+```js
+function Comment(props) {
+  return (
+    <div className="Comment">
+      <div className="UserInfo">
+        <Avatar user={props.author} />
+        <div className="UserInfo-name">
+          {props.author.name}
+        </div>
+      </div>
+      <div className="Comment-text">
+        {props.text}
+      </div>
+      <div className="Comment-date">
+        {formatDate(props.date)}
+      </div>
+    </div>
+  );
+}
+```
+Затем мы извлечём компонент `UserInfo`, который отобразит `Avatar` рядом с именем пользователя:
+```js
+function UserInfo(props) {
+  return (
+    <div className="UserInfo">
+      <Avatar user={props.user} />
+      <div className="UserInfo-name">
+        {props.user.name}
+      </div>
+    </div>
+  );
+}
+```
+Это позволяет нам упростить `Comment` ещё больше:
+```js
+function Comment(props) {
+  return (
+    <div className="Comment">
+      <UserInfo user={props.author} />
+      <div className="Comment-text">
+        {props.text}
+      </div>
+      <div className="Comment-date">
+        {formatDate(props.date)}
+      </div>
+    </div>
+  );
+}
+```
+[Попробовать на CodePen](https://ru.react.js.org/redirect-to-codepen/components-and-props/extracting-components-continued)
+
+Извлечение компонентов сначала может показаться монотонной работой, но наличие палитры повторно используемых компонентов окупается в больших приложениях. Хорошее правило на этот счёт можно сформировать так — если часть пользовательского интерфейса используется несколько раз (`Button`,`Panel`, `Avatar`) или достаточно сложна сама по себе (`App`, `FeedStory`,`Comment`), то это хороший кандидат на извлечение компонента, чтобы он стал повторно используемым компонентом.
+
+## Свойства объекта props доступны только для чтения
+
+Независимо от того, объявляете ли компонент как [функцию или класс](https://ru.react.js.org/docs/components-and-props.html#functional-and-class-components), он не должен изменять свои свойства. Рассмотрим эту функцию sum:
+```js
+function sum(a, b) {
+  return a + b;
+}
+```
+Такие функции называются [«чистыми»](https://ru.wikipedia.org/wiki/Чистота_функции), потому что они не пытаются изменить свои аргументы и всегда возвращают один и тот же результат для одних и тех же входных данных.
+
+Напротив, функция ниже — не чистая, потому что она изменяет свои входные данные:
+```js
+function withdraw(account, amount) {
+  account.total -= amount;
+}
+```
+React довольно гибкий, но имеет одно строгое правило:
+
+### Все React-компоненты должны вести себя как чистые функции в плане своих свойств.
+
+Конечно, пользовательские интерфейсы приложений динамичны и меняются со временем. В [следующем разделе](https://ru.react.js.org/docs/state-and-lifecycle.html) мы представим новую концепцию «состояние». Состояние позволяет компонентам React изменять свой вывод с течением времени в ответ на действия пользователя, сетевые ответы и что-либо ещё без нарушения правила выше.
+
+# 5. Свойство (состояние) и жизненный цикл
 
