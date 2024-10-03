@@ -3,7 +3,7 @@
 
 Данные могут быть мощным инструментом, но только если вы знаете, как ими пользоваться. В такой ситуации SQL незаменим! На этом курсе вы узнаете, как использовать стандартизированный язык баз данных SQL для доступа и манипулирования данными, хранящимися в базах данных. Когда вы научитесь использовать SQL, вы сможете работать в ведущих компаниях (и даже правительствах!), которые используют данные для прогнозирования и принятия
 
-<a id="back"></a>
+<a name="back"></a>
 ### Оглавление:
 
 ### [Начало работы](#begin)
@@ -34,13 +34,13 @@
 #### [ipsum](#lorem)
 
 
-<a id="begin"></a>
+<a name="begin"></a>
 Начало работы
 ===
 
 ### [Назад к оглавлению](#back)
 
-<a id="data_work"></a>
+<a name="data_work"></a>
 Работа с данными
 ---
 
@@ -93,7 +93,7 @@ SELECT year FROM movies
 ### [Назад к оглавлению](#back)
 
 
-<a id="queries"></a>
+<a name="queries"></a>
 Выполнение Queries (запросов)
 ---
 - Данные могут быть классифицированы как **структурированные** или **неструктурированные**
@@ -135,7 +135,7 @@ SELECT year FROM movies
 ### [Назад к оглавлению](#back)
 
 
-<a id="rdb"></a>
+<a name="rdb"></a>
 Реляционные базы данных
 ---
 
@@ -212,7 +212,7 @@ SELECT name, price FROM products
 ### [Назад к оглавлению](#back)
 
 
-<a id="Debugging"></a>
+<a name="Debugging"></a>
 Debugging (устранение ошибок)
 ---
 
@@ -294,7 +294,7 @@ ERROR:  syntax error at or near "FR"
 ### [Назад к оглавлению](#back)
 
 
-<a id="kassa_practice"></a>
+<a name="kassa_practice"></a>
 Кассовые сборы (практика)
 ---
 
@@ -315,7 +315,7 @@ FROM movies
 ### [Назад к оглавлению](#back)
 
 
-<a id="exam_1"></a>
+<a name="exam_1"></a>
 Контрольные вопросы к модулю 1
 ---
 
@@ -425,11 +425,11 @@ SELECT * FROM flights
 ### [Назад к оглавлению](#back)
 
 
-<a id="deep_learning"></a>
+<a name="deep_learning"></a>
 Углубленное изучение
 ===
 
-<a id="standart_and_best_practic"></a>
+<a name="standart_and_best_practic"></a>
 Стандарты и лучшие практики
 ---
 
@@ -497,7 +497,7 @@ SELECT title                 FROM
 ### [Назад к оглавлению](#back)
 
 
-<a id="data_sorting"></a>
+<a name="data_sorting"></a>
 Сортировка данных
 ---
 
@@ -569,7 +569,7 @@ ORDER BY grade DESC
 ### [Назад к оглавлению](#back)
 
 
-<a id="payment"></a>
+<a name="payment"></a>
 Заработная плата сотрудников (практика)
 ---
 
@@ -593,7 +593,7 @@ ORDER BY salary DESC
 ### [Назад к оглавлению](#back)
 
 
-<a id="data_limit"></a>
+<a name="data_limit"></a>
 Ограничение данных
 ---
 
@@ -703,7 +703,7 @@ LIMIT 2 OFFSET 100
 ### [Назад к оглавлению](#back)
 
 
-<a id="menu_pract"></a>
+<a name="menu_pract"></a>
 Меню (практика)
 ---
 
@@ -729,7 +729,7 @@ LIMIT 4
 ### [Назад к оглавлению](#back)
 
 
-<a id="data_types"></a>
+<a name="data_types"></a>
 Типы данных
 ---
 
@@ -841,7 +841,7 @@ FROM employees
 ### [Назад к оглавлению](#back)
 
 
-<a id="tennis_tourier"></a>
+<a name="tennis_tourier"></a>
 Теннисный турнир (практика)
 ---
 
@@ -861,7 +861,7 @@ FROM matches
 ### [Назад к оглавлению](#back)
 
 
-<a id="data_filter"></a>
+<a name="data_filter"></a>
 Фильтрация данных
 ---
 
@@ -969,7 +969,7 @@ WHERE price < 100
 ### [Назад к оглавлению](#back)
 
 
-<a id="market_place"></a>
+<a name="market_place"></a>
 Онлайн-книжный магазин (практикa)
 ---
 
@@ -990,7 +990,7 @@ WHERE genre = 'Fiction'
 ### [Назад к оглавлению](#back)
 
 
-<a id="exam_2"></a>
+<a name="exam_2"></a>
 Контрольные вопросы к модулю 2
 ---
 
@@ -1098,11 +1098,11 @@ WHERE status = 'active'
 ### [Назад к оглавлению](#back)
 
 
-<a id="technics_request"></a>
+<a name="technics_request"></a>
 Техники запросов
 ===
 
-<a id="pattern_search"></a>
+<a name="pattern_search"></a>
 Поиск по шаблону
 ---
 
@@ -1228,7 +1228,7 @@ WHERE title LIKE 'Spider-Man 2%'
 ### [Назад к оглавлению](#back)
 
 
-<a id="chocolade"></a>
+<a name="chocolade"></a>
 Шоколад! (практика)
 ---
 
@@ -1253,7 +1253,7 @@ WHERE name LIKE '%chocolate%'
 ### [Назад к оглавлению](#back)
 
 
-<a id="advanced_pattern"></a>
+<a name="advanced_pattern"></a>
 Расширенное сопоставление шаблонов
 ---
 
@@ -1385,7 +1385,7 @@ WHERE LOWER(title) LIKE "%robots%"
 ### [Назад к оглавлению](#back)
 
 
-<a id="condition_sql"></a>
+<a name="condition_sql"></a>
 Условия в SQL
 ---
 
