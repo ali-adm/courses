@@ -1051,7 +1051,8 @@ function main() {
     }
     
     var sum = 0;
-    //calculate the sum of points 
+    //вычислить сумму баллов
+     
     
     //output
     console.log(sum);
