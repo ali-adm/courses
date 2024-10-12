@@ -1344,3 +1344,135 @@ alert("The square root of " + n + " is " + answer);
 
 <a id="date_obj"></a>
 ## Объект Date
+### setInterval
+Метод **setInterval()** вызывает функцию или вычисляет выражение через указанные интервалы (в миллисекундах). 
+
+Он продолжит вызывать функцию до тех пор, пока не будет вызван **clearInterval()** или окно не будет закрыто.
+```js
+function myAlert() {
+    alert("Hi");
+}
+setInterval(myAlert, 3000);
+```
+
+Это вызовет функцию **myAlert** каждые 3 секунды (1000 мс = 1 секунда).
+
+Напишите имя функции без скобок при передаче его в метод **setInterval**.
+
+Например код чтобы вызвать функцию **calc()** каждые 2 секунды:
+```js
+setInterval(calc, 2000);
+```
+
+### Объект Date
+Объект **Date** позволяет нам работать с датами.
+
+Дата состоит из года, месяца, дня, часа, минуты, секунды и миллисекунд.
+
+Используя **new Date()**, создайте новый объект даты с текущей датой и временем.
+```js
+var d = new Date();
+//d сохраняет текущую дату и время
+```
+
+Другие способы инициализации дат позволяют создавать новые объекты даты из указанной даты и времени.
+```js
+new Date(milliseconds)
+new Date(dateString)
+new Date(year, month, day, hours, minutes, seconds, milliseconds)
+```
+
+Даты в JavaScript рассчитываются в миллисекундах с 01 января 1970 года в 00:00:00 по Всемирному времени (UTC). Один день содержит 86,400,000 миллисекунд.
+
+Например:
+```js
+//Fri Jan 02 1970 00:00:00
+var d1 = new Date(86400000);
+
+//Fri Jan 02 2015 10:42:00
+var d2 = new Date("January 2, 2015 10:42:00");
+
+//Sat Jun 11 1988 11:42:00
+var d3 = new Date(88,5,11,11,42,0,0);
+```
+
+JavaScript считает месяцы от 0 до 11. Январь - это **0**, а декабрь - **11**.
+
+Объекты Date являются статическими, а не динамическими. Время на компьютере идет, но объекты даты не меняются, после их создания.
+
+### Методы Date
+Когда создается объект <b>Date</b>, ряд методов позволяет выполнять с ним операции. 
+
+|Method |Description |Перевод |
+|-------|------------|--------|
+|getFullYear() |gets the year |получает год |
+|getMonth() |gets the month |получает месяц |
+|getDate() |gets the day of the month |получает день месяца |
+|getDay() |gets the day of the week |получает день недели |
+|getHours() |gets the hour |получает час |
+|getMinutes() |gets the minutes |получает минуту |
+|getSeconds() |gets the seconds |получает секунду |
+|getMilliseconds() |get the milliseconds |получает миллисекунду |
+
+Например:
+```js
+var d = new Date();
+var hours = d.getHours();
+
+console.log(hours);
+```
+
+Давайте создадим программу, которая выводит текущее время в браузер каждую секунду.
+```js
+function printTime() {
+    var d = new Date();
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var secs = d.getSeconds();
+    document.body.innerHTML = hours+":"+mins+":"+secs;
+}
+setInterval(printTime, 1000);
+```
+
+Мы объявили функцию <b>printTime()</b>, которая получает текущее время из объекта даты и выводит его на экран.
+
+Затем мы вызвали эту функцию каждую секунду, используя метод <b>setInterval</b>.
+
+Свойство <b>innerHTML</b> устанавливает или возвращает HTML-содержимое элемента.
+
+В нашем случае, мы изменяем HTML-содержимое тела нашего документа. Это перезаписывает содержимое каждую секунду, вместо того чтобы повторно выводить его на экран.
+
+### Понедельник до Воскресенья (практика)
+ПРАКТИЧЕСКОЕ УПРАЖНЕНИЕ
+
+Объект Date 
+
+Программа, которую вы получили, принимает на вход год, месяц и день.
+
+Создайте функцию, которая принимает их в качестве аргументов и возвращает соответствующий день недели.
+```js
+Пример ввода:
+1993
+7
+12
+
+Пример вывода:
+Thursday
+```
+>Подсказка: Данный код создает объект Date из параметров. Используйте метод <b>getDay()</b> объекта date для получения индекса, затем используйте его в данном массиве имен для возвращения названия дня.
+```js
+function main() {
+   var year = parseInt(readLine(), 10);
+   var month = parseInt(readLine(), 10);
+   var day = parseInt(readLine(), 10);
+    
+   console.log(getWeekDay(year, month, day)); 
+}
+
+function getWeekDay(year, month, day) {
+   var names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+   var d = new Date(year, month, day);
+    //complete the function
+    
+}
+```
