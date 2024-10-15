@@ -7,37 +7,37 @@
 ### [Объекты](#obj)
 #### [Введение в объекты](#intro_obj)
 #### [Создание cобственных Объектов](#oun_obj)
-#### [Приземлились! (практика)](#pract_1)
+##### [Приземлились! (практика)](#pract_1)
 ##### [Решение от GPT-4o](#pract_1_gpt)
 #### [Инициализация объекта](#init_obj)
 #### [Добавление методов](#add_methods)
-#### [Расчет скидки (практика)](#pract_2)
+##### [Расчет скидки (практика)](#pract_2)
 ##### [Решение от GPT-4o](#pract_2_gpt)
 #### [Продолжение главы "добавление методов"](#add_methods_1)
 ##### [Коментарий GPT-4o](#gpt_comment_1)
 #### [Квиз Модуля 1](#qviz_1)
-#### [Менеджер контактов (практика)](#qviz_1_pract)
+##### [Менеджер контактов (практика)](#qviz_1_pract)
 ### [Core Objects](#core_obj)
 #### [Массивы](#arrays)
-#### [Пушистые блинчики (практика)](#pract_3)
+##### [Пушистые блинчики (практика)](#pract_3)
 #### [Другие способы создания массивов](#another_make_array)
 #### [Свойства и методы массива](#props_methods_array)
-#### [Повысь уровень! (практика)](#pract_4)
+##### [Повысь уровень! (практика)](#pract_4)
 ##### [Решение от GPT-4o](#pract_4_gpt)
 #### [Ассоциативные массивы](#asoc_arriv)
 #### [Математический объект](#math_obj)
-#### [Какой век? (Практика)](#pract_5)
+##### [Какой век? (Практика)](#pract_5)
 #### [Объект Date](#date_obj)
-#### [Понедельник до Воскресенья (практика)](#pract_6)
+##### [Понедельник до Воскресенья (практика)](#pract_6)
 ##### [Решение от GPT-4o](#pract_6_gpt)
 #### [Викторина модуля 2](#exam_2)
-#### [Менеджер магазина (практическое упражнение)](#pract_7)
+##### [Менеджер магазина (практическое упражнение)](#pract_7)
 ##### [Решение от GPT-4o](#pract_7_gpt)
 ### [DOM & События](#dom_events)
 #### [Что такое DOM?](#what_is_dom)
 #### [Выбор элементов](#elements_select)
-#### [ipsum](#lorem)
-#### [ipsum](#lorem)
+#### [Изменение элементов](#change_elements)
+#### [Добавление и удаление элементов](#add_del_elements)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
@@ -45,7 +45,8 @@
 #### [ipsum](#lorem)
 
 
-
+<a id="add_del_elements"></a>
+## Добавление и удаление элементов
 
 
 <a id="obj"></a>
@@ -1726,4 +1727,212 @@ document.body.innerHTML = "Some text";
 
 <a id="elements_select"></a>
 ## Выбор элементов
+
+Все элементы HTML являются объектами. И как мы знаем, каждый объект имеет свойства и методы.
+
+Объект document имеет методы, которые позволяют вам выбирать нужный элемент HTML.
+
+Эти три метода наиболее часто используются для выбора элементов HTML:
+```js
+//finds element by id
+document.getElementById(id)
+
+//finds elements by class name
+document.getElementsByClassName(name)
+
+//finds elements by tag name
+document.getElementsByTagName(name)
+```
+
+В приведенном ниже примере метод `getElementById` используется для выбора элемента с `id="demo"` и изменения его содержимого:
+```js
+var elem = document.getElementById("demo");
+elem.innerHTML = "Hello World!";
+```
+
+Пример выше предполагает, что HTML содержит элемент `с id="demo"`, например **&lt;div id="demo"&gt;&lt;/div&gt;**.
+
+Далее пример, выбрать элемент с `id="text"` и изменить его содержимое на "Привет".
+```js
+var ob = document.getElementById("text");
+ob.innerHTML = "Привет";
+```
+
+Метод **getElementsByClassName()** возвращает коллекцию всех элементов в документе с указанным именем класса.
+
+Например, если на нашей HTML-странице содержится три элемента с `class="demo"`, следующий код вернет все эти элементы в виде массива: 
+```js
+var arr = document.getElementsByClassName("demo");
+//accessing the second element
+arr[1].innerHTML = "Hi";
+```
+
+Аналогично, метод **getElementsByTagName** возвращает все элементы с указанным именем тега в виде массива.
+
+В следующем примере получаются все элементы параграфа страницы и изменяется их содержимое:
+```html
+<p>hi</p>
+<p>hello</p>
+<p>hi</p>
+<script>
+var arr = document.getElementsByTagName("p");
+for (var x = 0; x < arr.length; x++) {
+  arr[x].innerHTML = "Hi there";
+}
+</script>
+```
+
+Скрипт приведет к следующему HTML:
+```html
+<p>Hi there</p>
+<p>Hi there</p>
+<p>Hi there</p>
+```
+
+Мы использовали свойство **length** массива для прохождения через все выбранные элементы в приведенном выше примере.
+
+Пример: выбрать все элементы `div` и вывести содержимое третьего элемента `div`.
+```js
+var arr = document.getElementsByTagName("div");
+alert(arr[2].innerHTML);
+```
+
+### Работа с DOM
+У каждого элемента в DOM есть набор свойств и методов, которые предоставляют информацию о их взаимосвязях в DOM:
+
+|Свойство/метод |Описание |
+|---------------|---------|
+|element.childNodes |возвращает массив дочерних узлов элемента. |
+|element.firstChild |возвращает первый дочерний узел элемента. |
+|element.lastChild |возвращает последний дочерний узел элемента. |
+|element.hasChildNodes |возвращает true, если у элемента есть дочерние узлы, в противном случае false. |
+|element.nextSibling |возвращает следующий узел на том же уровне дерева. |
+|element.previousSibling |возвращает предыдущий узел на том же уровне дерева. |
+|element.parentNode |возвращает родительский узел элемента.
+
+Мы можем, например, выбрать все дочерние узлы элемента и изменить их содержимое. В указанном ниже коде текст обоих абзацев изменяется на "новый текст".
+```html
+<html>
+    <body>
+         <div id ="demo">
+            <p>some text</p>
+            <p>some other text</p>
+        </div>
+    </body>
+</html>
+```
+```js
+function setText() {
+    var a = document.getElementById("demo");
+     var arr = a.childNodes;
+     for(var x=0;x<arr.length;x++) {
+       arr[x].innerHTML = "новый текст";
+     }
+}
+
+//вызов функции с setTimeout, чтобы убедиться, что HTML загружен
+setTimeout(setText, 500);
+```
+
+Узел в DOM - **НЕ может** иметь несколько родительских узлов.
+
+### [Назад к оглавлению](#back)
+
+
+<a id="change_elements"></a>
+## Изменение элементов
+### Изменение атрибутов
+Как только вы выбрали элемент(ы), с которыми хотите работать, вы можете изменить их атрибуты. 
+
+Как мы видели в предыдущих уроках, мы можем изменить текстовое содержимое элемента с помощью свойства **innerHTML**.
+
+Аналогично, мы можем изменить атрибуты элементов.
+
+Например, мы можем изменить атрибут **src** изображения: 
+```js
+<img id="myimg" src="orange.png" alt="" />
+<script>
+var el = document.getElementById("myimg");
+el.src = "apple.png";
+</script>
+```
+
+Замена ссылки:
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+	</head>
+	<body>
+		<a href="http://www.example.com">Some link</a>
+	</body>
+</html>
+```
+```js
+//вызов функции в window.onload, чтобы убедиться, что HTML загружен
+window.onload = function() {
+    var el = document.getElementsByTagName('a');
+    el[0].href= 'http://www.sololearn.com';
+};
+```
+
+Практически все атрибуты элемента можно изменить с использованием JavaScript.
+
+Пример: выбрать все изображения на странице и изменить их атрибут **src**.
+```js
+var arr = document.
+    getElementsByTagName("img");
+for(var x=0; x<arr.length; x++) {
+  arr[x].src = "demo.jpg";
+}
+```
+
+### Изменение стиля
+Стиль элементов HTML также можно изменять с помощью JavaScript.
+
+Все атрибуты стиля можно получить с помощью объекта **style** элемента. 
+
+Например:
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+	</head>
+	<body>
+		<div id="demo" style="width:200px">some text</div>
+	</body>
+</html>
+```
+```js
+//вызов функции в window.onload, чтобы убедиться, что HTML загружен
+window.onload = function() {
+    var x = document.getElementById("demo");
+    x.style.color = 'white';
+    x.style.width = '100px';
+    x.style.backgroundColor = 'blue'
+};
+```
+
+Приведенный выше код изменяет **цвета текста**, **заливки** и **ширины** элемента `div`.
+
+Все свойства CSS можно устанавливать и изменять с помощью JavaScript. Просто помните, что вы не можете использовать дефисы (`-`) в названиях свойств: они заменяются версиями **camelCase**, где составные слова начинаются с заглавной буквы.
+
+Например, свойство `background-color` следует обозначать как `backgroundColor`.
+
+Пример: изменить цвет фона всех элементов span на странице.
+```js
+var s = document.
+    getElementsByTagName("span");
+for(var x=0; x<s.length;x++) {
+  s[x].style.backgroundColor = "#33EA73";
+}
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="add_del_elements"></a>
+## Добавление и удаление элементов
 
