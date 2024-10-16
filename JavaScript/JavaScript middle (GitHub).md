@@ -38,15 +38,13 @@
 #### [Выбор элементов](#elements_select)
 #### [Изменение элементов](#change_elements)
 #### [Добавление и удаление элементов](#add_del_elements)
-#### [ipsum](#lorem)
+#### [Создание анимаций](#criate_animation)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 
 
-<a name="add_del_elements"></a>
-## Добавление и удаление элементов
 
 
 <a name="obj"></a>
@@ -1935,4 +1933,146 @@ for(var x=0; x<s.length;x++) {
 
 <a name="add_del_elements"></a>
 ## Добавление и удаление элементов
+### Создание элементов
+Используйте следующие методы для создания новых узлов:
+- **element.cloneNode()** клонирует элемент и возвращает получившийся узел.
+- **document.createElement(element)** создает новый узел элемента. 
+- **document.createTextNode(text)** создает новый текстовый узел.
 
+Например:
+```js
+var node = document.createTextNode("Some new text");
+```
+
+Это создаст новый текстовый узел, но он не появится в документе, пока вы не добавите его к существующему элементу одним из следующих методов:
+- **element.appendChild(newNode)** добавляет новый дочерний узел к элементу в качестве последнего дочернего узла.
+- **element.insertBefore(node1, node2)** вставляет node1 как дочерний узел перед node2.
+
+Пример:
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Название страницы</title>
+    </head>
+    <body>
+        <div id="demo">некое содержимое</div>
+    </body>
+</html>
+```
+```js
+//вызов функции в window.onload, чтобы убедиться, что HTML загружен
+window.onload = function() {
+    //создание нового абзаца
+    var p = document.createElement("p");
+    var node = document.createTextNode("Какой-то новый текст");
+    //добавление текста в абзац
+    p.appendChild(node);
+
+    var div = document.getElementById("demo");
+    //добавление абзаца в div
+    div.appendChild(p);
+};
+```
+Это создает новый абзац и добавляет его к существующему элементу div на странице.
+
+Вывод браузера:
+>некое содержимое
+>
+>Какой-то новый текст
+
+Еще пример, как добавить новый элемент **&lt;li&gt;** в неупорядоченный список с **id="list"**.
+```js
+var el = document.createElement("li");
+var txt = document.createTextNode("B");
+el.appendChild(txt);
+var ul = document.getElementById("list");
+ul.appendChild(el);
+```
+
+### Удаление элементов
+Чтобы удалить элемент HTML, вы должны выбрать родителя элемента и использовать метод **removeChild(node)**.
+
+Например:
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        <div id="demo">
+            <p id="p1">This is a paragraph.</p>
+            <p id="p2">This is another paragraph.</p>
+        </div>
+    </body>
+</html>
+```
+```js
+//вызов функции в window.onload, чтобы убедиться, что HTML загружен
+window.onload = function() {
+    var parent = document.getElementById("demo");
+    var child = document.getElementById("p1");
+    parent.removeChild(child);
+};
+```
+
+Это удаляет абзац с **id="p1"** со страницы. Ответ браузера:
+> This is another paragraph.
+
+Альтернативный способ достижения того же результата - использование свойства **parentNode** для получения родителя элемента, который мы хотим удалить:
+```js
+var child = document.getElementById("p1");
+child.parentNode.removeChild(child);
+```
+Пример, как можно удалить элемент `node` со страницы (`par` является родительским элементом для `node`).
+```js
+var par = document.getElementById("par");
+var node = document.getElementById("node");
+par.removeChild(node);
+```
+
+### Замена элементов
+Чтобы заменить элемент HTML, используется метод:
+```js
+element.replaceChild(newNode, oldNode).
+```
+Например:
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        <div id="demo">
+            <p id="p1">Параграф</p>
+            <p id="p2">Другой параграф.</p>
+        </div>
+    </body>
+</html>
+```
+```js
+//включение функции в window.onload, чтобы убедиться, что HTML загружен
+window.onload = function() {
+    var p = document.createElement("p");
+    var node = document.createTextNode("Новый параграф");
+    p.appendChild(node);
+
+    var parent = document.getElementById("demo");
+    var child = document.getElementById("p1");
+    parent.replaceChild(p, child);
+};
+```
+Приведенный выше код создает новый элемент абзаца (Новый параграф), который заменяет существующий абзац **p1** (Параграф). Вывод в браузер:
+> Новый параграф
+>
+>Другой параграф.
+
+Еще раз: для замены узлов используется метод **replaceChild**.
+
+### [Назад к оглавлению](#back)
+
+
+<a name="criate_animation"></a>
+## Создание анимаций
