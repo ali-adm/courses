@@ -59,13 +59,12 @@
 ##### [Калькулятор суммы (практика)](#pract_11)
 #### [Продолжение Rest & Spread](#es6_rest_spread2)
 #### [ES6 Классы](#es6_class)
+##### [Средний балл экзамена (практика)](#pract_12)
+#### [Продолжение Классы в ES6](#es6_class2)
+#### [Map & Set](#map_&_set)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
-#### [ipsum](#lorem)
-#### [ipsum](#lorem)
-
-
 
 
 
@@ -3781,3 +3780,313 @@ console.log(all[3]);
 
 <a id="es6_class"></a>
 ### ES6 Классы
+
+В этом уроке мы объясним, как создать **class**, который можно использовать для создания нескольких объектов одной и той же структуры. 
+
+**Class** использует ключевое слово **class** и содержит метод **constructor** для инициализации.
+Например:
+```js
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+```
+
+Заявленный **класс** затем может быть использован для создания нескольких объектов с помощью ключевого слова **new**. Например:
+```js
+class Rectangle {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+  }
+}
+
+const square = new Rectangle(5, 5);
+const poster = new Rectangle(2, 3); 
+
+console.log(square.height); //5
+```
+
+> Объявления классов **не поднимаются**, в то время как объявления функций поднимаются. Если вы попытаетесь получить доступ к вашему классу до его объявления, будет возвращена **ReferenceError**.
+
+Вы также можете определить класс с помощью **классового выражения**, где класс может быть именованным или безымянным.
+
+**Именованный** класс выглядит так:
+```js
+var Square = class Rectangle {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+  }
+};
+
+const square = new Square(5, 5);
+const poster = new Square(2, 3); 
+
+console.log(square.height);
+```
+
+В выражении безымянного класса переменной просто присваивается определение класса:
+```js
+var Square = class {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+  }
+};
+
+const square = new Square(5, 5);
+const poster = new Square(2, 3); 
+
+console.log(square.height);
+```
+
+**Constructor** - это специальный метод, который используется для создания и инициализации объекта, созданного с помощью класса.
+
+В каждом классе может быть только **один** конструктор.
+
+Объявление класса **Point** с конструктором, инициализирующим его члены **x** и **y**.
+```js
+class Point {
+  constructor(a, b) {
+      this.x = a;
+      this.y = b;
+  }
+  getX() { return this.x; }
+  getY() { return this.y; }
+}
+```
+
+### Методы классов в ES6 
+ES6 вводит сокращенную запись, которая не требует ключевого слова `function` для **функции**, присвоенной имени метода. 
+
+Один из типов методов класса - это **метод прототипа**, доступный для объектов класса.
+
+Пример: 
+```js
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  
+  get area() {
+    return this.calcArea();
+  }
+
+  calcArea() {
+    return this.height * this.width;
+  }
+}
+
+const square = new Rectangle(5, 5);
+
+console.log(square.area); // 25
+```
+
+В приведенном выше коде, `area` - это **геттер**, `calcArea` - это **метод**.
+
+Другой тип метода - это **статический метод**, который не может быть вызван через экземпляр класса. Статические методы часто используются для создания вспомогательных функций для приложения.
+
+Например:
+```js
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+
+const p1 = new Point(7, 2);
+const p2 = new Point(3, 8);
+
+console.log(Point.distance(p1, p2));  //7.211102550927979
+```
+
+Как вы можете видеть, статический метод **distance** вызывается напрямую с использованием имени класса, без объекта.
+
+### [Назад к оглавлению](#back)
+
+
+<a id="pract_12"></a>
+### Средний балл экзамена (практика)
+ПРАКТИЧЕСКОЕ УПРАЖНЕНИЕ
+### Методы класса в ES6 
+Вы создаете программу, чтобы студенты могли рассчитать средний балл за 3 экзамена.
+
+Данная программа принимает в качестве входных данных оценки за 3 экзамена и объявляет класс **Exams**.
+
+Добавьте **статический метод** `average()` в класс **Exams**, который будет принимать оценки в качестве параметров, рассчитывать и возвращать средний балл **округленный до ближайшего целого**, чтобы код в `main` работал правильно.
+```js
+Пример ввода:
+74
+80
+68
+
+Пример вывода:
+74
+```
+
+> Вспомните функцию **Math.round()** для округления числа с плавающей точкой до ближайшего целого числа.
+
+```js
+function main() {
+    var exam1 = parseInt(readLine(), 10);
+    var exam2 = parseInt(readLine(), 10);
+    var exam3 = parseInt(readLine(), 10);
+    
+    console.log(Exams.average(exam1,exam2,exam3));
+    
+}
+class Exams{
+    //your code goes here
+    
+}
+```
+
+### Решение GPT-4o
+
+Для решения задачи нужно создать **статический метод** `average()` в классе `Exams`, который будет принимать три оценки, рассчитывать их среднее значение и округлять до ближайшего целого числа с помощью функции `Math.round()`.
+
+### Решение:
+
+```js
+function main() {
+    var exam1 = parseInt(readLine(), 10);
+    var exam2 = parseInt(readLine(), 10);
+    var exam3 = parseInt(readLine(), 10);
+    
+    console.log(Exams.average(exam1, exam2, exam3));
+}
+
+class Exams {
+    // Статический метод для вычисления среднего балла
+    static average(exam1, exam2, exam3) {
+        // Считаем среднее значение
+        let avg = (exam1 + exam2 + exam3) / 3;
+        // Округляем до ближайшего целого и возвращаем
+        return Math.round(avg);
+    }
+}
+```
+
+### Объяснение:
+1. **Статический метод `average()`**:
+   - Метод объявлен с использованием ключевого слова `static`, чтобы его можно было вызывать без создания экземпляра класса.
+   - Он принимает три оценки (`exam1`, `exam2`, `exam3`) в качестве параметров.
+   - Среднее значение рассчитывается с помощью формулы:  
+     ```js
+     (exam1 + exam2 + exam3) / 3;
+     ```
+   - Среднее значение округляется до ближайшего целого числа с помощью функции `Math.round()`.
+
+2. **Результат работы программы**:
+   - Например, если ввести оценки `74`, `80` и `68`, программа сначала вычислит среднее значение:  
+     ```js
+     (74 + 80 + 68) / 3 = 74
+     ```
+     Среднее округляется до `74`, и этот результат выводится на консоль.
+
+### [Назад к оглавлению](#back)
+
+
+<a id="es6_class2"></a>
+### Продолжение Классы в ES6
+
+Следующий код выведет - "Рекс лает."
+```js
+class Dog {
+  constructor(name) {    
+    this.name = name;
+  }
+  bark() {
+    console.log(this.name + ' лает.');
+  }
+}
+let d = new Dog('Рекс');
+d.bark();
+```
+
+### Наследование в ES6 
+Ключевое слово **extends** используется в объявлениях классов или выражениях классов для создания **потомка класса**. Потомок наследует свойства и методы родителя.
+
+Например:
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log(this.name + ' barks.');
+  }
+}
+let dog = new Dog('Rex');
+dog.speak(); // Rex barks.
+```
+
+В приведенном выше коде, класс **Dog** является дочерним классом класса **Animal**, наследуя его свойства и методы.
+
+> Если в подклассе присутствует конструктор, ему нужно сначала вызвать **super()** перед использованием **this**. Кроме того, ключевое слово **super** используется для вызова методов родительского класса.
+
+Например, мы можем изменить программу выше следующим образом:
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    super.speak(); // Super
+    console.log(this.name + ' barks.');
+  }
+}
+
+let dog = new Dog('Rex');
+dog.speak();
+// Rex makes a noise.
+// Rex barks.
+```
+
+В приведенном выше коде метод **speak()** родителя вызывается с использованием ключевого слова **super**.
+
+Следующий код объявляет класс **Student**, который наследует от класса **Human**:
+```js
+class Human {
+  constructor(name) {
+    this.name = name;
+  }
+}
+class Student extends Human {
+  constructor(name, age) {    
+    super(name);
+    this.age = age;
+  }
+}
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="map_&_set"></a>
+## ES6 Map & Set
+
