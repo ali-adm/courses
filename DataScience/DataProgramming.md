@@ -8,7 +8,7 @@
 #### [Текстовые данные](#text_data)
 #### [Числовые данные](#int_data)
 ##### [Сообщение об окончании игры (практика)](#pract_game_over)
-#### [ipsum](#lorem)
+#### [Работа с переменными](#variables_job)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
@@ -189,3 +189,23 @@ print(points)
 
 <a id="pract_game_over"></a>
 ## Сообщение об окончании игры (практика)
+ПРАКТИЧЕСКОЕ УПРАЖНЕНИЕ
+
+![Game_over!](https://lecontent.sololearn.com/material-images/0257989799504f33884ed90165bf1f4d-66cdfe973d7d4664b12b5a221c07c053-Game_Messages.png)
+
+Предоставленный фрагмент кода является частью прототипа видеоигры.
+
+Задача:
+
+Завершите код, чтобы отобразить сообщение **"Game over"** на экране.
+```python
+message = "Game over"
+print(message)
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="variables_job"></a>
+## Работа с переменными
+
