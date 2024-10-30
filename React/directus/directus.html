@@ -12,7 +12,7 @@
     <script>
       async function fetchPosts() {
         let response = await fetch(
-          "http://directus.tech.dns-electric.ru/items/posts?filter[status][_eq]=published"
+          "https://tech.dns-electric.ru/items/posts?filter[status][_eq]=published"
         );
         let data = await response.json();
 
