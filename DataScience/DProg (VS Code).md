@@ -47,6 +47,10 @@
 ##### [Медицинское программное обеспечение (практика)](#pract_med)
 ### [Работа с списками](#lists_operating)
 #### [Списки](#lists)
+#### [Индексирование](#index)
+##### [Игровой автомат (практика)](#pract_cartran)
+#### [Использование индексации](#index_use)
+#### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
@@ -55,6 +59,7 @@
 
 
 <a id=""></a>
+## 
 
 
 
@@ -2676,5 +2681,136 @@ animals = ["cat", "dog", "bird"]
 
 
 <a id="index"></a>
-# Индексирование
+## Индексирование
 
+- **списки изменяемы**, поэтому их можно изменять после их создания.
+
+Списки невероятно полезны в программировании! Они позволяют хранить несколько значений в одной переменной, делая ваш код более эффективным. В этом уроке вы узнаете, как работать с данными, хранящимися в списках.
+
+Значения в списке должны быть разделены запятыми. Вы можете обращаться к значениям в списке, используя их позицию (или индекс).
+```py
+animals = ["cat", "dog", "bird"]
+```
+
+Например, обратиться ко второму значению в списке "dog":
+```py
+animals[1]
+```
+
+- "cat": animals[0]
+- "dog": animals[1]
+- "bird": animals[2]
+
+Вы можете использовать print(), чтобы отобразить отдельные значения на экране.
+```py
+last_calls = ["Mom", "Dave", "Lawyer"]
+print(last_calls[0])
+print(last_calls[1])
+```
+```py
+OUTPUT
+Mom
+Dave
+```
+
+Например можно сохранить значение "dog" из списка "animals" в переменной с именем my_pet:
+```py
+animals = ["cat", "dog", "bird"]
+my_pet = animals[1]
+```
+
+Вывести в консоль Hannah:
+```py
+players = ['Tom', 'Hannah', 'Andrew']
+print(players[1])
+```
+
+Списки **изменяемы**. Это означает, что вы можете изменять их значения после их создания:
+```py
+nums = [8, 6, 19]
+nums[0] = 1
+nums[1] = 2
+nums[2] = 3
+print(nums)
+```
+```py
+OUTPUT
+[1, 2, 3]
+```
+
+Следующий код - выведет `lime`:
+```py
+products = ["apples", "oranges", "bananas"]
+products[2] =  "lime"
+print(products[2])
+```
+
+Вывести в консоль "chase your dreams":
+```py
+words = ["your ", "dreams", "chase "]
+print(words[2])
+print(words[0])
+print(words[1])
+```
+
+Вывести "sunrise":
+```py
+words = ["rise", "sun", "glasses"]
+print(words[1] + words[0])
+```
+
+Вывести "bookstore":
+```py
+words = ["shelf", "store", "book"]
+print(words[2] + words[1])
+
+Следующий код выведет "bananas":
+```py
+products = ["apples", "oranges", "bananas"]
+products[1] =  "lime"
+print(products[2])
+```
+
+Вывести сумму первого и третьего значений в списке:
+```py
+nums = [1, 5, 4, 8]
+print(nums[0] + nums[2])
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="pract_cartran"></a>
+## Игровой автомат (практика)
+
+ПРАКТИЧЕСКОЕ УПРАЖНЕНИЕ  
+На игровом автомате установлено 5 игр, представленных в этом списке:
+```py
+games = ['Soccer', 'Tic Tac Toe', 'Snake', 'Puzzle', 'Rally']
+```
+
+Код, который вы собираетесь увидеть, принимает число в качестве входных данных, которое указывает индекс выбора.
+
+Задача:  
+Завершите программу, чтобы вывести игру из списка, соответствующую этому индексу.
+
+![alt text](https://lecontent.sololearn.com/material-images/ed982b6597e3429ea1cd8a8e2a9fcfb5-52eccbc507aa4c6fbe67d6548a96fbeb-lesson24.png)
+
+```py
+# установленные игры
+games = [
+  'Soccer', 'Tic Tac Toe', 'Snake',
+  'Puzzle', 'Rally']
+
+# принимаем выбор игрока в виде числа
+choice = int(input())
+
+# вывод соответствующей игры
+print(games[choice])
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="index_use"></a>
+## Использование индексации
