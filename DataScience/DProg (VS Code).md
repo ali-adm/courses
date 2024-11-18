@@ -2825,3 +2825,41 @@ games = ["Snake", "Puzzle", "Shooter"]
 games[1] = "Race"
 ```
 
+Вы можете создать список со значениями, которые были сохранены в переменных:
+```py
+name = "Sarah"
+age = 34
+country = "Germany"
+info = [name, age, country]
+print(info[0])
+print(info[1])
+print(info[2])
+```
+```py
+OUTPUT
+Sarah
+34
+Germany
+```
+
+Или вот такой код: 
+```py
+name = "Lee"
+country = "France"
+user_info = [name, country]
+```
+
+Вывести "name" пользователя
+```py
+print(user_info[0])
+```
+
+Приведенный ниже код является частью программы для торгового автомата. Что выведет код?
+```py
+products = ["juice", "chocolate", "water"]
+user_choice = 1
+print(products[user_choice])
+```
+- [ ] juice
+- [ ] choice
+- [x] chocolate
