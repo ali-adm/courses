@@ -65,14 +65,17 @@
 ##### [Стоимость доставки (практика)](#pract_delivery)
 #### [Больше о пользовательских функциях](#func_more)
 #### [Контрольные вопросы к модулю 10](#exam_10)
+### [Начало работы](#lets_begin)
+#### [Работа с данными](#data_op)
+#### [ipsum](#lorem)
+#### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 
 
-<a id=""></a>
-## 
+
 
 
 ### [Назад к оглавлению](#back)
@@ -4294,4 +4297,148 @@ return area, perimeter
 
 <a id="exam_10"></a>
 ## Контрольные вопросы к модулю 10
+
+1. Функцию можно вызвать…
+
+- [x] несколько раз
+- [ ] только один раз
+
+2. Выберите количество аргументов, передаваемых встроенной функции
+```py
+print("Score", 98)
+```
+- [ ] 1
+- [x] 2
+- [ ] 0
+
+3. Сопоставьте аргумент с его типом данных
+```py
+print("Price", 44.99)
+```
+- "Price": `Строка`
+- 44.99: `Число с плавающей точкой`
+
+4. Завершите код, чтобы на экране отобразился "AUDI Q5"
+```py
+brand = "Audi"
+model = "Q5"
+print(brand, model)
+```
+
+5. Завершите код, чтобы вывести на экран "CNN"
+```py
+channel = "cnn"
+print(channel.upper)
+```
+
+6. Что выведет этот код?
+```py
+word = 'motorbike'
+print(word.find('r'))
+```
+- [ ] 6
+- [ ] Ошибка
+- [x] 4
+- [ ] 2
+
+7. Что выведет код?
+```py
+book = "1984"
+print(len(book))
+```
+- [ ] 1984
+- [ ] 3
+- [x] 4
+
+8. Что выведет этот код?
+```py
+movies=["Avatar","Titanic","Alien"]
+movies.append("Avengers")
+movies.insert(2, "Terminator")
+print(movies[3])
+```
+- [ ] Avengers
+- [x] Alien
+- [ ] Titanic
+
+9. Завершите код для определения функции, которая принимает **price** и **discount** в качестве аргументов и возвращает сумму со скидкой
+```py
+ def discounted(price, discount):
+  return price * (1 - discount / 100)
+```
+
+10. Завершите код для определения функции, которая принимает **income** и **rate** налога в качестве аргументов для расчета и возврата налога для сотрудника
+```py
+def tax(income, rate):
+  return income * rate/100
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="lets_begin"></a>
+# Начало работы
+
+<a id="data_op"></a>
+## Работа с данными
+
+![alt text](https://lecontent.sololearn.com/material-images/5352c1fa1d694df980204c558e4a31b5-sql1.png)
+
+Готовы к следующему шагу? В этой части курса вы научитесь использовать **SQL** для работы с данными.
+
+Давайте использовать SQL-код для доступа к информации о фильмах.
+
+![alt text](https://lecontent.sololearn.com/material-images/214ad4f3fffd43b9b7d4706bcf58f545-ISQL1.1.03.png)
+```sql
+SELECT year
+FROM movies
+```
+
+Мы используем SQL-код для доступа к данным.
+```sql
+SELECT title
+FROM movies
+```
+
+![alt text](https://lecontent.sololearn.com/material-images/0e2a835c8cf845438b05f9bdb2b286ad-sql3.png)
+
+Данные находятся в **базах данных**. Практически каждая компания и организация полагаются на какую-либо форму базы данных для хранения и организации информации.
+
+![alt text](https://lecontent.sololearn.com/material-images/4412b72fc9f744fca6fbe1e70bdee82d-sql4.png)
+
+ **SQL** позволит вам взаимодействовать с данными, хранящимися в базе данных.
+
+ **SQL-код** используется для отправки запросов к базе данных. Эти запросы называются **запросами**(`queries`).
+
+Вот как выгляит запрос для извлечения `year` выпуска из таблицы `movies`.
+```sql
+SELECT year
+FROM movies
+```
+![alt text](https://lecontent.sololearn.com/material-images/8a1aa66040d74383b466acd6a9da49f5-1.01.07.png)
+
+Большинство баз данных собирают данные в **таблицы**. Таблицы организуют данные в `records` (**записи**) и `fields` (**поля**).
+- Строки - **записи** (`records`)
+- Столбцы - **поля** (`fields`)
+
+![alt text](https://lecontent.sololearn.com/material-images/d84524eb5f8a4f568ec5989ab765f53a-ISQL1.01.03.png)
+
+`record` (**строка**) содержит информацию о субъекте, таком как конкретный сотрудник, клиент или продукт, например фильм.
+
+Таблица на изображении содержит пять  **строк** - `records`.
+
+`field` (**столбец**) содержит информацию о субъектах, таких как имя, электронная почта или год выпуска продукта.
+
+![alt text](https://lecontent.sololearn.com/material-images/2c0a1e9c97cf4bd99ab763d8247d4066-SQL1.01.09.png)
+
+Таблица на изображении, содержит три  `столбцов` `fields`.
+
+Строка `header` - это верхняя строка таблицы и содержит названия разных полей (столбцов).
+
+![alt text](https://lecontent.sololearn.com/material-images/0b6610151ac8480caa7a1b285839ffb5-1.01.10.png)
+
+`header` содержит:
+```sql
+id, title and year
+```
 
