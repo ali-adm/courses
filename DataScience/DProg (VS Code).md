@@ -67,7 +67,7 @@
 #### [Контрольные вопросы к модулю 10](#exam_10)
 ### [Начало работы](#lets_begin)
 #### [Работа с данными](#data_op)
-#### [ipsum](#lorem)
+#### [Выполнение Queries запросов](#pract_queries)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
@@ -75,7 +75,8 @@
 #### [ipsum](#lorem)
 
 
-
+<a id=""></a>
+## 
 
 
 ### [Назад к оглавлению](#back)
@@ -4382,6 +4383,9 @@ def tax(income, rate):
 <a id="data_op"></a>
 ## Работа с данными
 
+- **SQL** позволяет вам работать с данными, хранящимися в базе данных
+- Запрос `SELECT` используется для получения данных из таблицы.
+
 ![alt text](https://lecontent.sololearn.com/material-images/5352c1fa1d694df980204c558e4a31b5-sql1.png)
 
 Готовы к следующему шагу? В этой части курса вы научитесь использовать **SQL** для работы с данными.
@@ -4437,8 +4441,18 @@ FROM movies
 
 ![alt text](https://lecontent.sololearn.com/material-images/0b6610151ac8480caa7a1b285839ffb5-1.01.10.png)
 
-`header` содержит:
+`header` на изображении выше содержит `id, title и year`.
+
+Команда `SELECT` используется для извлечения данных поля из таблицы.
+
 ```sql
-id, title and year
+SELECT title
+FROM movies
 ```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="pract_queries"></a>
+## Выполнение Queries запросов
 
