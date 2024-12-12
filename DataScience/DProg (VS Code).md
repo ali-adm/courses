@@ -87,7 +87,7 @@
 #### [Поиск по шаблону](#pattern_search)
 ##### [Шоколад! (практика)](#pract_chocolad)
 #### [Расширенное сопоставление шаблонов](#advanced_matching)
-#### [ipsum](#lorem)
+#### [Условия в SQL](#terms_sql)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
@@ -5808,4 +5808,163 @@ WHERE name LIKE '%chocolate%'
 
 <a id="advanced_matching"></a>
 ## Расширенное сопоставление шаблонов
+
+- символ **подстановки подчеркивания** `_` представляет любой одиночный символ в шаблоне
+- Вы можете использовать команды `UPPER()` и `LOWER()` для выполнения поиска **шаблонов без учета регистра**
+
+В этом уроке вы узнаете различные техники, которые помогут улучшить ваши навыки сопоставления шаблонов и сделать ваши запросы более эффективными.
+
+Какая строка соответствует шаблону `'%marketing'`?
+- [ ] Marketing 101
+- [x] Digital marketing
+
+Запрос для извлечения твитов, содержащих хэштег `'#DigitalMarketing'`:
+```sql
+SELECT *
+FROM tweets
+WHERE content
+LIKE '%#DigitalMarketing%'
+```
+
+Какие из следующих названий отелей соответствуют шаблону `'A%S%'`?
+- [x] Alpine Summit Lodge
+- [ ] Aqua Coral Inn
+- [ ] Amber Bay Resort
+
+Какие продукты будут извлечены?
+```sql
+SELECT * 
+FROM products 
+WHERE product_code LIKE 'A%B%'
+```
+- [x] A154B
+- [x] A7B5
+- [ ] BA14
+
+**Символ подчеркивания** `_` является еще одним символом подстановки и представляет только один символ.
+
+Какой код продукта соответствует шаблону `'A_B8'`?
+- [ ] A8B5
+- [ ] A15B8
+- [ ] AB8
+- [x] A4B8
+
+Какие коды продуктов соответствуют шаблону `'A_B_'`?
+- [x] A4B8
+- [ ] A154B
+- [x] A7B5
+
+**Символы подстановки**, такие как `%` и `_`, используются для поиска шаблонов в строках с помощью команд…
+- [ ] WHEN … AS
+- [x] WHERE … LIKE
+
+Таким образом **символы подстановки** используются при:
+- любом количестве символов - `%`
+- один одиночный символ - `_`
+
+Найдите номер автомобильной номерной пластины, соответствующий шаблону `'F5_1%'`:
+- [ ] CF5619
+- [ ] F5B217
+- [x] F5A123
+
+Выберите шаблон, который соответствует обоим промокодам `'SAVEMORE'` и `'HOLIDAYSAVE30'`:
+- [ ] '%save%'
+- [ ] 'SAVE%'
+- [x] '%SAVE%'
+
+Вы можете включать несколько запросов в свой SQL-код. Просто разделите их **точкой с запятой** (`;`):
+```sql
+SELECT name, code
+FROM products;
+
+SELECT name
+FROM products
+WHERE code LIKE 'A_B_';
+```
+**OUTPUT**  
+CREATE TABLE  
+INSERT 0 3
+|name	|code
+|-----|----
+|pen	|A154B
+|eraser	|A8B5
+|notepad	|A4B8
+(3 rows)
+
+|name |
+|---- |
+|eraser |
+|notepad |
+(2 rows)
+
+Шаблоны чувствительны к регистру. Команды **LOWER()** и **UPPER()** используются для преобразования строк в нижний или верхний регистр.
+```sql
+/*
+Преобразует строки в поле 
+названия в нижний регистр
+*/
+SELECT LOWER(title)
+FROM movies;
+
+/*
+Преобразует строки в поле 
+названия в верхний регистр
+*/
+SELECT UPPER(title)
+FROM movies;
+```
+```sql
+OUTPUT
+CREATE TABLE
+INSERT 0 5
+
+lower
+home alone
+star wars
+jurassic park
+frozen
+pirates of the caribbean
+(5 rows)
+
+upper
+HOME ALONE
+STAR WARS
+JURASSIC PARK
+FROZEN
+PIRATES OF THE CARIBBEAN
+(5 rows)
+```
+
+Запрос для извлечения всех имен сотрудников в нижнем регистре:
+```sql
+SELECT LOWER (name)
+FROM employees
+```
+
+Используйте `LOWER()` (или `UPPER()`) с `LIKE` в команде `WHERE` для поиска шаблонов **без учета регистра**:
+```sql
+SELECT title
+FROM books
+WHERE LOWER(title) LIKE '%cooking%'
+```
+
+Запрос выше выполняет поиск шаблона без учета регистра и создает таблицу результатов с названиями книг **неизмененными**.
+
+Символы в вашем шаблоне должны соответствовать вашей операции.
+```sql
+SELECT name
+FROM employees
+WHERE UPPER(name) LIKE 'DAN%'
+```
+```sql
+SELECT title
+FROM books
+WHERE LOWER(title) LIKE '%robots%'
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="terms_sql"></a>
+## Условия в SQL
 
