@@ -6146,3 +6146,4 @@ WHERE price_per_day <= 100;
 
 <a id="data_agregation"></a>
 ## Агрегация данных
+
