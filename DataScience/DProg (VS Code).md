@@ -92,6 +92,9 @@
 #### [Агрегация данных](#data_agregation)
 #### [Смешиваем все вместе](#data_mixing)
 #### [Контрольные вопросы к модулю 3 ](#exam_3)
+### [Анализ данных](#data_analysis)
+#### [Анализ данных](#data_analysis1)
+#### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
@@ -100,7 +103,7 @@
 
 
 <a id=""></a>
-## 
+# 
 
 
 ### [Назад к оглавлению](#back)
@@ -6408,3 +6411,111 @@ FROM sales;
 
 <a id="exam_3"></a>
 ## Контрольные вопросы к модулю 3
+
+1. Сопоставьте операции сравнения с их результатами
+- 5=5: True
+- 5<>5: False
+
+2.  
+![alt text](https://lecontent.sololearn.com/material-images/7c8a39fda276433b8521222ed5ca2c88-3.modulequiz.png)
+
+```sql
+SELECT *
+FROM products
+WHERE price <= 40;
+```
+
+Какой продукт не будет извлечен?
+- [x] Skirt
+- [ ] Hoodie
+
+3.  
+```sql
+SELECT *
+FROM employee
+WHERE salary > 5000;
+```
+Что извлечет этот код?
+- [ ] сотрудники, зарплата которых не равна 5000
+- [x] сотрудники, зарплата которых больше 5000
+- [ ] сотрудники, зарплата которых равна 5000
+
+4. Извлеките записи о доставке, где город не является `'London'`
+```sql
+SELECT *
+FROM delivery
+WHERE city <> 'London';
+```
+
+5. 
+```sql 
+SELECT title, author
+FROM articles
+WHERE title 
+LIKE '%Artificial Intelligence%'
+```
+Что извлекает запрос?
+- [ ] Статьи, написанные «Artificial Intelligence»
+- [x] Статьи с «Artificial Intelligence» в названии
+
+6. Каков результат этого кода?
+```sql
+SELECT LOWER(category)
+FROM products;
+```
+- [ ] Инициалы для значений категории в нижнем регистре
+- [ ] Значения категории в верхнем регистре
+- [x] Значения категории в нижнем регистре
+
+7.  
+![alt text](https://lecontent.sololearn.com/material-images/700fff2096db4e0d80e23dd2fb1ce6ef-3.modulequizlp7.png)
+
+Какой шаблон соответствует 3 промо-кодам
+- [x] LOWER(code) LIKE '%save%'
+- [ ] UPPER(code) LIKE '%save%'
+
+8. Какие записи о книгах соответствуют шаблону `'The%King_'`?
+
+- [ ] The Patient King3B
+- [x] The Warrior King2
+- [x] The Warrior King1
+- [ ] The Silent King
+
+9. Завершите запрос для извлечения всех сотрудников в отделе маркетинга:
+```sql
+SELECT *
+FROM employees
+WHERE department = 'Marketing'
+```
+
+10. Введите подстановочный символ, который используется с `LIKE` рядом с объяснением
+- Представляет любой одиночный символ: `_`
+- Представляет любое количество символов: `%`
+
+11. Рассчитайте средний возраст сотрудников, работающих в компании более пяти лет
+```sql
+SELECT AVG(age)
+FROM employees
+WHERE experience > 5
+```
+
+12. Найдите самую высокую зарплату в отделе 'Engineering'
+```sql
+SELECT MAX(salary)
+FROM employees
+WHERE department = 'Engineering'
+```
+
+13. Как разделить несколько запросов в одном SQL-коде?
+- [x] точкой с запятой
+- [ ] запятыми
+- [ ] круглыми скобками
+
+### [Назад к оглавлению](#back)
+
+
+<a id="data_analysis"></a>
+# Анализ данных
+
+<a id="data_analysis1"></a>
+## Анализ данных
