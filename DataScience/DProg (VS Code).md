@@ -94,6 +94,10 @@
 #### [Контрольные вопросы к модулю 3 ](#exam_3)
 ### [Анализ данных](#data_analysis)
 #### [Анализ данных](#data_analysis1)
+#### [Группировка](#data_group)
+##### [Посты в социальных сетях (практика)](#pract_posting)
+#### [Группировка и фильтрация](#group_filter)
+#### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
@@ -103,7 +107,7 @@
 
 
 <a id=""></a>
-# 
+## 
 
 
 ### [Назад к оглавлению](#back)
@@ -6646,5 +6650,177 @@ FROM class
 ### [Назад к оглавлению](#back)
 
 
-<a id="data_analysis"></a>
+<a id="data_group"></a>
 ## Группировка
+
+- **GROUP BY** организует данные по **категориям**
+- **GROUP BY** часто используется в сочетании с **агрегацией**
+
+**Группировка данных** - это мощный инструмент при работе с большими наборами данных. Группировка позволяет собирать и просматривать данные по-новому, чтобы ответить на более сложные вопросы. На этом уроке вы узнаете, как группировать информацию, чтобы видеть закономерности и взаимосвязи.
+
+Группировка часто используется в сочетании с агрегацией. Давайте разомнемся! Следуюищий запрос агрегации приведет к одному числовому значению:
+```sql
+SELECT MAX(price)
+FROM products
+```
+
+Или, например, запрос, извлекающий средний `rating` для `products`:
+```sql
+SELECT AVG(rating)
+FROM products
+```
+
+![alt text](https://lecontent.sololearn.com/material-images/a98e40130a884fe081ec92aaadebb00a-sql4.02.04.png)
+
+**GROUP BY** позволяет организовать похожие данные в категории. Он используется в сочетании с агрегацией для вычисления ключевых показателей для группы записей. Для группировки данных требуется хотя бы одно поле. Данные в этой таблице результатов сгруппированы по **жанру**:
+```sql
+/* Группирует записи по жанру и 
+вычисляет средний бюджет для каждой группы */
+SELECT genre, AVG(budget)
+FROM movies
+GROUP BY genre;
+```
+
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5
+|genre	|avg
+|-----|-----
+|drama	|127.5000000000000000
+|fantasy	|124.0000000000000000
+|comedy	|18.0000000000000000
+(3 rows)
+
+Группировка данных позволяет нам отвечать на вопросы.
+
+![alt text](https://lecontent.sololearn.com/material-images/454a35f58b48476cb89f9262d2009460-Frame27145.png)
+
+Еще пример SQL-запрос для вычисления суммы бюджетов для разных жанров фильмов:
+```sql
+SELECT genre, SUM(budget)
+FROM movies
+GROUP BY genre;
+```
+
+![alt text](https://lecontent.sololearn.com/material-images/5b119f2abc9b4bfab038c002ccaab73b-SQL4.02.07.png)
+
+Запрос для вычисления общего количества каждого продукта:
+```sql
+SELECT product_id, SUM(quantity)
+FROM orders
+GROUP BY product_id
+```
+
+Запрос для подсчета продуктов в каждой группе категорий:
+```sql
+SELECT category, COUNT(product)
+FROM products
+GROUP BY category;
+```
+
+Запрос для вычисления средней зарплаты по отделам:
+```sql
+SELECT department, AVG(salary)
+FROM employees
+GROUP BY department
+```
+
+Запрос для вычисления наименьшего бюджета фильма для каждого жанра:
+```sql
+SELECT genre, MIN(budget)
+FROM movies
+GROUP BY genre;
+```
+
+![alt text](https://lecontent.sololearn.com/material-images/abe1c385bda845afa0d36e333ec39416-Frame27201.png)
+
+```sql
+SELECT genre, AVG(budget)
+FROM movies
+GROUP BY genre;
+```
+
+На основе таблицы фильмов выше, сколько средних значений будет вычислено этим запросом?
+- [x] 3
+- [ ] 1
+
+![alt text](https://lecontent.sololearn.com/material-images/8b559cba45ed4fb98a73d302007ce80d-SQL4.02.12.png)
+
+Этот запрос сгенерирует таблицу результатов с…
+- [x] 2 категориями и 2 числовыми значениями
+- [ ] 3 категориями и 3 числовыми значениями
+- [ ] 1 категорией и 2 числовыми значениями
+
+![alt text](https://lecontent.sololearn.com/material-images/936c4d14605940a687b846a28865ca77-SQL4.02.13.png)
+
+Если запрос группировки данных не сформулирован правильно, это может привести к ошибкам или к данным, которые не имеют смысла.  
+Можете ли вы исправить код, чтобы включить группу в таблицу результатов?
+```sql
+SELECT title, AVG(budget)
+FROM movies
+GROUP BY title;
+```
+
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|title	|avg
+|----|----
+|Titanic	|200.0000000000000000
+|Avatar	|237.0000000000000000
+|Forrest Gump	|55.0000000000000000
+|Home Alone	|18.0000000000000000
+|Star Wars	|11.0000000000000000
+(5 rows)
+
+Помните, что вы можете использовать ключевое слово **AS**, чтобы дать имя полям в таблице результатов:
+```sql
+SELECT genre, AVG(budget) AS avg_budget
+FROM movies
+GROUP BY genre;
+```
+
+**GROUP BY** помещает данные с одинаковыми значениями в одну категорию. Данные в одной группе имеют одно и то же значение для...
+- [ ] записи (строки)
+- [x] поля (столбца)
+
+GROUP BY чаще всего используется в сочетании с...
+- [ ] LIMIT
+- [ ] OFFSET
+- [x] агрегацией
+
+Запрос для вычисления количества для каждой категории:
+```sql
+SELECT category, SUM(quantity)
+FROM sales
+GROUP BY category;
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="pract_posting"></a>
+## Посты в социальных сетях (практика)
+
+ПРАКТИЧЕСКОЕ УПРАЖНЕНИЕ  
+Социальная платформа хочет проанализировать вовлеченность и предпочтения пользователей, группируя и подсчитывая реакции на посты (`“likes”`). Дана следующая таблица `posts`:
+
+![alt text](https://lecontent.sololearn.com/material-images/ce0244823b7247839f57d42263dd2d64-190a8cc04f4e4e078f999a649e8bcc6f-grouping2.png)
+
+Напишите запрос для извлечения суммы `likes` для каждой темы.
+```sql
+/*
+таблицa: posts
+извлечь сумму likes для каждой темы
+*/
+SELECT topic, SUM(likes)
+FROM posts
+GROUP BY topic
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="group_filter"></a>
+## Группировка и фильтрация
+
