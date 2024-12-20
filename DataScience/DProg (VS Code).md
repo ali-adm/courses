@@ -97,7 +97,7 @@
 #### [Группировка](#data_group)
 ##### [Посты в социальных сетях (практика)](#pract_posting)
 #### [Группировка и фильтрация](#group_filter)
-#### [ipsum](#lorem)
+#### [Очистка данных](#data_clear)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
@@ -6823,4 +6823,161 @@ GROUP BY topic
 
 <a id="group_filter"></a>
 ## Группировка и фильтрация
+
+- Вы можете **объединить** `WHERE` с `GROUP BY`, чтобы **сначала отфильтровать** данные, а **затем сгруппировать** их
+- Вы можете использовать `HAVING` для **сначала группировки** данных, а **затем фильтрации**
+
+В этом уроке вы узнаете, как объединить группировку и фильтрацию в одном запросе! Это позволит вам принимать более обоснованные решения на основе ваших данных.
+
+Запрос для вычисления средней цены по категориям:
+```sql
+SELECT category, AVG(price)
+FROM products
+GROUP BY category;
+```
+
+Запрос для извлечения имен и зарплат сотрудников в отделе `"IT"`:
+```sql
+SELECT name, salary
+FROM employees
+WHERE department = "IT";
+```
+
+![alt text](https://lecontent.sololearn.com/material-images/c142abf6ac07419fa752acf9e1d3fbaf-SQL4.03.04.png)
+
+Вы можете **объединить** `GROUP BY` с фильтрами `WHERE`. Данные **сначала фильтруются**, а **затем группируются**.
+```sql
+SELECT genre, AVG(budget)
+FROM movies
+WHERE budget > 50
+GROUP BY genre;
+```
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|genre	|avg
+|-----|----
+|fantasy	|237.0000000000000000
+|drama	|127.5000000000000000
+(2 rows)
+
+Запрос для **фильтрации**, **группировки** и **агрегации** данных:
+```sql
+SELECT category, AVG(price)
+FROM products
+WHERE rating >= 4
+GROUP BY category;
+```
+
+Запрос для извлечения максимальной `price` для каждого типа `product`, проданного в `New York`:
+```sql
+SELECT product, MAX(price)
+FROM sales
+WHERE city = "New York"
+GROUP BY product;
+```
+
+Запрос для подсчета количества сотрудников в каждом отделе с зарплатой выше 5000:
+```sql
+SELECT department, COUNT(*)
+FROM employees
+WHERE salary > 5000
+GROUP BY department;
+```
+
+Когда запрос **содержит** и `WHERE`, и `GROUP BY` - данные **сначала фильтруются**, а **затем группируются**.
+
+![alt text](https://lecontent.sololearn.com/material-images/7e96ad98171e4490a190763dd89d279f-SQL4.03.09.png)
+
+**HAVING** позволяет фильтровать данные, которые были сгруппированы:
+```sql
+SELECT genre, AVG(budget)
+FROM movies
+GROUP BY genre
+HAVING AVG(budget) > 50;
+```
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|genre	|avg
+|----- |---
+|drama	|127.5000000000000000
+|fantasy	|124.0000000000000000
+(2 rows)
+
+Код для сначала группировки, а затем фильтрации:
+```sql
+SELECT class, AVG(score)
+FROM students
+GROUP BY class
+HAVING AVG(score) > 85;
+```
+
+Запрос для определения авторов, которые опубликовали более трех книг:
+```sql
+SELECT author, COUNT(*)
+FROM books
+GROUP BY author
+HAVING COUNT(*) > 3;
+```
+
+![alt text](https://lecontent.sololearn.com/material-images/2dcc13c8e0424cb992ab70945b6c99c4-SQL4.03.12.png)
+
+Этот запрос приведет к таблице с... 
+- [ ] 5 строками
+- [x] 3 строками
+- [ ] 2 строками
+
+![alt text](https://lecontent.sololearn.com/material-images/1cd2c1db411c4156863a8b8a54039564-SQL4.03.13.png)
+
+Этот запрос приведет к таблице с...
+- [ ] 3 строками
+- [x] 2 строками
+- [ ] 5 строками
+
+Выберите значения, которые будут извлечены с помощью этого запроса:
+- [x] 7500
+- [x] 7000
+- [ ] 4500
+
+Когда запрос содержит и `GROUP BY`, и `HAVING`...
+- [x] данные сначала группируются, а затем фильтруются
+- [ ] данные сначала фильтруются, а затем группируются
+
+Запрос для вычисления средней зарплаты по отделам:
+```sql
+SELECT department, AVG(salary)
+FROM employees
+GROUP BY department;
+```
+
+Запрос для исключения сотрудников с зарплатой ниже 5000, затем вычисление средней зарплаты по отделам:
+```sql
+SELECT department, AVG(salary)
+FROM employees
+WHERE salary >= 5000
+GROUP BY department;
+```
+
+Запрос для - сначала вычисления средней зарплаты по отделам, а затем показа отделов со средней зарплатой больше 5000:
+```sql
+SELECT department, AVG(salary)
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 5000;
+```
+
+Запрос для поиска месяца в 2022 году с наибольшим доходом:
+```sql
+SELECT month, MAX(revenue)
+FROM revenues
+WHERE year = 2022
+GROUP BY month;
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="data_clear"></a>
+## Очистка данных
 
