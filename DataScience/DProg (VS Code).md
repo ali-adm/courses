@@ -98,8 +98,8 @@
 ##### [Посты в социальных сетях (практика)](#pract_posting)
 #### [Группировка и фильтрация](#group_filter)
 #### [Очистка данных](#data_clear)
-#### [ipsum](#lorem)
-#### [ipsum](#lorem)
+##### [Данные о преподавателях (практика)](#pract_teachers)
+#### [Исправление типов данных](#data_fixing)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
 #### [ipsum](#lorem)
@@ -6980,4 +6980,239 @@ GROUP BY month;
 
 <a id="data_clear"></a>
 ## Очистка данных
+
+- Проблемы с качеством данных могут повлиять на точность анализа данных
+- Вы можете использовать **DISTINCT** для устранения дублирования данных
+- **NULL** означает отсутствие значений данных
+
+![alt text](https://lecontent.sololearn.com/material-images/f731e4e2686242f09e05687eaaca83bc-Frame27154(1).png)
+
+Сырые данные могут содержать проблемы с качеством.
+
+**Очистка данных** является ключевым этапом процесса анализа данных. В этом уроке вы узнаете, как исправлять ошибки в собранных данных.
+
+![alt text](https://lecontent.sololearn.com/material-images/fc7f86438d104696bef2dd47b45ac432-4.04.02.png)
+
+Данные могут содержать проблемы с качеством.
+
+Какую проблему вы видите в данной таблице?
+- [ ] отсутствующие значения
+- [x] дублированные данные
+
+**Дублированные данные** - это очень распространенная проблема. Это означает наличие дополнительных копий одних и тех же данных.
+
+Включение дублированных данных в расчеты и анализ может привести к **некорректным данным для анализа**.
+
+![alt text](https://lecontent.sololearn.com/material-images/90ca0f4275644d8a89ee72f9b336d7b4-Frame27175(1).png)
+
+Дублирование данных приведет к тому, что этот SQL-запрос вычислит...
+- [ ] правильное количество сотрудников
+- [x] неверное количество сотрудников
+- [ ] правильный средний возраст
+
+Вы можете использовать **GROUP BY** в сочетании с **HAVING** для проверки дубликатов в данных. Выполните код, чтобы проверить дублированные значения `id`:
+```sql
+-- проверка дубликатов id
+SELECT id, COUNT(id)
+FROM employees
+GROUP BY id
+HAVING COUNT(id) > 1;
+```
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|id	|count
+|--|-----
+|4	|2
+(1 row)
+
+
+![alt text](https://lecontent.sololearn.com/material-images/d5d2f82b38094220b5dd5ded23a38d3b-Frame27179(4).png)
+
+Запрос для проверки дублированных `title`:
+```sql
+SELECT title, COUNT(title)
+FROM movies
+GROUP BY title
+HAVING COUNT(title) > 1;
+```
+
+![alt text](https://lecontent.sololearn.com/material-images/147b726eb2e24ec9af45eb1f0339b71e-4.04.02.png)
+
+Вы можете объединить группировку по нескольким полям, чтобы проверить дублирование данных по нескольким полям одновременно.
+```sql
+/* проверка сочетания
+дубликатов id и имени */
+SELECT id, name
+FROM employees
+GROUP BY id, name
+HAVING COUNT(id) > 1;
+```
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|id	|name
+|--|---
+|4	|Alice Williams
+(1 row)
+
+Запрос для проверки дублированных значений в полях `id` и `title`:
+```sql
+SELECT id, title
+FROM movies
+GROUP BY id, title
+HAVING COUNT(id) > 1;
+```
+
+Вы можете группировать данные по нескольким полям, разделяя их запятой. Вы можете использовать это для проверки дублирования данных по нескольким полям одновременно.
+```sql
+SELECT *
+FROM employees
+GROUP BY id, name, department, age
+HAVING Count(name) > 1;
+```
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|id	|name	|department	|age
+|--|-------|-----------|---
+|4	|Alice Williams	|Management	|19
+(1 row)
+
+![alt text](https://lecontent.sololearn.com/material-images/a50d6ec3b146419da62a73f85a7a66f2-4.04.02.png)
+
+Дублированные данные могут значительно влиять на качество и точность анализа. Используйте **DISTINCT** для извлечения уникальных значений и устранения дубликатов.
+```sql
+/* DISTINCT используется перед
+полем, которое мы хотим извлечь */
+SELECT DISTINCT name
+FROM employees;
+```
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|name 
+|---
+|Alice Williams 
+|John Doe 
+|Bob Johnson 
+|Jane Smith 
+(4 rows)
+
+Запрос для извлечения уникальных `movie genres`:
+```sql
+SELECT DISTINCT genre
+FROM movies
+```
+
+![alt text](https://lecontent.sololearn.com/material-images/5250c529289142b09e91715f43252e48-4.04.12.png)
+
+Этот запрос создаст таблицу результатов с...
+- [ ] 4 строками
+- [x] 3 строками
+
+Вы можете объединить **DISTINCT** с фильтрацией.
+```sql
+SELECT DISTINCT genre
+FROM movies
+WHERE year > 1990;
+```
+
+![alt text](https://lecontent.sololearn.com/material-images/5896071cc1344be9ae4135ecb806f41a-Frame27090(4).png)
+
+Проблемы с качеством данных могут быть результатом несчастных случаев при сборе данных и вводе данных.
+
+Еще одна распространенная проблема с качеством данных, которую мы можем увидеть на изображении, это **отсутствующие данные**.
+
+![alt text](https://lecontent.sololearn.com/material-images/477447c15303421ea2af63527c8d28cc-Frame7161(2).png)
+
+**NULL** используется для указания, что **значение данных отсутствует** и его нет в базе данных. Значения `NULL` не отображаются в результатах таблиц.
+```sql
+SELECT *
+FROM movies
+```
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|id	|title	|budget |genre
+|---|----|------|---
+|1	|Home Alone	|18	 |
+|2	|Star Wars	|11	|fantasy
+|3	|Titanic	|200	 |
+|4	|Avatar	|237	|fantasy
+|5	|Forrest Gump	|55	 
+(5 rows)
+
+
+**NULL** означает, что...
+- [ ] значение данных равно нулю
+- [x] значение данных не существует
+- [ ] значение данных - это символ пробела
+
+Вы можете проверить, содержит ли ваше поле отсутствующие значения. Используйте `IS NULL` в сочетании с `WHERE` для поиска отсутствующих значений.
+```sql
+SELECT * 
+FROM movies 
+WHERE genre IS NULL
+```
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|id	|title	|budget	|genre
+|--|-----|------|----
+|1	|Home Alone	|18 |	 
+|3	|Titanic	|200	| 
+|5	|Forrest Gump	|55	| 
+(3 rows)
+
+Запрос для выявления пользователей с отсутствующими данными о прогрессе:
+```sql
+SELECT name
+FROM users
+WHERE progress IS NULL
+```
+
+Аналогично вы можете извлекать значения, **не являющиеся NULL**, используя `IS NOT NULL`. Это позволяет фильтровать нулевые значения.
+```sql
+SELECT * 
+FROM movies 
+WHERE genre IS NOT NULL
+```
+OUTPUT  
+CREATE TABLE  
+INSERT 0 5  
+|id	|title	|budget	|genre
+|--|-----|------|---
+|2	|Star Wars	|11	|fantasy
+|4	|Avatar	|237	|fantasy
+(2 rows)
+
+**Фильтрация отсутствующих данных** - это один из способов работы с неполными данными. Разные подходы используются в зависимости от того, откуда идут данные или какой анализ необходимо выполнить.
+
+### [Назад к оглавлению](#back)
+
+
+<a id="pract_teachers"></a>
+## Данные о преподавателях (практика)
+
+ПРАКТИЧЕСКОЕ УПРАЖНЕНИЕ  
+Школа хочет получить список предметов, преподаваемых их учителями. Дана следующая таблица `teachers`:
+
+![alt text](https://lecontent.sololearn.com/material-images/5fc946d62ae1469280a387e8826b7da7-57efcd4392d84f7cbfb5a3cac222af35-cleaning2.png)
+
+Напишите запрос для извлечения уникальных предветов `subject`, которые преподавались:
+```sql
+/*
+таблицa: teachers
+выбрать уникальные subject в школе
+*/
+SELECT DISTINCT subject
+FROM teachers;
+```
+
+### [Назад к оглавлению](#back)
+
+
+<a id="data_fixing"></a>
+## Исправление типов данных
 
