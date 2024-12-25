@@ -7532,3 +7532,83 @@ OR username = 'ann88';
 
 <a id="exam4"></a>
 ## Контрольные вопросы к модулю 4
+
+1. Первый шаг анализа данных - это…
+- [ ] очищать данные
+- [ ] собирать данные
+- [x] задавать вопросы
+
+2. Какая проблема качества данных у нас здесь?
+
+![alt text](<https://lecontent.sololearn.com/material-images/7c7686fe387743dd97fb051abb2ece28-Frame272001).png>)
+
+- [x] Дублирование данных
+- [ ] Неверный тип данных
+- [ ] Отсутствующие значения
+
+3. Завершите для извлечения выбранных значений:
+
+![alt text](https://lecontent.sololearn.com/material-images/227a5d9bd18c459b8b800407d5f9449c-MQ4,lp3.png)
+
+```sql
+SELECT country
+FROM orders
+WHERE status = 'Delivered';
+```
+
+4. Сколько наименований продуктов будет извлечено?
+
+![alt text](https://lecontent.sololearn.com/material-images/14004ab5ceb6468cb5480f300dbbe1f4-Frame7178(1).png)
+
+- [ ] 2
+- [x] 3
+- [ ] 5
+
+5. Этот код содержит ошибку, вы можете её идентифицировать?
+```sql
+SELECT *
+FROM employees
+WHERE salary > 5000  department = 'Marketing';
+```
+
+- [ ] Число 5000 должно быть заключено в кавычки
+- [x] Логический оператор отсутствует
+- [ ] Символ * должен быть заменён на #
+
+6. Выберите все правильные способы сбора данных:
+- [x] Использование API
+- [x] Сбор информации с веб-страниц
+- [x] Запрос к базе данных
+
+
+7. Завершите для извлечения уникальных категорий продуктов:
+```sql
+SELECT DISTINCT category
+FROM products
+```
+
+8. Что извлечет этот запрос?
+
+![alt text](https://lecontent.sololearn.com/material-images/4d9443237bd84e30b4098315c176562d-Frame27177(3).png)
+
+- [x] Frodo Baggins
+- [x] Oliver Twist
+- [ ] Atticus Finch
+- [ ] Jay Gatsby
+
+9. Извлеките выбранную запись из таблицы:
+
+![alt text](https://lecontent.sololearn.com/material-images/cd11c0f309984560a4e41e778c2e725c-Frame27197.png)
+
+```sql
+SELECT *
+FROM sales
+WHERE product = 'Coffee' AND qty = 5
+```
+
+10. Переставьте следующие шаги в процессе анализа данных для понимания поведения пользователей на веб-сайте:  
+- Задать вопрос
+- Собрать данные
+- Очистить данные
+- Извлечь информацию
+
