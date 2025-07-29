@@ -45,6 +45,8 @@
     - [Методы](#методы)
     - [Управление моделью](#управление-моделью)
     - [Определение моделей LocalLibrary](#определение-моделей-locallibrary)
+    - [Модель жанра](#модель-жанра)
+    - [Модель книги](#модель-книги)
 
 ## Введение
 
@@ -1169,4 +1171,143 @@ from django.db import models
 # Create your models here.
 ```
 
-Модель жанра
+### Модель жанра
+
+Скопируйте приведённый ниже код модели `Genre` и вставьте его в нижнюю часть вашего файла **models.py**. Эта модель используется для хранения информации о категории книг - например, будь то художественная или документальная, роман или военно-историческая и т. д. Как уже упоминалось выше, мы создали жанр как модель, а не как свободный текст или список выбора, чтобы возможные значения могли управляться через базу данных, а не были закодированными.
+```py
+Copy to Clipboard
+class Genre(models.Model):
+    """
+    Model representing a book genre (e.g. Science Fiction, Non Fiction).
+    """
+    name = models.CharField(max_length=200, help_text="Enter a book genre (e.g. Science Fiction, French Poetry etc.)")
+
+    def __str__(self):
+        """
+        String for representing the Model object (in Admin site etc.)
+        """
+        return self.name
+```
+
+Модель имеет один `CharField` field (имя), которое используется для описания жанра (оно ограничено 200 символами и имеет некоторый `help_text`. В конце модели мы объявляем метод `__str__()`, который просто возвращает имя жанра, определённого конкретной записью. Verbose name не был определён, поэтому поле будет называться `Name` в формах.
+
+[Назад к Django](#django)
+
+### Модель книги
+
+Скопируйте модель книги ниже и снова вставьте её в нижнюю часть файла. Модель книги представляет всю информацию о доступной книге в общем смысле, но не конкретный физический «экземпляр» или «копию» для временного использования. Модель использует CharField для представления названия книги и isbn (обратите внимание, как isbn указывает свой ярлык как «ISBN», используя первый неименованный параметр, поскольку в противном случае ярлык по умолчанию был бы «Isbn»). Модель использует TextField для summary, потому что этот текст, возможно, должен быть очень длинным.
+```py
+from django.urls import reverse #Used to generate URLs by reversing the URL patterns
+
+class Book(models.Model):
+    """
+    Model representing a book (but not a specific copy of a book).
+    """
+    title = models.CharField(max_length=200)
+    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
+    # Foreign Key used because book can only have one author, but authors can have multiple books
+    # Author as a string rather than object because it hasn't been declared yet in the file.
+    summary = models.TextField(max_length=1000, help_text="Enter a brief description of the book")
+    isbn = models.CharField('ISBN',max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
+    genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
+    # ManyToManyField used because genre can contain many books. Books can cover many genres.
+    # Genre class has already been defined so we can specify the object above.
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return self.title
+
+
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular book instance.
+        """
+        return reverse('book-detail', args=[str(self.id)])
+```
+
+Жанр представляет из себя `ManyToManyField`, так что книга может иметь несколько жанров, а жанр может иметь много книг. Автор объявляется через `ForeignKey`, поэтому в каждой книге будет только один автор, но у автора может быть много книг (на практике книга может иметь несколько авторов, но не в такой реализации!)
+
+В обоих типах полей соответствующий класс модели объявляется как первый неименованный параметр, используя либо класс модели, либо строку, содержащую имя соответствующей модели. Вы должны использовать имя модели как строку, если связанный класс ещё не был определён в этом файле до того, как он будет указан! Другими параметрами, представляющими интерес для поля автора, являются null=True, которое позволяет базе данных хранить значение Null , если автор не выбран, и on_delete = models. SET_NULL установит значение автора в Null, если связанная с автором запись будет удалена.
+
+Модель также определяет __str __ (), используя поле заголовка книги для представления книги. Окончательный метод get_absolute_url () возвращает URL-адрес, который можно использовать для доступа к подробной записи для этой модели (для этого нам нужно будет определить сопоставление URL-адресов, в котором содержится подробная информация о книге, и определить связанное представление и шаблон ).
+
+Модель BookInstance
+Затем скопируйте модель BookInstance (показано ниже) под другие модели. BookInstance представляет собой определённую копию книги, которую кто-то может брать взаймы, и включает информацию о том, доступна ли копия или в какой день она ожидается, «отпечаток» или сведения о версии, а также уникальный идентификатор книги в библиотеке. Теперь некоторые из полей и методов будут знакомы. Модель использует
+
+ForeignKey для идентификации связанной книги (в каждой книге может быть много копий, но в копии может быть только одна книга).
+CharField, для представления данных (конкретного выпуска) о книге.
+python
+Copy to Clipboard
+import uuid # Required for unique book instances
+
+class BookInstance(models.Model):
+    """
+    Model representing a specific copy of a book (i.e. that can be borrowed from the library).
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular book across whole library")
+    book = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True)
+    imprint = models.CharField(max_length=200)
+    due_back = models.DateField(null=True, blank=True)
+
+    LOAN_STATUS = (
+        ('m', 'Maintenance'),
+        ('o', 'On loan'),
+        ('a', 'Available'),
+        ('r', 'Reserved'),
+    )
+
+    status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='m', help_text='Book availability')
+
+    class Meta:
+        ordering = ["due_back"]
+
+
+    def __str__(self):
+        """
+        String for representing the Model object
+        """
+        return '%s (%s)' % (self.id,self.book.title)
+Мы дополнительно объявляем несколько новых типов полей:
+
+UUIDField используется для поля id, чтобы установить его как primary_key для этой модели. Этот тип поля выделяет глобальное уникальное значение для каждого экземпляра (по одному для каждой книги, которую вы можете найти в библиотеке).
+DateField используется для данных due_back (при которых ожидается, что книга появится после заимствования или обслуживания). Это значение может быть blank или null (необходимо, когда книга доступна). Метаданные модели (Class Meta) используют это поле для упорядочивания записей, когда они возвращаются в запросе.
+status - это CharField, который определяет список choice/selection. Как вы можете видеть, мы определяем кортеж, содержащий кортежи пар ключ-значение и передаём его аргументу выбора. Значение в key/value паре - это отображаемое значение, которое пользователь может выбрать, а ключи - это значения, которые фактически сохраняются, если выбрана опция. Мы также установили значение по умолчанию «m» (техническое обслуживание), поскольку книги изначально будут созданы недоступными до того, как они будут храниться на полках.
+Модель __str __ () представляет объект BookInstance, используя комбинацию его уникального идентификатора и связанного с ним заголовка книги.
+
+Примечание: Немного о Python:
+
+Значение, возвращаемое __str __ (), является форматированной строкой. В строке мы используем % S для объявления 'placeholders'. После строки укажем %, а затем кортеж, содержащий значения, которые будут вставлены в заполнители. Если у вас просто один заполнитель, вы можете опустить кортеж - например, 'Моё значение:% S' % переменная.
+
+Обратите также внимание на то, что, хотя этот подход совершенно применим, но он более не является предпочтительным. Начиная с Python 3, вы должны использовать метод format, например. '{0} ({1})'.format (self.id, self.book.title). Вы можете узнать больше об этом здесь.
+
+Модель автора
+Скопируйте модель автора (показано ниже) под существующим кодом в models.py.
+
+Теперь все поля/методы должны быть знакомы. Модель определяет автора как имя, фамилию, дату рождения и (необязательную) дату смерти. Он указывает, что по умолчанию __str __ () возвращает имя в фамилии, порядковый номер первого имени. Метод get_absolute_url () отменяет сопоставление URL-адреса автора с целью получения URL-адреса для отображения отдельного автора.
+
+python
+Copy to Clipboard
+class Author(models.Model):
+    """
+    Model representing an author.
+    """
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    date_of_death = models.DateField('Died', null=True, blank=True)
+
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular author instance.
+        """
+        return reverse('author-detail', args=[str(self.id)])
+
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return '%s, %s' % (self.last_name, self.first_name)
+Повторно выполнить миграцию базы данных
