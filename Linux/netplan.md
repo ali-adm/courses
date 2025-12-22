@@ -1,5 +1,5 @@
 # Настройка сети Netplan в Ubuntu
-
+[Источник losst.pro](https://losst.pro/nastrojka-seti-netplan-v-ubuntu)
 
 ## Оглавление
 - [Настройка сети Netplan в Ubuntu](#настройка-сети-netplan-в-ubuntu)
