@@ -157,3 +157,24 @@ micro docker-compose.yml
 # 3. Enter
 ```
 
+- Что делать прямо сейчас:
+```bash
+# 1. Закрой все Vim процессы
+sudo pkill -9 vim
+sudo pkill -9 nvim
+
+# 2. Удали swap-файлы
+rm -f .*.swp .*.swo .*.swn
+
+# 3. Проверь что удалилось
+ls -la
+
+# 4. Открой файл заново
+vim docker-compose.yml
+
+# ИЛИ лучше используй nano если с Vim проблемы
+nano docker-compose.yml
+```
+
+Если все еще не удаляется - перезапусти терминал или даже систему, иногда помогает.
+
